@@ -1,0 +1,6 @@
+.svn
+.deps
+*.o
+*.lo
+*.la
+.libs
