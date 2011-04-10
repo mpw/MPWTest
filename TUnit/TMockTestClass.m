@@ -4,56 +4,8 @@
 
 #include "TMockTestClass.h"
 
-#pragma .h #include <TUnit/TUnit.h>
 
-
-#pragma .h typedef struct _TMockTestStruct {
-#pragma .h     int anInt;
-#pragma .h     id anObject;
-#pragma .h     double aDouble;
-#pragma .h } TMockTestStruct;
-
-
-#pragma .h @protocol TMockTestProtocol
-
-
-#pragma .h - (void)voidProtocolMethod;
-
-
-#pragma .h - (char)charProtocolMethod;
-
-
-#pragma .h - (short)shortProtocolMethod;
-
-
-#pragma .h - (int)intProtocolMethod;
-
-
-#pragma .h - (long long)longLongProtocolMethod;
-
-
-#pragma .h - (float)floatProtocolMethod;
-
-
-#pragma .h - (double)doubleProtocolMethod;
-
-
-#pragma .h - (void *)pointerProtocolMethod;
-
-
-#pragma .h - (TMockTestStruct)structProtocolMethod;
-
-
-#pragma .h @end
-
-
-#pragma .h @protocol TMockTestInheritedProtocol <TObject>
-
-
-#pragma .h @end
-
-
-@implementation TMockTestClass:TObject
+@implementation TMockTestClass:NSObject
 {
 }
 

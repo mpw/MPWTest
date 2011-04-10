@@ -16,6 +16,7 @@
 @interface NSException(exceptionAt)
 
 +exceptionAt: (const char*)file : (int)line withMessage:(NSString*)msg;
++(void)raiseAt: (const char*)file : (int)line withMessage:(NSString*)msg;
 @end
 
 
@@ -25,6 +26,12 @@
 {
 	return [NSException exceptionWithName:@"exception" reason:[NSString stringWithFormat:@"%@ %s %d",msg,file,line] userInfo:nil];
 }
+
++(void)raiseAt: (const char*)file : (int)line withMessage:(NSString*)msg
+{
+	[[self exceptionAt:file :line withMessage:msg] raise];
+}
+
 
 @end
 
@@ -449,7 +456,24 @@ static NSString *__package = nil;
 	return testSelectors;
 }
 
+-(void)doTestBasic:(NSString*)testName withTest:test
+{
+    SEL testMethod=NSSelectorFromString(testName);
+	
+    if ( testMethod &&  [self respondsToSelector:testMethod] ) {
+        objc_msgSend( self, testMethod );
+    } else {
+        [NSException raise:@"test-inconsistency" format:@"error: fixture %@ doesn't respond to test message %@ for test %@",self,testName,[test description]];
+    }
+}
 
+
+-(void)doTest:(NSString*)testName withTest:test
+{
+	[self setUp];
+	[self doTestBasic:testName withTest:test];
+	[self tearDown];
+}
 
 @end
 

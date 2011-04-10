@@ -3,13 +3,8 @@
 //
 
 #include "TClassMockTest.h"
-
-#pragma .h #include <TUnit/TUnit.h>
-
-#pragma .h @class TMockTestClass;
-
 #include "TMockTestClass.h"
-
+#import "TMockController.h"
 
 @implementation TClassMockTest:TTestCase
 {
@@ -18,7 +13,7 @@
 }
 
 
-- (void)prepare
+- (void)setUp
 {
     _controller = [TMockController mockController];
     _mock = (TMockTestClass *)[_controller
@@ -26,7 +21,7 @@
 }
 
 
-- (void)cleanup
+- (void)tearDown
 {
     [_controller verify];
     _controller = nil;
@@ -85,16 +80,21 @@
     [_mock floatMethod];
     [_controller setFloatResult: value];
     [_controller replay];
-    ASSERT([_mock floatMethod] == value);
+	float retval = [_mock floatMethod];
+	NSLog(@"float value: %g retval=%g diff=%g",value,retval,value-retval);
+    ASSERT( (retval == value ));
 }
 
 
 - (void)testDoubleMethod
 {
+	double value=1234567890.1234567890123456789;
     [_mock doubleMethod];
-    [_controller setDoubleResult: 1234567890.1234567890123456789];
+    [_controller setDoubleResult:value ];
     [_controller replay];
-    ASSERT([_mock doubleMethod] == 1234567890.1234567890123456789);
+	double retval = [_mock doubleMethod];
+	NSLog(@"double value: %g retval=%g diff=%g",value,retval,value-retval);
+    ASSERT( (retval == value) );
 }
 
 

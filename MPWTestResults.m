@@ -15,21 +15,29 @@
     return self;
 }
 
+-(void)addError:aFailure
+{
+	[self printStackTrace:aFailure];
+    [failures addObject:[NSString stringWithFormat:@"tests:1: %@ in %@",aFailure,[self currentTestDescription]]];
+}
+
+
 -(void)addFailure:aFailure
 {
 	if ( [[aFailure name] isEqual:@"MPWTestFailedException"]) {
 		
 		[failures addObject:[NSString stringWithFormat:@"%@ : %@",aFailure,[self currentTestDescription]]];
 	} else {
-		[errors addObject:aFailure];
+		[self addError:aFailure];
 	}
 }
 
-
+//extern NSString *NSStackTraceKey;
 
 - (void)printStackTrace:(NSException *)e
 {
     NSString *stack = nil; // [[e userInfo] objectForKey:NSStackTraceKey];
+//    NSString *stack =[[e userInfo] objectForKey:NSStackTraceKey];
     if (stack) {
         NSTask *ls = [[NSTask alloc] init];
         NSString *pid = [[NSNumber numberWithInt:[[NSProcessInfo processInfo] processIdentifier]] stringValue];
@@ -48,12 +56,6 @@
     } else {
         NSLog(@"No stack trace available.");
     }
-}
-
--(void)addError:aFailure
-{
-	[self printStackTrace:aFailure];
-    [failures addObject:[NSString stringWithFormat:@"tests:1: %@ in %@",aFailure,[self currentTestDescription]]];
 }
 
 -(void)addSuccess:aSuccess
