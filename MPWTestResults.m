@@ -21,7 +21,7 @@
 		
 		[failures addObject:[NSString stringWithFormat:@"%@ : %@",aFailure,[self currentTestDescription]]];
 	} else {
-		[self addError:aFailure];
+		[errors addObject:aFailure];
 	}
 }
 
@@ -54,11 +54,6 @@
 {
 	[self printStackTrace:aFailure];
     [failures addObject:[NSString stringWithFormat:@"tests:1: %@ in %@",aFailure,[self currentTestDescription]]];
-}
-
--(int)numFailures
-{
-    return [failures count];
 }
 
 -(void)addSuccess:aSuccess

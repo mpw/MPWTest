@@ -7,7 +7,7 @@
 #import "MPWTestResults.h"
 #import "NSObjectTestingSupport.h"
 #import "NSBundleClassEnumeration.h"
-//#import <objc/objc-runtime.h>
+#import <objc/runtime.h>
 
 @implementation MPWTestSuite
 

@@ -3,7 +3,7 @@
 //	Code contributed by Dirk Theisen [ d.theisen@objectpark.de (Dirk Theisen) ]
 
 #import "NSBundleClassEnumeration.h"
-//#import <objc/objc-runtime.h>
+#import <objc/runtime.h>
 
 @implementation NSBundle(classEnumeration)
 //#ifdef Darwin

@@ -19,7 +19,9 @@
 -(void)noteTest;
 -(void)printResults;
 -(void)printAllResults;
--(int)numFailures;
+-(int)failureCount;
+
+-(NSString*)currentTestDescription;
 
 
 @end

@@ -83,6 +83,12 @@
 		1FD58B5E10BF613800919BE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8F937A0066CF95C35ADD82 /* Foundation.framework */; };
 		1FD58B5F10BF613800919BE7 /* ExceptionHandling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F346FFD0F2067E9003D39D2 /* ExceptionHandling.framework */; };
 		1FD58B6C10BF617200919BE7 /* dllmain.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD58B6B10BF617200919BE7 /* dllmain.m */; };
+		1FFC4FF113520ADE00377C45 /* TTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FF013520ADE00377C45 /* TTestCase.m */; };
+		1FFC4FF313520AE900377C45 /* TTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FFC4FF213520AE900377C45 /* TTestCase.h */; };
+		1FFC504313521AE300377C45 /* TTestCaseTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FFC504213521AE300377C45 /* TTestCaseTest.h */; };
+		1FFC504413521B0D00377C45 /* TTestCaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FDE135209FE00377C45 /* TTestCaseTest.m */; };
+		1FFC507013521FFF00377C45 /* TUnitTest.h in Resources */ = {isa = PBXBuildFile; fileRef = 1FFC506F13521FFF00377C45 /* TUnitTest.h */; };
+		1FFC50731352202500377C45 /* TUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FDF135209FE00377C45 /* TUnitTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -156,6 +162,20 @@
 		1FD58B6510BF613800919BE7 /* MPWTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MPWTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FD58B6810BF613800919BE7 /* Info-MPWTest__Framework___Upgraded_ copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-MPWTest__Framework___Upgraded_ copy.plist"; sourceTree = "<group>"; };
 		1FD58B6B10BF617200919BE7 /* dllmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dllmain.m; sourceTree = "<group>"; };
+		1FFC4FD6135209FE00377C45 /* TClassMockInjectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TClassMockInjectionTest.m; sourceTree = "<group>"; };
+		1FFC4FD7135209FE00377C45 /* TClassMockTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TClassMockTest.m; sourceTree = "<group>"; };
+		1FFC4FD8135209FE00377C45 /* TMetaClassMockTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMetaClassMockTest.m; sourceTree = "<group>"; };
+		1FFC4FD9135209FE00377C45 /* TMockMessageTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMockMessageTest.m; sourceTree = "<group>"; };
+		1FFC4FDA135209FE00377C45 /* TMockTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMockTestClass.m; sourceTree = "<group>"; };
+		1FFC4FDB135209FE00377C45 /* TObjectMockInjectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TObjectMockInjectionTest.m; sourceTree = "<group>"; };
+		1FFC4FDC135209FE00377C45 /* TObjectMockTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TObjectMockTest.m; sourceTree = "<group>"; };
+		1FFC4FDD135209FE00377C45 /* TProtocolMockTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TProtocolMockTest.m; sourceTree = "<group>"; };
+		1FFC4FDE135209FE00377C45 /* TTestCaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTestCaseTest.m; sourceTree = "<group>"; };
+		1FFC4FDF135209FE00377C45 /* TUnitTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUnitTest.m; sourceTree = "<group>"; };
+		1FFC4FF013520ADE00377C45 /* TTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTestCase.m; sourceTree = "<group>"; };
+		1FFC4FF213520AE900377C45 /* TTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTestCase.h; sourceTree = "<group>"; };
+		1FFC504213521AE300377C45 /* TTestCaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTestCaseTest.h; sourceTree = "<group>"; };
+		1FFC506F13521FFF00377C45 /* TUnitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUnitTest.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +227,7 @@
 		0D8F93640066CF95C35ADD82 /* MPWTest */ = {
 			isa = PBXGroup;
 			children = (
+				1FFC4FCF135209A400377C45 /* TUnit */,
 				1F4B925D0D4D378D00EA8493 /* testlogger */,
 				0D8F93650066CF95C35ADD82 /* Classes */,
 				0D8F936C0066CF95C35ADD82 /* Headers */,
@@ -286,6 +307,35 @@
 			name = testlogger;
 			sourceTree = "<group>";
 		};
+		1FFC4FCF135209A400377C45 /* TUnit */ = {
+			isa = PBXGroup;
+			children = (
+				1FFC4FF013520ADE00377C45 /* TTestCase.m */,
+				1FFC4FF213520AE900377C45 /* TTestCase.h */,
+				1FFC4FD0135209BF00377C45 /* Tests */,
+			);
+			path = TUnit;
+			sourceTree = "<group>";
+		};
+		1FFC4FD0135209BF00377C45 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1FFC4FD6135209FE00377C45 /* TClassMockInjectionTest.m */,
+				1FFC4FD7135209FE00377C45 /* TClassMockTest.m */,
+				1FFC4FD8135209FE00377C45 /* TMetaClassMockTest.m */,
+				1FFC4FD9135209FE00377C45 /* TMockMessageTest.m */,
+				1FFC4FDA135209FE00377C45 /* TMockTestClass.m */,
+				1FFC4FDB135209FE00377C45 /* TObjectMockInjectionTest.m */,
+				1FFC4FDC135209FE00377C45 /* TObjectMockTest.m */,
+				1FFC4FDD135209FE00377C45 /* TProtocolMockTest.m */,
+				1FFC4FDE135209FE00377C45 /* TTestCaseTest.m */,
+				1FFC504213521AE300377C45 /* TTestCaseTest.h */,
+				1FFC4FDF135209FE00377C45 /* TUnitTest.m */,
+				1FFC506F13521FFF00377C45 /* TUnitTest.h */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -300,6 +350,8 @@
 				1F4B928F0D4D382800EA8493 /* NSBundleClassEnumeration.h in Headers */,
 				1F4B92900D4D382800EA8493 /* MPWTestAssertionHandler.h in Headers */,
 				1F33C5AA117E61D100245E3E /* MPWTestSuite.h in Headers */,
+				1FFC4FF313520AE900377C45 /* TTestCase.h in Headers */,
+				1FFC504313521AE300377C45 /* TTestCaseTest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +497,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FFC507013521FFF00377C45 /* TUnitTest.h in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +569,9 @@
 				1F4B92980D4D382800EA8493 /* NSBundleClassEnumeration.m in Sources */,
 				1F4B92990D4D382800EA8493 /* MPWTestAssertionHandler.m in Sources */,
 				1F61A03F10F901070043BB22 /* MPWTestSuite.m in Sources */,
+				1FFC4FF113520ADE00377C45 /* TTestCase.m in Sources */,
+				1FFC504413521B0D00377C45 /* TTestCaseTest.m in Sources */,
+				1FFC50731352202500377C45 /* TUnitTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1078,8 +1134,9 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_SEARCH_PATHS = "";
 				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_GC = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "`uname`";
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Info-MPWTest__Framework___Upgraded_.plist";

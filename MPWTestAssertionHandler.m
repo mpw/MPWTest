@@ -10,6 +10,21 @@
 
 id MPWTestFailedException = @"MPWTestFailedException";
 
+
+@implementation NSObject(isInstance)
+
++(BOOL)isInstance{
+    return NO;
+}
+
+-(BOOL)isInstance
+{
+    return YES;
+}
+
+@end
+
+
 @implementation MPWTestAssertionHandler
 
 -initWithTester:aTester
@@ -90,16 +105,3 @@ id MPWTestFailedException = @"MPWTestFailedException";
 
 @end
 
-
-@implementation NSObject(isInstance)
-
-+(BOOL)isInstance{
-    return NO;
-}
-
--(BOOL)isInstance
-{
-    return YES;
-}
-
-@end
