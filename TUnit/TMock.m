@@ -13,7 +13,7 @@
 
 -(void)forwardInvocation:(NSInvocation *)invocation
 {
-	NSLog(@"forwarding %@ to %@",invocation,controller);
+//	NSLog(@"forwarding %@ to %@",invocation,controller);
 	[controller handleMockedInvocation:invocation];
 }
 

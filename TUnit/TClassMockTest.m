@@ -81,7 +81,7 @@
     [_controller setFloatResult: value];
     [_controller replay];
 	float retval = [_mock floatMethod];
-	NSLog(@"float value: %g retval=%g diff=%g",value,retval,value-retval);
+//	NSLog(@"float value: %g retval=%g diff=%g",value,retval,value-retval);
     ASSERT( (retval == value ));
 }
 
@@ -93,7 +93,7 @@
     [_controller setDoubleResult:value ];
     [_controller replay];
 	double retval = [_mock doubleMethod];
-	NSLog(@"double value: %g retval=%g diff=%g",value,retval,value-retval);
+//	NSLog(@"double value: %g retval=%g diff=%g",value,retval,value-retval);
     ASSERT( (retval == value) );
 }
 
@@ -153,10 +153,12 @@
             double: 1234567890.1234567890123456789 cPtr: "Hallo"
             constCPtr: "du da" vPtr: "murks" constVPtr: "mehr murks"
             id: _mock]);
+	NSLog(@"==== float should fail");
     FAIL([_mock methodWithArgumentsChar: 'a' short: 1000 int: 2000000
             long: 2000000 longLong: 5000000000LL float: 1234.5678
             double: 1234567890.1234 cPtr: "Hallo" constCPtr: "du da"
             vPtr: "murks" constVPtr: "mehr murks" id: _mock]);
+	NSLog(@"==== did float fail?");
     FAIL([_mock methodWithArgumentsChar: 'a' short: 1000 int: 2000000
             long: 2000000 longLong: 5000000000LL float: 1234.5678
             double: 1234567890.1234567890123456789 cPtr: "Hall"
@@ -180,10 +182,12 @@
             long: 2000000 longLong: 5000000000LL float: 1234.5678
             double: 1234567890.1234567890123456789 cPtr: "Hallo"
             constCPtr: "du da" vPtr: "murks" constVPtr: "mehr murks" id: self]);
+	NSLog(@"==== befopre final");
     [_mock methodWithArgumentsChar: 'a' short: 1000 int: 2000000
             long: 2000000 longLong: 5000000000LL float: 1234.5678
             double: 1234567890.1234567890123456789 cPtr: "Hallo"
             constCPtr: "du da" vPtr: "murks" constVPtr: "mehr murks" id: _mock];
+	NSLog(@"==== after to final");
 }
 
 
