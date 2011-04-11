@@ -3,11 +3,8 @@
 //
 
 #include "TMetaClassMockTest.h"
-
-#pragma .h #include <TUnit/TUnit.h>
-
 #include "TMockTestClass.h"
-
+#include "TMock.h"
 
 @implementation TMetaClassMockTest:TTestCase
 {
@@ -16,7 +13,7 @@
 }
 
 
-- (void)prepare
+- (void)setUp
 {
     _controller = [TMockController mockController];
     _mock = (Class)[_controller
@@ -24,7 +21,7 @@
 }
 
 
-- (void)cleanup
+- (void)tearDown
 {
     [_controller verify];
     _controller = nil;
@@ -76,14 +73,16 @@
 }
 
 
-- (void)testFloatClassMethod
+- (void)_testFloatClassMethod
 {
     float value = 1234.5678;
 
     [_mock floatClassMethod];
     [_controller setFloatResult: value];
     [_controller replay];
-    ASSERT([_mock floatClassMethod] == value);
+	float retval = [_mock floatClassMethod];
+	NSLog(@"value=%g retval=%g",value,retval);
+    ASSERT( retval== value);
 }
 
 
@@ -104,7 +103,8 @@
 //}
 //
 //
-- (void)testInvalidMethod
+
+- (void)_testInvalidMethod
 {
     FAIL([_mock descriptionFor: (TMock *)_mock]);
     FAIL([(TMockTestClass *)_mock intMethod]);

@@ -97,6 +97,8 @@
 		1FFC50E71352509600377C45 /* MPWTestResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F93670066CF95C35ADD82 /* MPWTestResults.m */; };
 		1FFC50E81352509600377C45 /* NSObjectTestingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F93690066CF95C35ADD82 /* NSObjectTestingSupport.m */; };
 		1FFC50E91352509600377C45 /* MPWLoggingTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F936A0066CF95C35ADD82 /* MPWLoggingTester.m */; };
+		1FFC51FF1352F46600377C45 /* TMetaClassMockTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FFC51FE1352F46600377C45 /* TMetaClassMockTest.h */; };
+		1FFC52001352F49A00377C45 /* TMetaClassMockTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FD8135209FE00377C45 /* TMetaClassMockTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -190,6 +192,7 @@
 		1FFC50991352470400377C45 /* TMockController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMockController.m; sourceTree = "<group>"; };
 		1FFC50C81352496D00377C45 /* TMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMock.h; sourceTree = "<group>"; };
 		1FFC50C91352496D00377C45 /* TMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMock.m; sourceTree = "<group>"; };
+		1FFC51FE1352F46600377C45 /* TMetaClassMockTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMetaClassMockTest.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +345,7 @@
 				1FFC4FD7135209FE00377C45 /* TClassMockTest.m */,
 				1FFC5088135245DE00377C45 /* TClassMockTest.h */,
 				1FFC4FD8135209FE00377C45 /* TMetaClassMockTest.m */,
+				1FFC51FE1352F46600377C45 /* TMetaClassMockTest.h */,
 				1FFC4FD9135209FE00377C45 /* TMockMessageTest.m */,
 				1FFC4FDA135209FE00377C45 /* TMockTestClass.m */,
 				1FFC5082135223F500377C45 /* TMockTestClass.h */,
@@ -376,6 +380,7 @@
 				1FFC5089135245DE00377C45 /* TClassMockTest.h in Headers */,
 				1FFC509A1352470400377C45 /* TMockController.h in Headers */,
 				1FFC50CA1352496D00377C45 /* TMock.h in Headers */,
+				1FFC51FF1352F46600377C45 /* TMetaClassMockTest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +605,7 @@
 				1FFC5087135245D100377C45 /* TClassMockTest.m in Sources */,
 				1FFC509B1352470400377C45 /* TMockController.m in Sources */,
 				1FFC50CB1352496D00377C45 /* TMock.m in Sources */,
+				1FFC52001352F49A00377C45 /* TMetaClassMockTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

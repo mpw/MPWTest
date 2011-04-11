@@ -33,6 +33,16 @@
 	return mock;
 }
 
+-mockForMetaClassOfClass:(Class)aClass
+{
+	originalObject = aClass;
+	id mock=NSAllocateObject(NSClassFromString(@"TMock"), 0, NSDefaultMallocZone());
+	[mock initWithController:self];
+	return mock;
+}
+
+
+
 -(void)replay
 {
 	recording=NO;
@@ -44,8 +54,6 @@
 //	NSLog(@"originalObject: %@",originalObject);
 	return [originalObject methodSignatureForSelector:sel];
 }
-
-
 
 -(void)recordInvocation:(NSInvocation *)invocation
 {
