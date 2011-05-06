@@ -39,7 +39,6 @@
 }
 
 
-#if 0
 - (void)testNormalObjectMockingAMessageReturnsToNormalBehaviourAfterReceivingMockedCall
 {
     [(id)[[_obj mock] testMethod: 3] andReturnInt: 666];
@@ -54,6 +53,7 @@
     [_obj voidMethod];
 }
 
+#if 0
 
 - (void)testIntMethodCanBeMocked
 {
