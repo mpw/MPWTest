@@ -13,7 +13,7 @@
 
 -(void)forwardInvocation:(NSInvocation *)invocation
 {
-	NSLog(@"forwarding %@ to %@",invocation,controller);
+//	NSLog(@"forwarding %@ to %@",invocation,controller);
 	[controller handleMockedInvocation:invocation];
 }
 
@@ -30,13 +30,13 @@
 
 -(void)returnBool:(BOOL)aValue
 {
-	NSLog(@"should return int: %d",aValue);
+	NSLog(@"should return bool: %d",aValue);
 	[controller setCharResult:aValue];
 }
 
 -andReturnBool:(BOOL)aValue
 {
-	return self;
+	[controller setCharResult:aValue];
 }
 
 -shouldNotReceive
@@ -55,7 +55,11 @@
 	[controller setIntResult:anInt];
 }
 
-
+-stub
+{
+	[controller recordOneMessage];
+	return self;
+}
 
 @end
 

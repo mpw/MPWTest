@@ -121,28 +121,28 @@ static NSMapTable* mockControllers=nil;
 -(BOOL)matchesInvocation:(NSInvocation*)invocation
 {
 	for ( int i = [expectations count]-1 ; i >= 0 ; i-- ) {
-		if ( [[expectations objectAtIndex:i] matchesInvocation:invocation] ) {
+		TMessageExpectation *expectation = [expectations objectAtIndex:i];
+		NSLog(@"checking expectations[%d]=%@ against %@",i,expectation,invocation);
+		if ( [expectation matchesInvocation:invocation] ) {
+			NSLog(@"did match at %d",i);
+			char buf[128];
+			if  ( *[[invocation methodSignature] methodReturnType] != 'v' ) {
+				[expectation getReturnValue:buf];
+				[invocation setReturnValue:buf];
+			}
 			return YES;
 		}
 	}
+	NSLog(@"no match!");
 	return NO;
 }
 
 -(void)checkAndRunInvocation:(NSInvocation *)invocation
 {
-	NSLog(@"checkAndRunInvocation %@",invocation);
+//	NSLog(@"checkAndRunInvocation %@",invocation);
 //	[invocation setReturnValue:&empty];
-	if ( [self matchesInvocation:invocation]) {
-		char buf[128];
-		if  ( *[[invocation methodSignature] methodReturnType] != 'v' ) {
-			[[expectations objectAtIndex:0] getReturnValue:buf];
-			[invocation setReturnValue:buf];
-		}
-		//			NSLog(@"invocation checked out OK, returning: %@",invocation);
-//		[expectations removeObjectAtIndex:0];
-		return;
-	} else {
-		[NSException raise:@"mock" format:@"mock doesn't match: %@ %@",invocation,[expectations objectAtIndex:0]];
+	if (! [self matchesInvocation:invocation]) {
+		[NSException raise:@"mock" format:@"mock doesn't match: %@ %@",NSStringFromSelector([invocation selector]),expectations];
 	}
 }
 
@@ -158,9 +158,9 @@ static NSMapTable* mockControllers=nil;
 
 -(void)handleMockedInvocation:(NSInvocation *)invocation
 {
-	NSLog(@"handleMockedInvocation %@",invocation);
+//	NSLog(@"handleMockedInvocation %@",invocation);
 	if ( [self shouldRecordMessage] ) {
-		NSLog(@"recording %@",NSStringFromSelector([invocation selector]));
+//		NSLog(@"recording %@",NSStringFromSelector([invocation selector]));
 		recordNumberOfMessages--;
 		[self recordInvocation:invocation];
 #if 1		
@@ -170,7 +170,7 @@ static NSMapTable* mockControllers=nil;
 		}
 #endif		
 	} else {
-		NSLog(@"replay / check %@",NSStringFromSelector([invocation selector]));
+//		NSLog(@"replay / check %@",NSStringFromSelector([invocation selector]));
 		[self checkAndRunInvocation:invocation];
 	}
 	

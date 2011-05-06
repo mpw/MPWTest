@@ -74,7 +74,6 @@
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
 }
 
-#if 0
 
 
 - (void)testBoolMethodCanBeMocked
@@ -100,6 +99,7 @@
     ASSERT(wert == [_obj boolMethod]);
 }
 
+#if 0
 
 - (void)testPointerMethodCanBeMocked
 {

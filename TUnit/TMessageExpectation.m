@@ -63,7 +63,7 @@
 					break;
 				default:
 					if ( memcmp(argbuf1, argbuf2, 128 ) ) {
-						//						NSLog(@"arg at index %d with type %s didn't match!",i,argType);
+												NSLog(@"arg at index %d with type %s didn't match!",i,argType);
 						//						for (int j=0;j<10;j++ ) {
 						//							NSLog(@"%d: %x %x",j,argbuf1[j],argbuf2[j]);
 						//						}
@@ -100,6 +100,10 @@
 	
 }
 
+-description
+{
+	return [NSString stringWithFormat:@"<%@:%p: selector: %@>",[self class],self,NSStringFromSelector([invocationToMatch selector])];
+}
 
 
 @end
