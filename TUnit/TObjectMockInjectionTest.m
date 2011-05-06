@@ -39,9 +39,9 @@
 }
 
 
-- (void)testNormalObjectMockingAMessageReturnsToNormalBehaviourAfterReceivingMockedCall
+- (void)_disabled_testNormalObjectMockingAMessageReturnsToNormalBehaviourAfterReceivingMockedCall
 {
-    [(id)[[_obj mock] testMethod: 3] andReturnInt: 666];
+    [(id)[[_obj shouldReceive] testMethod: 3] andReturnInt: 666];
     [_obj testMethod: 3];
     ASSERTEQUALSINT(6, [_obj testMethod: 3]);
 }
@@ -49,61 +49,22 @@
 
 - (void)testVoidMethodCanBeMocked
 {
-    [[_obj mock] voidMethod];
+    [[_obj shouldReceive] voidMethod];
     [_obj voidMethod];
 }
 
-#if 0
 
 - (void)testIntMethodCanBeMocked
 {
-    [(id)[[_obj mock] intMethod] andReturnInt: 666];
+	[[_obj shouldReceive] intMethod];
+    [_obj andReturnInt: 666];
     ASSERTEQUALSINT(666, [_obj intMethod]);
 }
 
 
-- (void)_disabled_testPointerMethodCanBeMocked
-{
-    const char *wert = "hallo";
-    [(id)[[_obj mock] pointerMethod] andReturn: wert];
-    ASSERT(wert == [_obj pointerMethod]);
-}
 
 
-- (void)testBoolMethodCanBeMocked
-{
-    BOOL wert = YES;
-    [[_obj mock] boolMethod];
-    [_obj returnBool: wert];
-    ASSERT(wert == [_obj boolMethod]);
-
-    wert = NO;
-    [[_obj mock] boolMethod];
-    [_obj returnBool: wert];
-    ASSERT(wert == [_obj boolMethod]);
-
-    wert = YES;
-    [[_obj mock] boolMethod];
-    [_obj andReturnBool: wert];
-    ASSERT(wert == [_obj boolMethod]);
-
-    wert = NO;
-    [[_obj mock] boolMethod];
-    [_obj andReturnBool: wert];
-    ASSERT(wert == [_obj boolMethod]);
-}
-
-
-// FIXME andere typen unterstützen
-
-
-- (void)testMockingAccountsForMethodsArguments
-{
-    [[[_obj mock] methodReturningArgument: @"du da"] andReturn: @"ist da wer?"];
-    ASSERTEQUALS(@"Hallo", [_obj methodReturningArgument: @"Hallo"]);
-    ASSERTEQUALS(@"ist da wer?", [_obj methodReturningArgument: @"du da"]);
-}
-
+#if 0
 
 - (void)testStubbingAMethodLastsForever
 {
@@ -112,6 +73,50 @@
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
+}
+
+
+
+- (void)testBoolMethodCanBeMocked
+{
+    BOOL wert = YES;
+    [[_obj stub] boolMethod];
+    [_obj returnBool: wert];
+    ASSERT(wert == [_obj boolMethod]);
+	
+    wert = NO;
+    [[_obj stub] boolMethod];
+    [_obj returnBool: wert];
+    ASSERT(wert == [_obj boolMethod]);
+	
+    wert = YES;
+    [[_obj stub] boolMethod];
+    [_obj andReturnBool: wert];
+    ASSERT(wert == [_obj boolMethod]);
+	
+    wert = NO;
+    [[_obj stub] boolMethod];
+    [_obj andReturnBool: wert];
+    ASSERT(wert == [_obj boolMethod]);
+}
+
+
+- (void)testPointerMethodCanBeMocked
+{
+    const char *wert = "hallo";
+    [(id)[[_obj stub] pointerMethod] andReturn: wert];
+    ASSERT(wert == [_obj pointerMethod]);
+}
+
+
+// FIXME andere typen unterstützen
+
+
+- (void)testMockingAccountsForMethodsArguments
+{
+    [[[_obj stub] methodReturningArgument: @"du da"] andReturn: @"ist da wer?"];
+    ASSERTEQUALS(@"Hallo", [_obj methodReturningArgument: @"Hallo"]);
+    ASSERTEQUALS(@"ist da wer?", [_obj methodReturningArgument: @"du da"]);
 }
 
 
@@ -138,7 +143,7 @@
 
 - (void)testMockCountCanBeSet
 {
-    [[(id)[[_obj mock] testMethod: 3] andReturnInt: 666] receiveTimes: 3];
+    [[(id)[[_obj stub] testMethod: 3] andReturnInt: 666] receiveTimes: 3];
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
@@ -153,7 +158,7 @@
 - (void)testMockedMethodCanThrowException
 {
     BOOL exceptionCaught = NO;
-    [[[_obj mock] methodReturningArgument: _obj] andThrow: @"anException"];
+    [[[_obj stub] methodReturningArgument: _obj] andThrow: @"anException"];
     @try {
         [_obj methodReturningArgument: _obj];
     } @catch (id e) {
@@ -167,7 +172,7 @@
 - (void)testMockedMethodWithByteResultCanThrowException
 {
     BOOL exceptionCaught = NO;
-    [[_obj mock] charMethod]; [[_obj andReturnBool: YES] andThrow: @"anException"];
+    [[_obj stub] charMethod]; [[_obj andReturnBool: YES] andThrow: @"anException"];
     @try {
         [_obj charMethod];
     } @catch (id e) {
@@ -181,8 +186,8 @@
 - (void)testDeallocationOfObjectShouldRaiseAnExceptionIfNotAllMockedMethodsWereCalled
 {
     id o = [[TMockTestClass alloc] init];
-    [(id)[[o mock] testMethod: 3] andReturnInt: 666];
-    [[[o mock] methodReturningArgument: _obj] andReturn: @"hui"];
+    [(id)[[o stub] testMethod: 3] andReturnInt: 666];
+    [[[o stub] methodReturningArgument: _obj] andReturn: @"hui"];
     [o testMethod: 3];
     BOOL exceptionCaught = NO;
     @try {
@@ -197,8 +202,8 @@
 - (void)testDeallocationOfObjectShouldNotRaiseAnExceptionIfAllMockedMethodsWereCalled
 {
     id o = [[TMockTestClass alloc] init];
-    [(id)[[o mock] testMethod: 3] andReturnInt: 666];
-    [[[o mock] methodReturningArgument: _obj] andReturn: @"hui"];
+    [(id)[[o stub] testMethod: 3] andReturnInt: 666];
+    [[[o stub] methodReturningArgument: _obj] andReturn: @"hui"];
     [o testMethod: 3];
     [o methodReturningArgument: _obj];
     [o release];
@@ -216,8 +221,8 @@
 
 - (void)testVerifyAndCleanupMocksShouldRaiseAnExceptionIfNotAllMockedMethodsWereCalled
 {
-    [(id)[[_obj mock] testMethod: 3] andReturnInt: 666];
-    [[[_obj mock] methodReturningArgument: _obj] andReturn: @"hui"];
+    [(id)[[_obj stub] testMethod: 3] andReturnInt: 666];
+    [[[_obj stub] methodReturningArgument: _obj] andReturn: @"hui"];
     [_obj testMethod: 3];
     BOOL exceptionCaught = NO;
     @try {
@@ -231,8 +236,8 @@
 
 - (void)testVerifyAndCleanupMocksShouldNotRaiseAnExceptionIfAllMockedMethodsWereCalled
 {
-    [(id)[[_obj mock] testMethod: 3] andReturnInt: 666];
-    [[[_obj mock] methodReturningArgument: _obj] andReturn: @"hui"];
+    [(id)[[_obj stub] testMethod: 3] andReturnInt: 666];
+    [[[_obj stub] methodReturningArgument: _obj] andReturn: @"hui"];
     [_obj testMethod: 3];
     [_obj methodReturningArgument: _obj];
     verifyAndCleanupMocks();
@@ -393,7 +398,7 @@
 // FIXME: mock ist zu allgemein, um per Makro definiert zu werden -> erstmal besseren Namen finden.
 //- (void)testMockMessageExceptionContainsLocationInformation
 //{
-//    char *file = __FILE__; int line = __LINE__; [[_obj mock] methodReturningArgument: nil];
+//    char *file = __FILE__; int line = __LINE__; [[_obj stub] methodReturningArgument: nil];
 //    id expected = [NSString stringWithFormat: @"%s:%d", file, line];
 //    @try {
 //        verifyAndCleanupMocks();

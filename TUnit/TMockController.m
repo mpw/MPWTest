@@ -169,6 +169,7 @@ static NSMapTable* mockControllers=nil;
 	return YES;
 }
 
+
 -(void)checkAndRunInvocation:(NSInvocation *)invocation
 {
 	NSLog(@"checkAndRunInvocation %@",invocation);
@@ -196,10 +197,15 @@ static NSMapTable* mockControllers=nil;
 	recordNumberOfMessages=1;
 }
 
+-(BOOL)shouldRecordMessage
+{
+	return recordNumberOfMessages>0 ;
+}
+
 -(void)handleMockedInvocation:(NSInvocation *)invocation
 {
 	NSLog(@"handleMockedInvocation %@",invocation);
-	if ( recordNumberOfMessages>0 ) {
+	if ( [self shouldRecordMessage] ) {
 		NSLog(@"recording %@",NSStringFromSelector([invocation selector]));
 		recordNumberOfMessages--;
 		[self recordInvocation:invocation];
