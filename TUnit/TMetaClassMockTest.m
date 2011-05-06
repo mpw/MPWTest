@@ -5,6 +5,7 @@
 #include "TMetaClassMockTest.h"
 #include "TMockTestClass.h"
 #include "TMock.h"
+#import <objc/objc-runtime.h>
 
 @implementation TMetaClassMockTest:TTestCase
 {

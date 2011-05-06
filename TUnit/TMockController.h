@@ -12,8 +12,13 @@
 @interface TMockController : NSObject {
 	id originalObject;
 	NSMutableArray* expectations;
-	BOOL recording;
+	id mock;
+//	NSMutableDictionary* results;
+	int recordNumberOfMessages;
+	id  copyOfOriginalObject;
 }
+
+-initWithObject:anObject;
 
 
 -(void)setDoubleResult:(double)aResult;

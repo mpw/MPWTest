@@ -116,7 +116,7 @@
 }
 
 
-- (void)testArgumentCheck
+- (void)donttestArgumentCheck
 {
     [_mock methodWithArgumentsChar: 'a' short: 1000 int: 2000000
             long: 2000000 longLong: 5000000000LL float: 1234.5678

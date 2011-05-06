@@ -7,36 +7,91 @@
 //
 
 #import "TMockController.h"
-
+#import <objc/objc-runtime.h>
+#import "TMock.h"
 
 @implementation TMockController
 
--init
+
+static NSMapTable* mockControllers=nil;
+
++(NSMapTable*)mockControllers
+{
+	if  (!mockControllers ) {
+		mockControllers=[[NSMapTable mapTableWithStrongToStrongObjects] retain];
+	}
+	return mockControllers;
+}
+
++removeMocks
+{
+	[mockControllers release];
+	mockControllers=nil;
+}
+
++mockControllerForObject:anObject
+{
+	TMockController* controller=[[self mockControllers] objectForKey:anObject];
+	if ( !controller ) {
+		controller=[[[self alloc] initWithObject:anObject] autorelease];
+		[[self mockControllers] setObject:controller forKey:anObject];
+	}
+	NSLog(@"controller for object %p is %p",anObject,controller);
+	return controller;
+	
+}
+
+-initWithObject:anObject
 {
 	self=[super init];
-	expectations=[[NSMutableArray alloc] init];
-	recording=YES;
+	if ( self ) {
+		originalObject=[anObject retain];
+		expectations=[[NSMutableArray alloc] init];
+		recordNumberOfMessages=100000;
+	}
 	return self;
 }
 
 
 +mockController
 {
-	return [[[self alloc] init] autorelease];
+	return [[[self alloc] initWithObject:nil] autorelease];
+}
+
+-mockForObject:anObject
+{
+	originalObject=[anObject retain];
+	mock=NSAllocateObject(NSClassFromString(@"TMock"), 0, NSDefaultMallocZone());
+	[mock initWithController:self];
+	recordNumberOfMessages=100000;
+	return mock;
 }
 
 -mockForClass:(Class)aClass
 {
-	originalObject = [[aClass alloc] init];
-	id mock=NSAllocateObject(NSClassFromString(@"TMock"), 0, NSDefaultMallocZone());
-	[mock initWithController:self];
+	return [self mockForObject:[[[aClass alloc] init] autorelease]];
+}
+
+
+-inlineMock
+{
+	if ( !mock ) {
+		int size =  class_getInstanceSize( [originalObject class] );
+		copyOfOriginalObject=malloc( size );
+		memcpy( copyOfOriginalObject, originalObject, size );
+		mock=originalObject;
+		memset( mock,0, size );
+		*(Class*)mock=NSClassFromString(@"TMock");
+		[mock initWithController:self];
+	}
 	return mock;
 }
 
 -mockForMetaClassOfClass:(Class)aClass
 {
 	originalObject = aClass;
-	id mock=NSAllocateObject(NSClassFromString(@"TMock"), 0, NSDefaultMallocZone());
+	mock=NSAllocateObject(NSClassFromString(@"TMock"), 0, NSDefaultMallocZone());
+	recordNumberOfMessages=100000;
 	[mock initWithController:self];
 	return mock;
 }
@@ -45,14 +100,14 @@
 
 -(void)replay
 {
-	recording=NO;
+	recordNumberOfMessages=0;
 }
 
 -(NSMethodSignature*)methodSignatureForMockedSelector:(SEL)sel
 {
 //	NSLog(@"methodSignatureForMockedSelector: %@",NSStringFromSelector(sel));
 //	NSLog(@"originalObject: %@",originalObject);
-	return [originalObject methodSignatureForSelector:sel];
+	return [copyOfOriginalObject ? copyOfOriginalObject : originalObject methodSignatureForSelector:sel];
 }
 
 -(void)recordInvocation:(NSInvocation *)invocation
@@ -81,51 +136,13 @@
 		bzero(argbuf2, sizeof argbuf2);
 		[inv1 getArgument:argbuf1 atIndex:i]; 
 		[inv2 getArgument:argbuf2 atIndex:i];
-		char * argType = [sig1 getArgumentTypeAtIndex:i];
+		const char * argType = [sig1 getArgumentTypeAtIndex:i];
 //		NSLog(@"arg at index %d with type %s",i,argType);
 		if ( argType ) {
 			if ( *argType == 'r' ) {
 				argType++;
 			}
 			switch (*argType) {
-#if 0
-				case 'I':
-				case 'i':
-				case 's':
-				case 'S':
-				case 'c':
-				case 'C':
-				{
-					int i1=*(int*)argbuf1;
-					int i2=*(int*)argbuf2;
-					if ( i1!=i2 ) {
-						NSLog(@"scalar at %d doesn't match: %d %d",i,i1,i2);
-						return NO;
-					}
-					break;
-				}
-				case 'f':
-				{
-					float f1=*(float*)argbuf1;
-					float f2=*(float*)argbuf2;
-					NSLog(@"float at %d: %g %g",i,f1,f2);
-					if ( f1!=f2 ) {
-						NSLog(@"float at %d doesn't match: %g %g",i,f1,f2);
-						return NO;
-					}
-					break;
-				}
-				case 'd':
-				{
-					double f1=*(double*)argbuf1;
-					double f2=*(double*)argbuf2;
-					if ( f1!=f2 ) {
-						NSLog(@"double at %d doesn't match: %g %g",i,f1,f2);
-						return NO;
-					}
-					break;
-				}	
-#endif
 				case '*':
 				{
 					char *s1=*(char**)argbuf1;
@@ -154,7 +171,7 @@
 
 -(void)checkAndRunInvocation:(NSInvocation *)invocation
 {
-//	NSLog(@"checkAndRunInvocation %@",invocation);
+	NSLog(@"checkAndRunInvocation %@",invocation);
 //	[invocation setReturnValue:&empty];
 	if ( [expectations count] > 0 ) {
 		if ( [self compareInvocation:invocation withInvocation:[expectations objectAtIndex:0]] ) {
@@ -174,12 +191,26 @@
 	}
 }
 
+-(void)recordOneMessage
+{
+	recordNumberOfMessages=1;
+}
+
 -(void)handleMockedInvocation:(NSInvocation *)invocation
 {
-//	NSLog(@"handleMockedInvocation %@",invocation);
-	if ( recording ) {
+	NSLog(@"handleMockedInvocation %@",invocation);
+	if ( recordNumberOfMessages>0 ) {
+		NSLog(@"recording %@",NSStringFromSelector([invocation selector]));
+		recordNumberOfMessages--;
 		[self recordInvocation:invocation];
+#if 1		
+		if  ( *[[invocation methodSignature] methodReturnType] != 'v' ) {
+//			[[expectations objectAtIndex:0] getReturnValue:buf];
+			[invocation setReturnValue:&mock];
+		}
+#endif		
 	} else {
+		NSLog(@"replay / check %@",NSStringFromSelector([invocation selector]));
 		[self checkAndRunInvocation:invocation];
 	}
 	
@@ -198,6 +229,8 @@ setSomeResult( short, setShortResult )
 setSomeResult( char, setCharResult )
 
 
+void verifyAndCleanupMocks() 
+{}
 
 -(void)verify
 {

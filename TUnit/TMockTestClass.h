@@ -46,7 +46,7 @@ typedef struct _TMockTestStruct {
 - (BOOL)boolMethod;
 //- (TMockTestStruct)structMethod;
 - methodReturningArgument: arg;
-- (int)testMethod: (int)param;
+- (long long)testMethod: (int)param;
 + (void)voidClassMethod;
 + (char)charClassMethod;
 + (short)shortClassMethod;

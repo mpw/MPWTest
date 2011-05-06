@@ -8,6 +8,7 @@
 
 #include "TMockTestClass.h"
 
+#define TUNIT_UNLIMITEDCALLCOUNT -1
 
 @implementation TObjectMockTest:TTestCase
 {

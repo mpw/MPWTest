@@ -14,4 +14,7 @@
 	id controller;
 }
 
+-initWithController:anObject;
+
+
 @end

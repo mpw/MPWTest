@@ -2,8 +2,8 @@
 // (C) Copyright Tilo Prütz
 //
 
-#include "TTestCase.h"
-
+#import "TTestCase.h"
+#import "TMockController.h"
 
 #include <objc/runtime.h>
 
@@ -303,6 +303,9 @@ static NSString *__package = nil;
 
 - (void)setUp
 {
+	if ( [self respondsToSelector:@selector(prepare)] ) {
+		[self prepare];
+	}
 }
 
 
@@ -371,18 +374,18 @@ static NSString *__package = nil;
                         [TUserIO print: @"."];
                         [self perform: sel];
                     } @catch(id e) {
-                        [exceptions push: [e autorelease]];
+                        [exceptions push: e];
                     } @finally {
                         @try {
                             verifyAndCleanupMocks();
                         } @catch(id e) {
-                            [exceptions push: [e autorelease]];
+                            [exceptions push: e];
                         } @finally {
                             [self tearDown];
                         }
                     }
                 } @catch(id e) {
-                    [exceptions push: [e autorelease]];
+                    [exceptions push: e];
                 }
                 if ([exceptions containsData]) {
                     ++failures;
@@ -472,6 +475,7 @@ static NSString *__package = nil;
 {
 	[self setUp];
 	[self doTestBasic:testName withTest:test];
+	[TMockController removeMocks];
 	[self tearDown];
 }
 

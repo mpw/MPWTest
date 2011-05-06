@@ -99,6 +99,9 @@
 		1FFC50E91352509600377C45 /* MPWLoggingTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F936A0066CF95C35ADD82 /* MPWLoggingTester.m */; };
 		1FFC51FF1352F46600377C45 /* TMetaClassMockTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FFC51FE1352F46600377C45 /* TMetaClassMockTest.h */; };
 		1FFC52001352F49A00377C45 /* TMetaClassMockTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FD8135209FE00377C45 /* TMetaClassMockTest.m */; };
+		1FFFF82913733C9800133789 /* TClassMockInjectionTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FFFF82813733C9800133789 /* TClassMockInjectionTest.h */; };
+		1FFFF8931373523E00133789 /* TObjectMockInjectionTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FFFF8921373523E00133789 /* TObjectMockInjectionTest.h */; };
+		1FFFF8D21373D8D300133789 /* TObjectMockInjectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FDB135209FE00377C45 /* TObjectMockInjectionTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -193,6 +196,8 @@
 		1FFC50C81352496D00377C45 /* TMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMock.h; sourceTree = "<group>"; };
 		1FFC50C91352496D00377C45 /* TMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMock.m; sourceTree = "<group>"; };
 		1FFC51FE1352F46600377C45 /* TMetaClassMockTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMetaClassMockTest.h; sourceTree = "<group>"; };
+		1FFFF82813733C9800133789 /* TClassMockInjectionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TClassMockInjectionTest.h; sourceTree = "<group>"; };
+		1FFFF8921373523E00133789 /* TObjectMockInjectionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TObjectMockInjectionTest.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,7 +346,10 @@
 		1FFC4FD0135209BF00377C45 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				1FFC4FDB135209FE00377C45 /* TObjectMockInjectionTest.m */,
+				1FFFF8921373523E00133789 /* TObjectMockInjectionTest.h */,
 				1FFC4FD6135209FE00377C45 /* TClassMockInjectionTest.m */,
+				1FFFF82813733C9800133789 /* TClassMockInjectionTest.h */,
 				1FFC4FD7135209FE00377C45 /* TClassMockTest.m */,
 				1FFC5088135245DE00377C45 /* TClassMockTest.h */,
 				1FFC4FD8135209FE00377C45 /* TMetaClassMockTest.m */,
@@ -349,7 +357,6 @@
 				1FFC4FD9135209FE00377C45 /* TMockMessageTest.m */,
 				1FFC4FDA135209FE00377C45 /* TMockTestClass.m */,
 				1FFC5082135223F500377C45 /* TMockTestClass.h */,
-				1FFC4FDB135209FE00377C45 /* TObjectMockInjectionTest.m */,
 				1FFC4FDC135209FE00377C45 /* TObjectMockTest.m */,
 				1FFC4FDD135209FE00377C45 /* TProtocolMockTest.m */,
 				1FFC4FDE135209FE00377C45 /* TTestCaseTest.m */,
@@ -381,6 +388,8 @@
 				1FFC509A1352470400377C45 /* TMockController.h in Headers */,
 				1FFC50CA1352496D00377C45 /* TMock.h in Headers */,
 				1FFC51FF1352F46600377C45 /* TMetaClassMockTest.h in Headers */,
+				1FFFF82913733C9800133789 /* TClassMockInjectionTest.h in Headers */,
+				1FFFF8931373523E00133789 /* TObjectMockInjectionTest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +615,7 @@
 				1FFC509B1352470400377C45 /* TMockController.m in Sources */,
 				1FFC50CB1352496D00377C45 /* TMock.m in Sources */,
 				1FFC52001352F49A00377C45 /* TMetaClassMockTest.m in Sources */,
+				1FFFF8D21373D8D300133789 /* TObjectMockInjectionTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

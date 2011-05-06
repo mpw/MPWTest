@@ -77,7 +77,7 @@
 }
 
 
-- (int)testMethod: (int)param
+- (long long)testMethod: (int)param
 {
     return param + 3;
 }
