@@ -102,6 +102,8 @@
 		1FFFF82913733C9800133789 /* TClassMockInjectionTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FFFF82813733C9800133789 /* TClassMockInjectionTest.h */; };
 		1FFFF8931373523E00133789 /* TObjectMockInjectionTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FFFF8921373523E00133789 /* TObjectMockInjectionTest.h */; };
 		1FFFF8D21373D8D300133789 /* TObjectMockInjectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FDB135209FE00377C45 /* TObjectMockInjectionTest.m */; };
+		1FFFF9AC13743FAD00133789 /* TMessageExpectation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FFFF9AA13743FAD00133789 /* TMessageExpectation.h */; };
+		1FFFF9AD13743FAD00133789 /* TMessageExpectation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFF9AB13743FAD00133789 /* TMessageExpectation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -198,6 +200,8 @@
 		1FFC51FE1352F46600377C45 /* TMetaClassMockTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMetaClassMockTest.h; sourceTree = "<group>"; };
 		1FFFF82813733C9800133789 /* TClassMockInjectionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TClassMockInjectionTest.h; sourceTree = "<group>"; };
 		1FFFF8921373523E00133789 /* TObjectMockInjectionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TObjectMockInjectionTest.h; sourceTree = "<group>"; };
+		1FFFF9AA13743FAD00133789 /* TMessageExpectation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMessageExpectation.h; sourceTree = "<group>"; };
+		1FFFF9AB13743FAD00133789 /* TMessageExpectation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMessageExpectation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +342,8 @@
 				1FFC50991352470400377C45 /* TMockController.m */,
 				1FFC50C81352496D00377C45 /* TMock.h */,
 				1FFC50C91352496D00377C45 /* TMock.m */,
+				1FFFF9AA13743FAD00133789 /* TMessageExpectation.h */,
+				1FFFF9AB13743FAD00133789 /* TMessageExpectation.m */,
 				1FFC4FD0135209BF00377C45 /* Tests */,
 			);
 			path = TUnit;
@@ -390,6 +396,7 @@
 				1FFC51FF1352F46600377C45 /* TMetaClassMockTest.h in Headers */,
 				1FFFF82913733C9800133789 /* TClassMockInjectionTest.h in Headers */,
 				1FFFF8931373523E00133789 /* TObjectMockInjectionTest.h in Headers */,
+				1FFFF9AC13743FAD00133789 /* TMessageExpectation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +623,7 @@
 				1FFC50CB1352496D00377C45 /* TMock.m in Sources */,
 				1FFC52001352F49A00377C45 /* TMetaClassMockTest.m in Sources */,
 				1FFFF8D21373D8D300133789 /* TObjectMockInjectionTest.m in Sources */,
+				1FFFF9AD13743FAD00133789 /* TMessageExpectation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
