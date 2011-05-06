@@ -16,7 +16,11 @@
 +expectationWithInvocation:(NSInvocation*)invocation;
 -(BOOL)matchesInvocation:(NSInvocation*)invocation;
 
+-(void)setExpectedCount:(int)newCount;
+
+
 -(void)setReturnValue:(void*)value;
 -(void)getReturnValue:(void*)value;
+-(BOOL)unfulfilled;
 
 @end

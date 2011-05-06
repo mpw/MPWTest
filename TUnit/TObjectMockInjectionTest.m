@@ -64,7 +64,6 @@
 
 
 
-#if 0
 
 - (void)testStubbingAMethodLastsForever
 {
@@ -75,6 +74,7 @@
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
 }
 
+#if 0
 
 
 - (void)testBoolMethodCanBeMocked

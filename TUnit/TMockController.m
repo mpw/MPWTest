@@ -120,28 +120,29 @@ static NSMapTable* mockControllers=nil;
 
 -(BOOL)matchesInvocation:(NSInvocation*)invocation
 {
-	return ([expectations count] > 0) && [[expectations objectAtIndex:0] matchesInvocation:invocation];
+	for ( int i = [expectations count]-1 ; i >= 0 ; i-- ) {
+		if ( [[expectations objectAtIndex:i] matchesInvocation:invocation] ) {
+			return YES;
+		}
+	}
+	return NO;
 }
 
 -(void)checkAndRunInvocation:(NSInvocation *)invocation
 {
 	NSLog(@"checkAndRunInvocation %@",invocation);
 //	[invocation setReturnValue:&empty];
-	if ( [expectations count] > 0 ) {
-		if (   [self matchesInvocation:invocation] ) {
-			char buf[128];
-			if  ( *[[invocation methodSignature] methodReturnType] != 'v' ) {
-				[[expectations objectAtIndex:0] getReturnValue:buf];
-				[invocation setReturnValue:buf];
-			}
-//			NSLog(@"invocation checked out OK, returning: %@",invocation);
-			[expectations removeObjectAtIndex:0];
-			return;
-		} else {
-			[NSException raise:@"mock" format:@"mock doesn't match: %@ %@",invocation,[expectations objectAtIndex:0]];
+	if ( [self matchesInvocation:invocation]) {
+		char buf[128];
+		if  ( *[[invocation methodSignature] methodReturnType] != 'v' ) {
+			[[expectations objectAtIndex:0] getReturnValue:buf];
+			[invocation setReturnValue:buf];
 		}
+		//			NSLog(@"invocation checked out OK, returning: %@",invocation);
+//		[expectations removeObjectAtIndex:0];
+		return;
 	} else {
-		[NSException raise:@"mocktomuch" format:@"unexpected mock message %@",NSStringFromSelector([invocation selector])];
+		[NSException raise:@"mock" format:@"mock doesn't match: %@ %@",invocation,[expectations objectAtIndex:0]];
 	}
 }
 
@@ -193,8 +194,10 @@ void verifyAndCleanupMocks()
 
 -(void)verify
 {
-	if ( [expectations count] != 0) {
-		[NSException raise:@"mock"  format:@"remaining expected messages: %@",expectations];
+	for ( TMessageExpectation *expectation in expectations ) {
+		if ( [expectation unfulfilled] ) {
+			[NSException raise:@"mock"  format:@"remaining expected messages: %@",expectations];
+		}
 	}
 }
 

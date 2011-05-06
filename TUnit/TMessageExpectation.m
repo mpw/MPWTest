@@ -78,7 +78,10 @@
 	return YES;
 }
 
-
+-(BOOL)unfulfilled
+{
+	return NO;
+}
 
 -(BOOL)matchesInvocation:(NSInvocation*)invocation
 {
