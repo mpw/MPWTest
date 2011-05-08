@@ -33,4 +33,6 @@
 -(void)setShortResult:(short)aResult;
 -(void)setCharResult:(char)aResult;
 -(void)setExpectedCount:(int)newCount;
+-(void)setCurrentExpectedCount:(int)newCount;
+
 @end

@@ -144,11 +144,11 @@
     ASSERTEQUALS(@"ist da wer?", [_obj methodReturningArgument: @"du da"]);
 }
 
-#if 0
 
 - (void)testMockCountCanBeSet
 {
-    [[(id)[[_obj stub] testMethod: 3] andReturnInt: 666] receiveTimes: 3];
+	[[_obj stub] testMethod: 3];
+    [[_obj andReturnInt: 666] receiveTimes: 3];
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
@@ -156,9 +156,11 @@
 }
 
 
+
 // TODO nach einem mock (recording) mehrmals andReturn/andRaise als Sequenz von Rückgabewerten (1.
 // Wert -> 1. Call, 2. Wert -> 2. Call ...)
 
+#if 0
 
 - (void)testMockedMethodCanThrowException
 {
@@ -172,6 +174,7 @@
     }
     ASSERT(exceptionCaught);
 }
+
 
 
 - (void)testMockedMethodWithByteResultCanThrowException

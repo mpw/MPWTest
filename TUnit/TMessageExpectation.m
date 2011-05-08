@@ -80,6 +80,7 @@
 		
 	}
 	actualMatch++;
+//	NSLog(@"actualMatch: %d / %d",actualMatch,expectedCount);
 	return YES;
 }
 

@@ -30,7 +30,7 @@
 
 -(void)returnBool:(BOOL)aValue
 {
-	NSLog(@"should return bool: %d",aValue);
+//	NSLog(@"should return bool: %d",aValue);
 	[controller setCharResult:aValue];
 }
 
@@ -49,10 +49,12 @@
 	return self;
 }
 
--(void)andReturnInt:(int)anInt
+-andReturnInt:(int)anInt
 {
 //	NSLog(@"TMock should return int: %d",anInt);
 	[controller setIntResult:anInt];
+//	NSLog(@"self in andReturnInt: %d = %p",anInt,self);
+	return self;
 }
 
 -andReturn:returnValue
@@ -68,7 +70,12 @@
 	return self;
 }
 
-
+-receiveTimes:(int)expected
+{
+//	NSLog(@"receiveTimes: %d forwarding to controller",expected);
+	[controller setCurrentExpectedCount:expected];
+	return self;
+}
 
 -stub
 {
@@ -104,10 +111,11 @@
 	return [controller inlineMock];
 }
 
--(void)andReturnInt:(int)anInt
+-andReturnInt:(int)anInt
 {
 	NSLog(@"NSObject should return int: %d",anInt);
 	[[TMockController mockControllerForObject:self] setIntResult:anInt];
+	return self;
 }
 
 

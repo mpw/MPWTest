@@ -104,6 +104,12 @@ static NSMapTable* mockControllers=nil;
 }
 
 
+-(void)setCurrentExpectedCount:(int)newCount
+{
+	[[expectations lastObject] setExpectedCount:newCount];
+}
+
+
 -(void)replay
 {
 	recordNumberOfMessages=0;
@@ -120,7 +126,7 @@ static NSMapTable* mockControllers=nil;
 {
 //	NSLog(@"recordInvocation %@",invocation);
 	[expectations addObject:[TMessageExpectation expectationWithInvocation: invocation]];
-	[[expectations lastObject] setExpectedCount:nextExpectedCount];
+	[self setCurrentExpectedCount:nextExpectedCount];
 }
 
 -(BOOL)matchesInvocation:(NSInvocation*)invocation
