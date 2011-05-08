@@ -211,17 +211,24 @@ setSomeResult( char, setCharResult )
 
 
 
-
-void verifyAndCleanupMocks() 
-{}
-
 -(void)verify
 {
 	for ( TMessageExpectation *expectation in expectations ) {
+		NSLog(@"verify expectation: %@",expectation);
 		if ( [expectation unfulfilled] ) {
 			[NSException raise:@"mock"  format:@"remaining expected messages: %@",expectations];
 		}
 	}
+}
+
+
+void verifyAndCleanupMocks() 
+{
+	for ( TMockController* controller in [[TMockController mockControllers] objectEnumerator]  ) {
+		NSLog(@"verify controller: %@",controller);
+		[controller verify];
+	}
+	[TMockController removeMocks];
 }
 
 

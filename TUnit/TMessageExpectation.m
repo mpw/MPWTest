@@ -115,7 +115,7 @@ idAccessor( exceptionToThrow, setExceptionToThrow )
 
 -description
 {
-	return [NSString stringWithFormat:@"<%@:%p: selector: %@>",[self class],self,NSStringFromSelector([invocationToMatch selector])];
+	return [NSString stringWithFormat:@"<%@:%p: selector: %@ expected:%d actual: %d>",[self class],self,NSStringFromSelector([invocationToMatch selector]),expectedCount,actualMatch];
 }
 
 

@@ -37,6 +37,7 @@
 -andReturnBool:(BOOL)aValue
 {
 	[controller setCharResult:aValue];
+	return self;
 }
 
 -shouldNotReceive
@@ -100,6 +101,7 @@
 	TMockController *controller=[TMockController mockControllerForObject:self];
 	[controller recordOneMessage];
 	id stub = [controller inlineMock];
+	[controller setExpectedCount:-1];
 //	NSLog(@"will return inline mock: %p",stub);
 	return stub;
 }
@@ -108,6 +110,7 @@
 {
 	TMockController *controller=[TMockController mockControllerForObject:self];
 	[controller recordOneMessage];
+	[controller setExpectedCount:1];
 	return [controller inlineMock];
 }
 

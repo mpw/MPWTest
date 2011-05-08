@@ -175,7 +175,6 @@
 }
 
 
-#if 0
 
 - (void)testMockedMethodWithByteResultCanThrowException
 {
@@ -189,6 +188,36 @@
     }
     ASSERT(exceptionCaught);
 }
+
+- (void)testVerifyAndCleanupMocksShouldRaiseAnExceptionIfNotAllMockedMethodsWereCalled
+{
+    [(id)[[_obj shouldReceive] testMethod: 3] andReturnInt: 666];
+    [[[_obj shouldReceive] methodReturningArgument: _obj] andReturn: @"hui"];
+    [_obj testMethod: 3];
+    BOOL exceptionCaught = NO;
+    @try {
+        verifyAndCleanupMocks();
+    } @catch (id e) {
+        exceptionCaught = YES;
+    }
+    ASSERT(exceptionCaught);
+}
+
+
+
+- (void)testDeallocationOfObjectShouldNotRaiseAnExceptionIfAllMockedMethodsWereCalled
+{
+    id o = [[TMockTestClass alloc] init];
+    [(id)[[o shouldReceive] testMethod: 3] andReturnInt: 666];
+    [[[o shouldReceive] methodReturningArgument: _obj] andReturn: @"hui"];
+    [o testMethod: 3];
+    [o methodReturningArgument: _obj];
+    [o release];
+}
+
+
+
+#if 0
 
 
 - (void)testDeallocationOfObjectShouldRaiseAnExceptionIfNotAllMockedMethodsWereCalled
@@ -207,17 +236,6 @@
 }
 
 
-- (void)testDeallocationOfObjectShouldNotRaiseAnExceptionIfAllMockedMethodsWereCalled
-{
-    id o = [[TMockTestClass alloc] init];
-    [(id)[[o stub] testMethod: 3] andReturnInt: 666];
-    [[[o stub] methodReturningArgument: _obj] andReturn: @"hui"];
-    [o testMethod: 3];
-    [o methodReturningArgument: _obj];
-    [o release];
-}
-
-
 - (void)testDeallocationOfObjectShouldNotRaiseAnExceptionIfAllMockedMethodsWereStubbed
 {
     id o = [[TMockTestClass alloc] init];
@@ -226,20 +244,6 @@
     [o release];
 }
 
-
-- (void)testVerifyAndCleanupMocksShouldRaiseAnExceptionIfNotAllMockedMethodsWereCalled
-{
-    [(id)[[_obj stub] testMethod: 3] andReturnInt: 666];
-    [[[_obj stub] methodReturningArgument: _obj] andReturn: @"hui"];
-    [_obj testMethod: 3];
-    BOOL exceptionCaught = NO;
-    @try {
-        verifyAndCleanupMocks();
-    } @catch (id e) {
-        exceptionCaught = YES;
-    }
-    ASSERT(exceptionCaught);
-}
 
 
 - (void)testVerifyAndCleanupMocksShouldNotRaiseAnExceptionIfAllMockedMethodsWereCalled
