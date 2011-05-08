@@ -51,13 +51,29 @@
 
 -(void)andReturnInt:(int)anInt
 {
-	NSLog(@"TMock should return int: %d",anInt);
+//	NSLog(@"TMock should return int: %d",anInt);
 	[controller setIntResult:anInt];
 }
+
+-andReturn:returnValue
+{
+	[controller setResult:returnValue];
+	return self;
+}
+
+-shouldReceive
+{
+	[controller recordOneMessage];
+	[controller setExpectedCount:1];
+	return self;
+}
+
+
 
 -stub
 {
 	[controller recordOneMessage];
+	[controller setExpectedCount:-1];
 	return self;
 }
 
@@ -65,11 +81,6 @@
 
 
 @implementation NSObject(mock)
-
--andReturn:returnValue
-{
-	return nil;
-}
 
 -mock
 {
@@ -82,7 +93,7 @@
 	TMockController *controller=[TMockController mockControllerForObject:self];
 	[controller recordOneMessage];
 	id stub = [controller inlineMock];
-	NSLog(@"will return inline mock: %p",stub);
+//	NSLog(@"will return inline mock: %p",stub);
 	return stub;
 }
 

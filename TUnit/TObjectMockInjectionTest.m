@@ -99,7 +99,6 @@
     ASSERT(wert == [_obj boolMethod]);
 }
 
-#if 0
 
 - (void)testPointerMethodCanBeMocked
 {
@@ -112,12 +111,6 @@
 // FIXME andere typen unterstützen
 
 
-- (void)testMockingAccountsForMethodsArguments
-{
-    [[[_obj stub] methodReturningArgument: @"du da"] andReturn: @"ist da wer?"];
-    ASSERTEQUALS(@"Hallo", [_obj methodReturningArgument: @"Hallo"]);
-    ASSERTEQUALS(@"ist da wer?", [_obj methodReturningArgument: @"du da"]);
-}
 
 
 - (void)testStubbingAMethodCanBeOverridenByANewStubOfTheSameMethod
@@ -131,6 +124,9 @@
 }
 
 
+
+
+
 - (void)testStubbingAMethodCanBeInterruptedByShouldReceiveOnTheSameMethodAndContinuesAfterwards
 {
     [(id)[[_obj stub] testMethod: 3] andReturnInt: 666];
@@ -138,6 +134,15 @@
     [(id)[[_obj shouldReceive] testMethod: 3] andReturnInt: 667];
     ASSERTEQUALSINT(667, [_obj testMethod: 3]);
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
+}
+
+#if 0
+
+- (void)testMockingAccountsForMethodsArguments
+{
+    [[[_obj stub] methodReturningArgument: @"du da"] andReturn: @"ist da wer?"];
+    ASSERTEQUALS(@"Hallo", [_obj methodReturningArgument: @"Hallo"]);
+    ASSERTEQUALS(@"ist da wer?", [_obj methodReturningArgument: @"du da"]);
 }
 
 

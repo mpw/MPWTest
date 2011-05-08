@@ -11,6 +11,7 @@
 
 @implementation TMessageExpectation
 
+
 -initWithInvocation:(NSInvocation*)invocation
 {
 	self=[super init];
@@ -28,6 +29,9 @@
 
 -(BOOL)compareInvocation:(NSInvocation*) inv1 withInvocation:(NSInvocation*)inv2
 {
+	if ( expectedCount > 0 && actualMatch >= expectedCount ) {
+		return NO;
+	}
 	if (  [inv1 selector] != [inv2 selector] ) {
 		return NO;
 	} 
@@ -75,13 +79,20 @@
 		}
 		
 	}
+	actualMatch++;
 	return YES;
 }
 
 -(BOOL)unfulfilled
 {
-	return NO;
+	return expectedCount > 0 && actualMatch < expectedCount;
 }
+
+-(void)setExpectedCount:(int)newCount
+{
+	expectedCount=newCount;
+}
+
 
 -(BOOL)matchesInvocation:(NSInvocation*)invocation
 {

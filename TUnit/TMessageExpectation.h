@@ -11,6 +11,8 @@
 
 @interface TMessageExpectation : NSObject {
 	NSInvocation *invocationToMatch;
+	int			 expectedCount;
+	int			 actualMatch;
 }
 
 +expectationWithInvocation:(NSInvocation*)invocation;

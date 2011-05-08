@@ -16,10 +16,15 @@
 //	NSMutableDictionary* results;
 	int recordNumberOfMessages;
 	id  copyOfOriginalObject;
+	int nextExpectedCount;
 }
 
++mockControllerForObject:anObject;
 -initWithObject:anObject;
 
+
+-(void)recordOneMessage;
+-inlineMock;
 
 -(void)setDoubleResult:(double)aResult;
 -(void)setFloatResult:(float)aResult;
@@ -27,5 +32,5 @@
 -(void)setIntResult:(int)aResult;
 -(void)setShortResult:(short)aResult;
 -(void)setCharResult:(char)aResult;
-
+-(void)setExpectedCount:(int)newCount;
 @end

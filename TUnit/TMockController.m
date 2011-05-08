@@ -38,7 +38,7 @@ static NSMapTable* mockControllers=nil;
 		controller=[[[self alloc] initWithObject:anObject] autorelease];
 		[[self mockControllers] setObject:controller forKey:anObject];
 	}
-	NSLog(@"controller for object %p is %p",anObject,controller);
+//	NSLog(@"controller for object %p is %p",anObject,controller);
 	return controller;
 	
 }
@@ -98,6 +98,10 @@ static NSMapTable* mockControllers=nil;
 	return mock;
 }
 
+-(void)setExpectedCount:(int)newCount
+{
+	nextExpectedCount=newCount;
+}
 
 
 -(void)replay
@@ -116,15 +120,16 @@ static NSMapTable* mockControllers=nil;
 {
 //	NSLog(@"recordInvocation %@",invocation);
 	[expectations addObject:[TMessageExpectation expectationWithInvocation: invocation]];
+	[[expectations lastObject] setExpectedCount:nextExpectedCount];
 }
 
 -(BOOL)matchesInvocation:(NSInvocation*)invocation
 {
 	for ( int i = [expectations count]-1 ; i >= 0 ; i-- ) {
 		TMessageExpectation *expectation = [expectations objectAtIndex:i];
-		NSLog(@"checking expectations[%d]=%@ against %@",i,expectation,invocation);
+//		NSLog(@"checking expectations[%d]=%@ against %@",i,expectation,invocation);
 		if ( [expectation matchesInvocation:invocation] ) {
-			NSLog(@"did match at %d",i);
+//			NSLog(@"did match at %d",i);
 			char buf[128];
 			if  ( *[[invocation methodSignature] methodReturnType] != 'v' ) {
 				[expectation getReturnValue:buf];
@@ -133,7 +138,7 @@ static NSMapTable* mockControllers=nil;
 			return YES;
 		}
 	}
-	NSLog(@"no match!");
+//	NSLog(@"no match!");
 	return NO;
 }
 
@@ -181,12 +186,15 @@ static NSMapTable* mockControllers=nil;
 	[(NSInvocation*)[expectations lastObject] setReturnValue:&aResult];\
 }\
 
+setSomeResult( void*, setResult )
 setSomeResult( double, setDoubleResult )
 setSomeResult( float, setFloatResult )
 setSomeResult( long long, setLongLongResult )
 setSomeResult( int, setIntResult )
 setSomeResult( short, setShortResult )
 setSomeResult( char, setCharResult )
+
+
 
 
 void verifyAndCleanupMocks() 
