@@ -217,6 +217,35 @@
 
 
 
+- (void)testVerifyAndCleanupMocksShouldNotRaiseAnExceptionIfAllMockedMethodsWereCalled
+{
+    [(id)[[_obj shouldReceive] testMethod: 3] andReturnInt: 666];
+    [[[_obj shouldReceive] methodReturningArgument: _obj] andReturn: @"hui"];
+    [_obj testMethod: 3];
+    [_obj methodReturningArgument: _obj];
+    verifyAndCleanupMocks();
+}
+
+- (void)testVerifyAndCleanupMocksShouldNotRaiseAnExceptionIfAllMockedMethodsWereStubbed
+{
+    [(id)[[_obj stub] testMethod: 3] andReturnInt: 666];
+    [[[_obj stub] methodReturningArgument: _obj] andReturn: @"hui"];
+    verifyAndCleanupMocks();
+}
+
+
+
+- (void)testStubbedMethodsShouldBeRemovedAfterVerifyAndCleanupMocks
+{
+    [(id)[[_obj stub] testMethod: 3] andReturnInt: 666];
+    [[[_obj stub] methodReturningArgument: _obj] andReturn: @"hui"];
+    verifyAndCleanupMocks();
+    ASSERTEQUALSINT(6, [_obj testMethod: 3]);
+    ASSERTEQUALS(_obj, [_obj methodReturningArgument: _obj]);
+}
+
+
+
 #if 0
 
 
@@ -244,34 +273,6 @@
     [o release];
 }
 
-
-
-- (void)testVerifyAndCleanupMocksShouldNotRaiseAnExceptionIfAllMockedMethodsWereCalled
-{
-    [(id)[[_obj stub] testMethod: 3] andReturnInt: 666];
-    [[[_obj stub] methodReturningArgument: _obj] andReturn: @"hui"];
-    [_obj testMethod: 3];
-    [_obj methodReturningArgument: _obj];
-    verifyAndCleanupMocks();
-}
-
-
-- (void)testVerifyAndCleanupMocksShouldNotRaiseAnExceptionIfAllMockedMethodsWereStubbed
-{
-    [(id)[[_obj stub] testMethod: 3] andReturnInt: 666];
-    [[[_obj stub] methodReturningArgument: _obj] andReturn: @"hui"];
-    verifyAndCleanupMocks();
-}
-
-
-- (void)testStubbedMethodsShouldBeRemovedAfterVerifyAndCleanupMocks
-{
-    [(id)[[_obj stub] testMethod: 3] andReturnInt: 666];
-    [[[_obj stub] methodReturningArgument: _obj] andReturn: @"hui"];
-    verifyAndCleanupMocks();
-    ASSERTEQUALSINT(6, [_obj testMethod: 3]);
-    ASSERTEQUALS(_obj, [_obj methodReturningArgument: _obj]);
-}
 
 
 - (void)testShouldReceiveMocksMethodAndThrowsExceptionIfMethodIsCalledTooOften

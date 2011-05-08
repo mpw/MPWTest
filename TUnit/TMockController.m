@@ -221,12 +221,20 @@ setSomeResult( char, setCharResult )
 	}
 }
 
+-(void)cleanup
+{
+	if ( copyOfOriginalObject ) {
+		memcpy( originalObject, copyOfOriginalObject, class_getInstanceSize([copyOfOriginalObject class]));
+	}
+}
 
 void verifyAndCleanupMocks() 
 {
 	for ( TMockController* controller in [[TMockController mockControllers] objectEnumerator]  ) {
 		NSLog(@"verify controller: %@",controller);
+		[controller cleanup];
 		[controller verify];
+
 	}
 	[TMockController removeMocks];
 }
