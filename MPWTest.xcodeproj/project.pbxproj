@@ -61,6 +61,7 @@
 		1F9C971E1116583200492929 /* NSObjectTestingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F93690066CF95C35ADD82 /* NSObjectTestingSupport.m */; };
 		1F9C971F1116583200492929 /* MPWLoggingTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F936A0066CF95C35ADD82 /* MPWLoggingTester.m */; };
 		1F9C97201116583200492929 /* NSBundleClassEnumeration.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F936B0066CF95C35ADD82 /* NSBundleClassEnumeration.m */; };
+		1FB53F8E1376F39D009973F0 /* AccessorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FB53F8D1376F39D009973F0 /* AccessorMacros.h */; };
 		1FD58B4D10BF613800919BE7 /* MPWTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F936D0066CF95C35ADD82 /* MPWTestCase.h */; settings = {ATTRIBUTES = (Public, Project, ); }; };
 		1FD58B4E10BF613800919BE7 /* MPWTestResults.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F936E0066CF95C35ADD82 /* MPWTestResults.h */; settings = {ATTRIBUTES = (Public, Project, ); }; };
 		1FD58B5010BF613800919BE7 /* NSObjectTestingSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F93700066CF95C35ADD82 /* NSObjectTestingSupport.h */; settings = {ATTRIBUTES = (Public, Project, ); }; };
@@ -174,6 +175,7 @@
 		1F6A50E7072E69A1006C07C4 /* MPWTestAssertionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWTestAssertionHandler.h; sourceTree = "<group>"; };
 		1F6A50E8072E69A1006C07C4 /* MPWTestAssertionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPWTestAssertionHandler.m; sourceTree = "<group>"; };
 		1F9C964F110D6BA500492929 /* testlogger.exe */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testlogger.exe; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FB53F8D1376F39D009973F0 /* AccessorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessorMacros.h; sourceTree = "<group>"; };
 		1FD58B6510BF613800919BE7 /* MPWTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MPWTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FD58B6810BF613800919BE7 /* Info-MPWTest__Framework___Upgraded_ copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-MPWTest__Framework___Upgraded_ copy.plist"; sourceTree = "<group>"; };
 		1FD58B6B10BF617200919BE7 /* dllmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dllmain.m; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 		1FFC4FCF135209A400377C45 /* TUnit */ = {
 			isa = PBXGroup;
 			children = (
+				1FB53F8D1376F39D009973F0 /* AccessorMacros.h */,
 				1FFC4FF013520ADE00377C45 /* TTestCase.m */,
 				1FFC4FF213520AE900377C45 /* TTestCase.h */,
 				1FFC50981352470400377C45 /* TMockController.h */,
@@ -397,6 +400,7 @@
 				1FFFF82913733C9800133789 /* TClassMockInjectionTest.h in Headers */,
 				1FFFF8931373523E00133789 /* TObjectMockInjectionTest.h in Headers */,
 				1FFFF9AC13743FAD00133789 /* TMessageExpectation.h in Headers */,
+				1FB53F8E1376F39D009973F0 /* AccessorMacros.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

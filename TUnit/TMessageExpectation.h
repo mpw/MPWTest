@@ -13,13 +13,14 @@
 	NSInvocation *invocationToMatch;
 	int			 expectedCount;
 	int			 actualMatch;
+	id			 exceptionToThrow;
 }
 
 +expectationWithInvocation:(NSInvocation*)invocation;
 -(BOOL)matchesInvocation:(NSInvocation*)invocation;
 
 -(void)setExpectedCount:(int)newCount;
-
+-(void)setExceptionToThrow:throwThis;
 
 -(void)setReturnValue:(void*)value;
 -(void)getReturnValue:(void*)value;

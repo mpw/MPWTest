@@ -141,11 +141,19 @@ static NSMapTable* mockControllers=nil;
 				[expectation getReturnValue:buf];
 				[invocation setReturnValue:buf];
 			}
+			if ( [expectation exceptionToThrow] ) {
+				@throw [expectation exceptionToThrow];
+			}
 			return YES;
 		}
 	}
 //	NSLog(@"no match!");
 	return NO;
+}
+
+-(void)setExceptionResult:obj
+{
+	[[expectations lastObject] setExceptionToThrow:obj];
 }
 
 -(void)checkAndRunInvocation:(NSInvocation *)invocation

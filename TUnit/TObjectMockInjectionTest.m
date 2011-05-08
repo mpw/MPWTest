@@ -160,7 +160,6 @@
 // TODO nach einem mock (recording) mehrmals andReturn/andRaise als Sequenz von Rückgabewerten (1.
 // Wert -> 1. Call, 2. Wert -> 2. Call ...)
 
-#if 0
 
 - (void)testMockedMethodCanThrowException
 {
@@ -176,6 +175,7 @@
 }
 
 
+#if 0
 
 - (void)testMockedMethodWithByteResultCanThrowException
 {

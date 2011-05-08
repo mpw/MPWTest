@@ -7,10 +7,12 @@
 //
 
 #import "TMessageExpectation.h"
+#import "AccessorMacros.h"
 
 
 @implementation TMessageExpectation
 
+idAccessor( exceptionToThrow, setExceptionToThrow )
 
 -initWithInvocation:(NSInvocation*)invocation
 {
@@ -93,7 +95,6 @@
 {
 	expectedCount=newCount;
 }
-
 
 -(BOOL)matchesInvocation:(NSInvocation*)invocation
 {

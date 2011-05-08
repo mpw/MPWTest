@@ -44,9 +44,9 @@
 	return self;
 }
 
--andThrow:anException
+-andThrow:objectToThrow
 {
-	return self;
+	[controller setExceptionResult:objectToThrow];
 }
 
 -andReturnInt:(int)anInt
