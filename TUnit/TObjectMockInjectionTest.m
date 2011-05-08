@@ -136,7 +136,6 @@
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
 }
 
-#if 0
 
 - (void)testMockingAccountsForMethodsArguments
 {
@@ -145,6 +144,7 @@
     ASSERTEQUALS(@"ist da wer?", [_obj methodReturningArgument: @"du da"]);
 }
 
+#if 0
 
 - (void)testMockCountCanBeSet
 {

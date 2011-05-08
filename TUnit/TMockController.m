@@ -147,7 +147,8 @@ static NSMapTable* mockControllers=nil;
 //	NSLog(@"checkAndRunInvocation %@",invocation);
 //	[invocation setReturnValue:&empty];
 	if (! [self matchesInvocation:invocation]) {
-		[NSException raise:@"mock" format:@"mock doesn't match: %@ %@",NSStringFromSelector([invocation selector]),expectations];
+		[invocation invokeWithTarget:copyOfOriginalObject];
+//		[NSException raise:@"mock" format:@"mock doesn't match: %@ %@",NSStringFromSelector([invocation selector]),expectations];
 	}
 }
 
