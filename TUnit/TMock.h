@@ -18,3 +18,16 @@
 
 
 @end
+
+
+
+@interface NSObject(mocking)
+
+-mock;
+-stub;
+-shouldReceive;
+-andReturn:anObject;
+-andReturnInt:(int)anInt;
+-ordered;
+
+@end

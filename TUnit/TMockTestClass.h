@@ -61,6 +61,19 @@ typedef struct _TMockTestStruct {
 + classMethodReturningArgument: arg;
 + (int)testClassMethod: (int)param;
 - (void)methodWithArgumentsChar: (char)c;
+- (void)methodWithArgumentsChar: (char)c
+short: (short)s
+int: (int)i
+long: (long)l
+longLong: (long long)ll
+float: (float)f
+double: (double)d
+cPtr: (char *)cp
+constCPtr: (const char *)ccp
+vPtr: (void *)vp
+constVPtr: (const void *)cvp
+id: o;
+
 
 
 @end

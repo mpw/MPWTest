@@ -13,12 +13,6 @@
 //#include "TUnit/TObject.Mock.h"
 
 
-@interface NSException(exceptionAt)
-
-+exceptionAt: (const char*)file : (int)line withMessage:(NSString*)msg;
-+(void)raiseAt: (const char*)file : (int)line withMessage:(NSString*)msg;
-@end
-
 
 @implementation NSException(exceptionAt)
 

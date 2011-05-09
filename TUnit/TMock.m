@@ -85,6 +85,13 @@
 	return self;
 }
 
+-mock
+{
+	[controller recordOneMessage];
+	[controller setPartialMockAllowed:YES];
+	return self;
+}
+
 @end
 
 
@@ -93,7 +100,12 @@
 -mock
 {
 	TMockController *controller=[TMockController mockControllerForObject:self];
-	return [controller mockForObject:self];
+	[controller recordOneMessage];
+	id stub = [controller inlineMock];
+	[controller setExpectedCount:-1];
+	[controller setPartialMockAllowed:YES];
+	//	NSLog(@"will return inline mock: %p",stub);
+	return stub;
 }
 
 -stub

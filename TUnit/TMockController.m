@@ -17,6 +17,8 @@
 
 static NSMapTable* mockControllers=nil;
 
+boolAccessor( partialMockAllowed, setPartialMockAllowed )
+
 +(NSMapTable*)mockControllers
 {
 	if  (!mockControllers ) {
@@ -161,8 +163,12 @@ static NSMapTable* mockControllers=nil;
 //	NSLog(@"checkAndRunInvocation %@",invocation);
 //	[invocation setReturnValue:&empty];
 	if (! [self matchesInvocation:invocation]) {
-		[invocation invokeWithTarget:copyOfOriginalObject];
-//		[NSException raise:@"mock" format:@"mock doesn't match: %@ %@",NSStringFromSelector([invocation selector]),expectations];
+		if ( [self partialMockAllowed] ) {
+			[invocation invokeWithTarget:copyOfOriginalObject];
+		} else {
+			[NSException raise:@"mock" format:@"mock doesn't match: %@ %@",NSStringFromSelector([invocation selector]),expectations];
+		}
+
 	}
 }
 
@@ -214,7 +220,7 @@ setSomeResult( char, setCharResult )
 -(void)verify
 {
 	for ( TMessageExpectation *expectation in expectations ) {
-		NSLog(@"verify expectation: %@",expectation);
+//		NSLog(@"verify expectation: %@",expectation);
 		if ( [expectation unfulfilled] ) {
 			[NSException raise:@"mock"  format:@"remaining expected messages: %@",expectations];
 		}
@@ -231,7 +237,7 @@ setSomeResult( char, setCharResult )
 void verifyAndCleanupMocks() 
 {
 	for ( TMockController* controller in [[TMockController mockControllers] objectEnumerator]  ) {
-		NSLog(@"verify controller: %@",controller);
+//		NSLog(@"verify controller: %@",controller);
 		[controller cleanup];
 		[controller verify];
 

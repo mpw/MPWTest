@@ -15,8 +15,19 @@
 - (void)_assertList: (NSArray *)got containsElementsFrom: (NSArray *)expected
    failOnUnexpected: (BOOL)failOnUnexpected file: (const char *)file line: (int)line;
 - (void)_assert: obj1 equals: obj2 file: (const char *)file line: (int)line;
+- (void)_assertInt: (int)int1 equalsInt: (int)int2 file: (const char *)file line: (int)line;
+- (void)_assert: (NSString *)expression isTrue: (BOOL)isTrue;
+
+- (void)clearHint;
 
 @end
+
+@interface NSException(exceptionAt)
+
++exceptionAt: (const char*)file : (int)line withMessage:(NSString*)msg;
++(void)raiseAt: (const char*)file : (int)line withMessage:(NSString*)msg;
+@end
+
 
 typedef void(TUnitCallBack)();
 extern TUnitCallBack *tUnitBeforeSetUp;

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "AccessorMacros.h"
 
 @interface TMockController : NSObject {
 	id originalObject;
@@ -17,12 +17,16 @@
 	int recordNumberOfMessages;
 	id  copyOfOriginalObject;
 	int nextExpectedCount;
+	BOOL partialMockAllowed;
 }
 
 +mockControllerForObject:anObject;
 -initWithObject:anObject;
 
+boolAccessor_h( partialMockAllowed, setPartialMockAllowed )
 
+
+-(void)replay;
 -(void)recordOneMessage;
 -inlineMock;
 

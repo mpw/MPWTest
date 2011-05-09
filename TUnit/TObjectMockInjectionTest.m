@@ -3,6 +3,7 @@
 //
 
 #include "TObjectMockInjectionTest.h"
+#import "TMock.h"
 
 #pragma .h #include <TUnit/TUnit.h>
 
@@ -139,7 +140,7 @@
 
 - (void)testMockingAccountsForMethodsArguments
 {
-    [[[_obj stub] methodReturningArgument: @"du da"] andReturn: @"ist da wer?"];
+    [[[_obj mock] methodReturningArgument: @"du da"] andReturn: @"ist da wer?"];
     ASSERTEQUALS(@"Hallo", [_obj methodReturningArgument: @"Hallo"]);
     ASSERTEQUALS(@"ist da wer?", [_obj methodReturningArgument: @"du da"]);
 }
@@ -147,7 +148,7 @@
 
 - (void)testMockCountCanBeSet
 {
-	[[_obj stub] testMethod: 3];
+	[[_obj mock] testMethod: 3];
     [[_obj andReturnInt: 666] receiveTimes: 3];
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
@@ -245,6 +246,14 @@
 }
 
 
+- (void)testShouldReceiveMocksMethodAndThrowsExceptionIfMethodIsCalledTooOften
+{
+    [[[_obj shouldReceive] methodReturningArgument: @"hallo"] andReturn: @"du da"];
+    ASSERTEQUALS(@"du da", [_obj methodReturningArgument: @"hallo"]);
+    FAIL([_obj methodReturningArgument: @"hallo"]);
+}
+
+
 
 #if 0
 
@@ -273,14 +282,6 @@
     [o release];
 }
 
-
-
-- (void)testShouldReceiveMocksMethodAndThrowsExceptionIfMethodIsCalledTooOften
-{
-    [[[_obj shouldReceive] methodReturningArgument: @"hallo"] andReturn: @"du da"];
-    ASSERTEQUALS(@"du da", [_obj methodReturningArgument: @"hallo"]);
-    FAIL([_obj methodReturningArgument: @"hallo"]);
-}
 
 
 - (void)testMethodMockedViaShouldReceiveThrowsExceptionIfArgumentIsWrong
