@@ -42,6 +42,8 @@
 
 -shouldNotReceive
 {
+	[controller recordOneMessage];
+	[controller setExpectedCount:0];
 	return self;
 }
 
@@ -98,6 +100,13 @@
 	return self;
 }
 
+-skipParameterCheck:(int)parameterToIgnore
+{
+	NSLog(@"skipParameterCheck: %d",parameterToIgnore);
+	[controller skipParameterCheck:parameterToIgnore];
+	return self;
+}
+
 @end
 
 
@@ -132,6 +141,14 @@
 	return [controller inlineMock];
 }
 
+-shouldNotReceive
+{
+	TMockController *controller=[TMockController mockControllerForObject:self];
+	[controller recordOneMessage];
+	[controller setExpectedCount:0];
+	return [controller inlineMock];
+}
+
 -andReturnInt:(int)anInt
 {
 	NSLog(@"NSObject should return int: %d",anInt);
@@ -139,6 +156,12 @@
 	return self;
 }
 
+-skipParameterCheck:(int)parameterToIgnore
+{
+	NSLog(@"skipParameterCheck: %d",parameterToIgnore);
+	[[TMockController mockControllerForObject:self] skipParameterCheck:parameterToIgnore];
+	return self;
+}
 
 
 -ordered 

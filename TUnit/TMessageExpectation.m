@@ -84,12 +84,18 @@ objectAccessor( NSMutableIndexSet* , skippedParameters, setSkippedParameters )
 						
 						break;
 				}
-			}		}
+			}
+		} else {
+//			NSLog(@"ignore parameters %d for %@",i,NSStringFromSelector([invocationToMatch selector]));
+		}
 		
 
 		
 	}
 	actualMatch++;
+	if ( expectedCount == 0 ) {
+		[NSException raise:@"unexpected shouldNotReceive" format:@"unexpected shouldNotReceive"];
+	}
 //	NSLog(@"actualMatch: %d / %d",actualMatch,expectedCount);
 	return YES;
 }
@@ -127,6 +133,11 @@ objectAccessor( NSMutableIndexSet* , skippedParameters, setSkippedParameters )
 	return self;
 }
 
+-skipParameterCheck:(int)parameterToIgnore
+{
+	[[self skippedParameters] addIndex:parameterToIgnore+1];
+	return self;
+}
 -description
 {
 	return [NSString stringWithFormat:@"<%@:%p: selector: %@ expected:%d actual: %d>",[self class],self,NSStringFromSelector([invocationToMatch selector]),expectedCount,actualMatch];

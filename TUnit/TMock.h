@@ -29,5 +29,6 @@
 -andReturn:anObject;
 -andReturnInt:(int)anInt;
 -ordered;
+-skipParameterCheck:(int)parameterToIgnore;
 
 @end

@@ -68,6 +68,7 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 	mock=NSAllocateObject(NSClassFromString(@"TMock"), 0, NSDefaultMallocZone());
 	[mock initWithController:self];
 	recordNumberOfMessages=100000;
+	[self setExpectedCount:1];
 	return mock;
 }
 
@@ -97,6 +98,7 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 	mock=NSAllocateObject(NSClassFromString(@"TMock"), 0, NSDefaultMallocZone());
 	recordNumberOfMessages=100000;
 	[mock initWithController:self];
+	[self setExpectedCount:1];
 	return mock;
 }
 
@@ -120,6 +122,14 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 	[[self currentExpectation] skipParameterChecks];
 	return self;
 }
+
+
+-skipParameterCheck:(int)parameterToIgnore
+{
+	[[self currentExpectation] skipParameterCheck:parameterToIgnore];
+	return self;
+}
+
 
 
 

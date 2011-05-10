@@ -263,12 +263,6 @@
 							 cPtr: "b" constCPtr: "c" vPtr: "d" constVPtr: "e" id: _obj];
 }
 
-
-
-#if 0
-
-
-
 - (void)testMethodMockedViaShouldReceiveThrowsExceptionIfArgumentIsWrong
 {
     [[[_obj shouldReceive] methodReturningArgument: @"hallo"] andReturn: @"du da"];
@@ -282,6 +276,31 @@
     [[_obj shouldNotReceive] methodReturningArgument: @"hallo"];
     FAIL([_obj methodReturningArgument: @"hallo"]);
 }
+
+
+- (void)testShouldNotReceiveCanOverrideStubbingOfAFinerSpecificationOFTheSameMethod
+{
+
+	[[_obj stub] testMethod: 3];
+    [_obj andReturnInt: 666];
+	[[_obj shouldNotReceive] testMethod: 0];
+   [_obj skipParameterCheck: 1];
+   FAIL([_obj testMethod: 3]);
+}
+
+
+- (void)testShouldNotReceiveCanOverrideStubbingOfTheSameMethod
+{
+    [(id)[[_obj stub] testMethod: 3] andReturnInt: 666];
+    [[_obj shouldNotReceive] testMethod: 3];
+    FAIL([_obj testMethod: 3]);
+}
+
+
+
+
+#if 0
+
 
 
 - (void)testMethordOrderCanBeExpected
@@ -406,21 +425,6 @@
 //    }
 //}
 
-
-- (void)testShouldNotReceiveCanOverrideStubbingOfTheSameMethod
-{
-    [(id)[[_obj stub] testMethod: 3] andReturnInt: 666];
-    [[_obj shouldNotReceive] testMethod: 3];
-    FAIL([_obj testMethod: 3]);
-}
-
-
-- (void)testShouldNotReceiveCanOverrideStubbingOfAFinerSpecificationOFTheSameMethod
-{
-    [(id)[[_obj stub] testMethod: 3] andReturnInt: 666];
-    [(id)[[_obj shouldNotReceive] testMethod: 0] skipParameterCheck: 1];
-    FAIL([_obj testMethod: 3]);
-}
 
 
 - (void)testDeallocationOfObjectShouldRaiseAnExceptionIfNotAllMockedMethodsWereCalled
