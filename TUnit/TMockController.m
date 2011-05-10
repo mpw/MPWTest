@@ -165,11 +165,6 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 //		NSLog(@"checking expectations[%d]=%@ against %@",i,expectation,invocation);
 		if ( [expectation matchesInvocation:invocation] ) {
 //			NSLog(@"did match at %d",i);
-			char buf[128];
-			if  ( *[[invocation methodSignature] methodReturnType] != 'v' ) {
-				[expectation getReturnValue:buf];
-				[invocation setReturnValue:buf];
-			}
 			if ( [expectation exceptionToThrow] ) {
 				@throw [expectation exceptionToThrow];
 			}
@@ -177,9 +172,19 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 				for (int j=0;j<i;j++) {
 					TMessageExpectation  *orderCheck=[expectations objectAtIndex:j];
 					if ( [orderCheck isOrdered] && [orderCheck unfulfilled] ) {
-						[NSException raise:@"ordercheck" format:@"ordercheck"];
+						if ( [orderCheck matchesInvocation:invocation] ){
+							expectation=orderCheck;
+							break;
+						} else {
+							return NO;
+						}
 					}
 				}
+			}
+			char buf[128];
+			if  ( *[[invocation methodSignature] methodReturnType] != 'v' ) {
+				[expectation getReturnValue:buf];
+				[invocation setReturnValue:buf];
 			}
 			[expectation increateActualMatch];
 			return YES;

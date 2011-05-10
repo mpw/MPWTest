@@ -343,10 +343,6 @@
 
 
 
-#if 0
-
-
-
 
 - (void)testMethodsCanBeExpectedOrderedWithSameArgumentsAndDifferentResults
 {
@@ -357,6 +353,10 @@
     ASSERTEQUALS(@"2", [_obj methodReturningArgument: @"1"]);
     ASSERTEQUALS(@"3", [_obj methodReturningArgument: @"1"]);
 }
+
+
+
+#if 0
 
 
 - (void)testMultipleReceivedMessagesCanBeOrdered
