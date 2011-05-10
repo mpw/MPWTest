@@ -297,29 +297,11 @@
 }
 
 
-
-
-#if 0
-
-
-
 - (void)testMethordOrderCanBeExpected
 {
     [[[_obj shouldReceive] methodReturningArgument: @"3"] ordered];
     [[[_obj shouldReceive] methodReturningArgument: @"2"] ordered];
     [[[_obj shouldReceive] methodReturningArgument: @"1"] ordered];
-    [_obj methodReturningArgument: @"3"];
-    [_obj methodReturningArgument: @"2"];
-    [_obj methodReturningArgument: @"1"];
-}
-
-
-- (void)testExceptionIsRaisedOnOrderedMethodsIfCalledInWrongOrder
-{
-    [[[_obj shouldReceive] methodReturningArgument: @"3"] ordered];
-    [[[_obj shouldReceive] methodReturningArgument: @"2"] ordered];
-    [[[_obj shouldReceive] methodReturningArgument: @"1"] ordered];
-    FAIL([_obj methodReturningArgument: @"2"]);
     [_obj methodReturningArgument: @"3"];
     [_obj methodReturningArgument: @"2"];
     [_obj methodReturningArgument: @"1"];
@@ -336,6 +318,25 @@
 {
     FAIL([[[_obj shouldNotReceive] methodReturningArgument: @"3"] ordered]);
 }
+
+
+
+
+#if 0
+
+
+
+- (void)testExceptionIsRaisedOnOrderedMethodsIfCalledInWrongOrder
+{
+    [[[_obj shouldReceive] methodReturningArgument: @"3"] ordered];
+    [[[_obj shouldReceive] methodReturningArgument: @"2"] ordered];
+    [[[_obj shouldReceive] methodReturningArgument: @"1"] ordered];
+    FAIL([_obj methodReturningArgument: @"2"]);
+    [_obj methodReturningArgument: @"3"];
+    [_obj methodReturningArgument: @"2"];
+    [_obj methodReturningArgument: @"1"];
+}
+
 
 
 - (void)testExpectOrderingOnUnlimitedMethodFails

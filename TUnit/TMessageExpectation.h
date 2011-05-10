@@ -6,7 +6,8 @@
 //  Copyright 2011 metaobject ltd. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
+#import "AccessorMacros.h"
 
 
 @interface TMessageExpectation : NSObject {
@@ -15,8 +16,10 @@
 	int			 actualMatch;
 	id			 exceptionToThrow;
 	NSMutableIndexSet *skippedParameters;
+	BOOL		isOrdered;
 }
 
+boolAccessor_h( isOrdered, setIsOrdered) 
 +expectationWithInvocation:(NSInvocation*)invocation;
 -(BOOL)matchesInvocation:(NSInvocation*)invocation;
 

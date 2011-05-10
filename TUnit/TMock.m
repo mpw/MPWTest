@@ -87,6 +87,12 @@
 	return self;
 }
 
+-ordered
+{
+	[controller ordered];
+	return self;
+}
+
 -mock
 {
 	[controller recordOneMessage];

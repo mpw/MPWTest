@@ -138,6 +138,22 @@ objectAccessor( NSMutableIndexSet* , skippedParameters, setSkippedParameters )
 	[[self skippedParameters] addIndex:parameterToIgnore+1];
 	return self;
 }
+
+boolAccessor( isOrdered, setIsOrdered) 
+
+
+-ordered
+{
+	if ( expectedCount <= 0 ) {
+		[NSException raise:@"can't order stubbed" format:@"can't order stubbed"];
+	}
+	[self setIsOrdered:YES];
+	return self;
+}
+
+
+
+
 -description
 {
 	return [NSString stringWithFormat:@"<%@:%p: selector: %@ expected:%d actual: %d>",[self class],self,NSStringFromSelector([invocationToMatch selector]),expectedCount,actualMatch];

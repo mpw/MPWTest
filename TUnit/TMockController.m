@@ -130,6 +130,12 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 	return self;
 }
 
+-ordered
+{
+	[[self currentExpectation] ordered];
+	return self;
+}
+
 
 
 
