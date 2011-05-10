@@ -381,7 +381,6 @@
 }
 
 
-
 #if 0
 
 
@@ -431,6 +430,16 @@
 
 
 
+
+- (void)testDeallocationOfObjectShouldNotRaiseAnExceptionIfAllMockedMethodsWereStubbed
+{
+    id o = [[TMockTestClass alloc] init];
+    [(id)[[o stub] testMethod: 3] andReturnInt: 666];
+    [[[o stub] methodReturningArgument: _obj] andReturn: @"hui"];
+    [o release];
+}
+
+
 - (void)testDeallocationOfObjectShouldRaiseAnExceptionIfNotAllMockedMethodsWereCalled
 {
     id o = [[TMockTestClass alloc] init];
@@ -444,15 +453,6 @@
         exceptionCaught = YES;
     }
     ASSERT(exceptionCaught);
-}
-
-
-- (void)testDeallocationOfObjectShouldNotRaiseAnExceptionIfAllMockedMethodsWereStubbed
-{
-    id o = [[TMockTestClass alloc] init];
-    [(id)[[o stub] testMethod: 3] andReturnInt: 666];
-    [[[o stub] methodReturningArgument: _obj] andReturn: @"hui"];
-    [o release];
 }
 
 
