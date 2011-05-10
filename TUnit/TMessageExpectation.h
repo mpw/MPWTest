@@ -14,6 +14,7 @@
 	int			 expectedCount;
 	int			 actualMatch;
 	id			 exceptionToThrow;
+	NSMutableIndexSet *skippedParameters;
 }
 
 +expectationWithInvocation:(NSInvocation*)invocation;

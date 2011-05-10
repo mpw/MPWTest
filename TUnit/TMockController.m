@@ -105,11 +105,22 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 	nextExpectedCount=newCount;
 }
 
+-(TMessageExpectation*)currentExpectation
+{
+	return [expectations lastObject];
+}
 
 -(void)setCurrentExpectedCount:(int)newCount
 {
-	[[expectations lastObject] setExpectedCount:newCount];
+	[[self currentExpectation] setExpectedCount:newCount];
 }
+
+-skipParameterChecks
+{
+	[[self currentExpectation] skipParameterChecks];
+	return self;
+}
+
 
 
 -(void)replay
@@ -155,7 +166,7 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 
 -(void)setExceptionResult:obj
 {
-	[[expectations lastObject] setExceptionToThrow:obj];
+	[[self currentExpectation] setExceptionToThrow:obj];
 }
 
 -(void)checkAndRunInvocation:(NSInvocation *)invocation
@@ -204,7 +215,7 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 
 #define setSomeResult( type, methodName ) \
 -(void)methodName:(type)aResult {\
-	[(NSInvocation*)[expectations lastObject] setReturnValue:&aResult];\
+	[(NSInvocation*)[self currentExpectation] setReturnValue:&aResult];\
 }\
 
 setSomeResult( void*, setResult )

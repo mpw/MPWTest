@@ -92,6 +92,12 @@
 	return self;
 }
 
+-skipParameterChecks
+{
+	[controller skipParameterChecks];
+	return self;
+}
+
 @end
 
 

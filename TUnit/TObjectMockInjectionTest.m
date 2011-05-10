@@ -254,33 +254,18 @@
 }
 
 
+- (void)testSkipParameterCheckIsAvailableForAllParameters
+{
+    [[_obj shouldReceive] methodWithArgumentsChar: 0 short: 0 int: 0 long: 0 longLong: 0 float: 0
+										   double: 0 cPtr: NULL constCPtr: NULL vPtr: NULL constVPtr: NULL id: nil];
+    [_obj skipParameterChecks];
+    [_obj methodWithArgumentsChar: 'a' short: 1 int: 2 long: 3 longLong: 4 float: 5 double: 6
+							 cPtr: "b" constCPtr: "c" vPtr: "d" constVPtr: "e" id: _obj];
+}
+
+
 
 #if 0
-
-
-- (void)testDeallocationOfObjectShouldRaiseAnExceptionIfNotAllMockedMethodsWereCalled
-{
-    id o = [[TMockTestClass alloc] init];
-    [(id)[[o stub] testMethod: 3] andReturnInt: 666];
-    [[[o stub] methodReturningArgument: _obj] andReturn: @"hui"];
-    [o testMethod: 3];
-    BOOL exceptionCaught = NO;
-    @try {
-        [o release];
-    } @catch (id e) {
-        exceptionCaught = YES;
-    }
-    ASSERT(exceptionCaught);
-}
-
-
-- (void)testDeallocationOfObjectShouldNotRaiseAnExceptionIfAllMockedMethodsWereStubbed
-{
-    id o = [[TMockTestClass alloc] init];
-    [(id)[[o stub] testMethod: 3] andReturnInt: 666];
-    [[[o stub] methodReturningArgument: _obj] andReturn: @"hui"];
-    [o release];
-}
 
 
 
@@ -438,14 +423,31 @@
 }
 
 
-- (void)testSkipParameterCheckIsAvailableForAllParameters
+- (void)testDeallocationOfObjectShouldRaiseAnExceptionIfNotAllMockedMethodsWereCalled
 {
-    [[_obj shouldReceive] methodWithArgumentsChar: 0 short: 0 int: 0 long: 0 longLong: 0 float: 0
-            double: 0 cPtr: NULL constCPtr: NULL vPtr: NULL constVPtr: NULL id: nil];
-    [_obj skipParameterChecks];
-    [_obj methodWithArgumentsChar: 'a' short: 1 int: 2 long: 3 longLong: 4 float: 5 double: 6
-            cPtr: "b" constCPtr: "c" vPtr: "d" constVPtr: "e" id: _obj];
+    id o = [[TMockTestClass alloc] init];
+    [(id)[[o stub] testMethod: 3] andReturnInt: 666];
+    [[[o stub] methodReturningArgument: _obj] andReturn: @"hui"];
+    [o testMethod: 3];
+    BOOL exceptionCaught = NO;
+    @try {
+        [o release];
+    } @catch (id e) {
+        exceptionCaught = YES;
+    }
+    ASSERT(exceptionCaught);
 }
+
+
+- (void)testDeallocationOfObjectShouldNotRaiseAnExceptionIfAllMockedMethodsWereStubbed
+{
+    id o = [[TMockTestClass alloc] init];
+    [(id)[[o stub] testMethod: 3] andReturnInt: 666];
+    [[[o stub] methodReturningArgument: _obj] andReturn: @"hui"];
+    [o release];
+}
+
+
 
 #endif
 
