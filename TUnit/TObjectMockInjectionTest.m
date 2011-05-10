@@ -355,14 +355,10 @@
 }
 
 
-
-#if 0
-
-
 - (void)testMultipleReceivedMessagesCanBeOrdered
 {
     [[[[[_obj shouldReceive] methodReturningArgument: @"1"] ordered] receiveTimes: 2]
-            andReturn: @"1"];
+	 andReturn: @"1"];
     [[[[_obj shouldReceive] methodReturningArgument: @"2"] ordered] andReturn: @"2"];
     ASSERTEQUALS(@"1", [_obj methodReturningArgument: @"1"]);
     ASSERTEQUALS(@"1", [_obj methodReturningArgument: @"1"]);
@@ -373,14 +369,20 @@
 - (void)testMethodsCanBeExpectedOrderedWithDifferentResultsAndOtherCallsBetweenThem
 {
     [[[[_obj shouldReceive] methodReturningArgument: @"1"] ordered] andReturn: @"1"];
-    [[(id)[[_obj shouldReceive] intMethod] ordered] andReturnInt: 123];
+	[[_obj shouldReceive] intMethod];
+    [[_obj ordered] andReturnInt: 123];
     [[[[_obj shouldReceive] methodReturningArgument: @"1"] ordered] andReturn: @"3"];
-    [[(id)[[_obj shouldReceive] intMethod] ordered] andReturnInt: 456];
+    [[_obj shouldReceive] intMethod];
+    [[_obj ordered] andReturnInt: 456];
     ASSERTEQUALS(@"1", [_obj methodReturningArgument: @"1"]);
     ASSERTEQUALSINT(123, [_obj intMethod]);
     ASSERTEQUALS(@"3", [_obj methodReturningArgument: @"1"]);
     ASSERTEQUALSINT(456, [_obj intMethod]);
 }
+
+
+
+#if 0
 
 
 - (void)testReleaseCanBeMocked
