@@ -34,6 +34,11 @@ objectAccessor( NSMutableIndexSet* , skippedParameters, setSkippedParameters )
 	return [[[self alloc] initWithInvocation:invocation] autorelease];
 }
 
+-(void)increateActualMatch
+{
+	actualMatch++;
+}
+
 -(BOOL)compareInvocation:(NSInvocation*) inv1 withInvocation:(NSInvocation*)inv2
 {
 	if ( expectedCount > 0 && actualMatch >= expectedCount ) {
@@ -92,7 +97,6 @@ objectAccessor( NSMutableIndexSet* , skippedParameters, setSkippedParameters )
 
 		
 	}
-	actualMatch++;
 	if ( expectedCount == 0 ) {
 		[NSException raise:@"unexpected shouldNotReceive" format:@"unexpected shouldNotReceive"];
 	}

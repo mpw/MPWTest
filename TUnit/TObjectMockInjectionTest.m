@@ -321,10 +321,12 @@
 
 
 
-
-#if 0
-
-
+- (void)testExpectOrderingOnUnlimitedMethodFails
+{
+    FAIL([[[[_obj shouldReceive] methodReturningArgument: @"3"]
+		   receiveTimes: TUNIT_UNLIMITEDCALLCOUNT] ordered]);
+    [_obj methodReturningArgument: @"3"];
+}
 
 - (void)testExceptionIsRaisedOnOrderedMethodsIfCalledInWrongOrder
 {
@@ -339,12 +341,11 @@
 
 
 
-- (void)testExpectOrderingOnUnlimitedMethodFails
-{
-    FAIL([[[[_obj shouldReceive] methodReturningArgument: @"3"]
-            receiveTimes: TUNIT_UNLIMITEDCALLCOUNT] ordered]);
-    [_obj methodReturningArgument: @"3"];
-}
+
+
+#if 0
+
+
 
 
 - (void)testMethodsCanBeExpectedOrderedWithSameArgumentsAndDifferentResults
@@ -382,7 +383,7 @@
 }
 
 
-- (void)_disabled_testReleaseCanBeMocked
+- (void)testReleaseCanBeMocked
 {
     [[_obj shouldReceive] release];
     [_obj release];

@@ -173,6 +173,15 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 			if ( [expectation exceptionToThrow] ) {
 				@throw [expectation exceptionToThrow];
 			}
+			if ( [expectation isOrdered] ) {
+				for (int j=0;j<i;j++) {
+					TMessageExpectation  *orderCheck=[expectations objectAtIndex:j];
+					if ( [orderCheck isOrdered] && [orderCheck unfulfilled] ) {
+						[NSException raise:@"ordercheck" format:@"ordercheck"];
+					}
+				}
+			}
+			[expectation increateActualMatch];
 			return YES;
 		}
 	}

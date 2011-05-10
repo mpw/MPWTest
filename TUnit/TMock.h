@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define TUNIT_UNLIMITEDCALLCOUNT   -1
 
 @interface TMock : NSProxy {
 @public
