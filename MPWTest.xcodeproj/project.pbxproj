@@ -25,6 +25,7 @@
 /* Begin PBXBuildFile section */
 		1F0082D60DAD7A51003E7ED1 /* testlogger_main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B926A0D4D37B100EA8493 /* testlogger_main.m */; };
 		1F0082DE0DAD7A5A003E7ED1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8F937A0066CF95C35ADD82 /* Foundation.framework */; };
+		1F1EC7B3137960D500CDA323 /* TClassMockInjectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FD6135209FE00377C45 /* TClassMockInjectionTest.m */; };
 		1F33C5A9117E61D100245E3E /* MPWTestSuite.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F33C5A8117E61D100245E3E /* MPWTestSuite.h */; };
 		1F33C5AA117E61D100245E3E /* MPWTestSuite.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F33C5A8117E61D100245E3E /* MPWTestSuite.h */; };
 		1F346FFE0F2067E9003D39D2 /* ExceptionHandling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F346FFD0F2067E9003D39D2 /* ExceptionHandling.framework */; };
@@ -102,7 +103,6 @@
 		1FFC52001352F49A00377C45 /* TMetaClassMockTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FD8135209FE00377C45 /* TMetaClassMockTest.m */; };
 		1FFFF82913733C9800133789 /* TClassMockInjectionTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FFFF82813733C9800133789 /* TClassMockInjectionTest.h */; };
 		1FFFF8931373523E00133789 /* TObjectMockInjectionTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FFFF8921373523E00133789 /* TObjectMockInjectionTest.h */; };
-		1FFFF8D21373D8D300133789 /* TObjectMockInjectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FDB135209FE00377C45 /* TObjectMockInjectionTest.m */; };
 		1FFFF9AC13743FAD00133789 /* TMessageExpectation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FFFF9AA13743FAD00133789 /* TMessageExpectation.h */; };
 		1FFFF9AD13743FAD00133789 /* TMessageExpectation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFF9AB13743FAD00133789 /* TMessageExpectation.m */; };
 /* End PBXBuildFile section */
@@ -626,8 +626,8 @@
 				1FFC509B1352470400377C45 /* TMockController.m in Sources */,
 				1FFC50CB1352496D00377C45 /* TMock.m in Sources */,
 				1FFC52001352F49A00377C45 /* TMetaClassMockTest.m in Sources */,
-				1FFFF8D21373D8D300133789 /* TObjectMockInjectionTest.m in Sources */,
 				1FFFF9AD13743FAD00133789 /* TMessageExpectation.m in Sources */,
+				1F1EC7B3137960D500CDA323 /* TClassMockInjectionTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

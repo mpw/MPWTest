@@ -28,10 +28,12 @@
     // normales Verhalten sicherstellen
 	NSLog(@"_class: %@",_class);
     ASSERTEQUALSINT(7, [_class testClassMethod: 3]);
-    [(Class)[[_class mock] testClassMethod: 3] andReturnInt: 666];
+	[[_class mock] testClassMethod: 3];
+    [_class andReturnInt: 666];
     ASSERTEQUALSINT(666, [_class testClassMethod: 3]);
 }
 
+#if 0
 
 - (void)testNormalClassMockingAMessageReturnsToNormalBehaviourAfterReceivingMockedCall
 {
@@ -191,6 +193,8 @@
     [_class classMethodReturningArgument: @"hallo"];
 }
 
+
+#endif
 
 @end
 

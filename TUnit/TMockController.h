@@ -18,6 +18,7 @@
 	id  copyOfOriginalObject;
 	int nextExpectedCount;
 	BOOL partialMockAllowed;
+	int  size;
 }
 
 +mockControllerForObject:anObject;

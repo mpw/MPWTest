@@ -468,9 +468,13 @@ static NSString *__package = nil;
 -(void)doTest:(NSString*)testName withTest:test
 {
 	[self setUp];
-	[self doTestBasic:testName withTest:test];
-	[TMockController removeMocks];
-	[self tearDown];
+	@try {
+		[self doTestBasic:testName withTest:test];
+	}
+	@finally {
+		[TMockController removeMocks];
+		[self tearDown];
+	}
 }
 
 @end

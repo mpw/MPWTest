@@ -11,6 +11,9 @@
 
 @implementation TMock
 
+
+-controller { return controller; }
+
 -(void)forwardInvocation:(NSInvocation *)invocation
 {
 //	NSLog(@"forwarding %@ to %@",invocation,controller);
@@ -42,74 +45,75 @@
 
 -shouldNotReceive
 {
-	[controller recordOneMessage];
-	[controller setExpectedCount:0];
+	[[self controller] recordOneMessage];
+	[[self controller] setExpectedCount:0];
 	return self;
 }
 
 -andThrow:objectToThrow
 {
-	[controller setExceptionResult:objectToThrow];
+	[[self controller] setExceptionResult:objectToThrow];
+	return self;
 }
 
 -andReturnInt:(int)anInt
 {
 //	NSLog(@"TMock should return int: %d",anInt);
-	[controller setIntResult:anInt];
+	[[self controller] setIntResult:anInt];
 //	NSLog(@"self in andReturnInt: %d = %p",anInt,self);
 	return self;
 }
 
 -andReturn:returnValue
 {
-	[controller setResult:returnValue];
+	[[self controller] setResult:returnValue];
 	return self;
 }
 
 -shouldReceive
 {
-	[controller recordOneMessage];
-	[controller setExpectedCount:1];
+	[[self controller] recordOneMessage];
+	[[self controller] setExpectedCount:1];
 	return self;
 }
 
 -receiveTimes:(int)expected
 {
 //	NSLog(@"receiveTimes: %d forwarding to controller",expected);
-	[controller setCurrentExpectedCount:expected];
+	[[self controller] setCurrentExpectedCount:expected];
 	return self;
 }
 
 -stub
 {
-	[controller recordOneMessage];
-	[controller setExpectedCount:-1];
+	[[self controller] recordOneMessage];
+	[[self controller] setExpectedCount:-1];
 	return self;
 }
 
 -ordered
 {
-	[controller ordered];
+	[[self controller] ordered];
 	return self;
 }
 
 -mock
 {
-	[controller recordOneMessage];
-	[controller setPartialMockAllowed:YES];
+	[[self controller] recordOneMessage];
+	[[self controller] setPartialMockAllowed:YES];
 	return self;
 }
 
 -skipParameterChecks
 {
-	[controller skipParameterChecks];
+	[[self controller] skipParameterChecks];
 	return self;
 }
 
 -skipParameterCheck:(int)parameterToIgnore
 {
 	NSLog(@"skipParameterCheck: %d",parameterToIgnore);
-	[controller skipParameterCheck:parameterToIgnore];
+	[[self controller] skipParameterCheck:parameterToIgnore];
 	return self;
 }
 
@@ -164,7 +168,7 @@
 
 -skipParameterCheck:(int)parameterToIgnore
 {
-	NSLog(@"skipParameterCheck: %d",parameterToIgnore);
+//	NSLog(@"skipParameterCheck: %d",parameterToIgnore);
 	[[TMockController mockControllerForObject:self] skipParameterCheck:parameterToIgnore];
 	return self;
 }
@@ -175,5 +179,15 @@
 	return self;
 }
 
++mock
+{
+	TMockController *controller=[TMockController mockControllerForObject:self];
+	[controller recordOneMessage];
+	id stub = [controller inlineMockClass];
+	[controller setExpectedCount:-1];
+	[controller setPartialMockAllowed:YES];
+	//	NSLog(@"will return inline mock: %p",stub);
+	return stub;
+}
 
 @end

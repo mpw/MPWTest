@@ -81,7 +81,7 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 -inlineMock
 {
 	if ( !mock ) {
-		int size =  class_getInstanceSize( [originalObject class] );
+		size =  class_getInstanceSize( [originalObject class] );
 		copyOfOriginalObject=malloc( size );
 		memcpy( copyOfOriginalObject, originalObject, size );
 		mock=originalObject;
@@ -91,6 +91,23 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 	}
 	return mock;
 }
+
+#if 1
+-inlineMockClass
+{
+	if ( !mock ) {
+		size =  class_getInstanceSize( object_getClass(originalObject) );
+		NSLog(@"size for inlineMockClass: %d",size);
+		copyOfOriginalObject=malloc( size );
+		memcpy( copyOfOriginalObject, originalObject, size );
+		mock=originalObject;
+		memset( mock,0, size );
+		memcpy( mock, NSClassFromString(@"TMock"), size );
+//		[mock initWithController:self];
+	}
+	return mock;
+}
+#endif
 
 -mockForMetaClassOfClass:(Class)aClass
 {
@@ -270,8 +287,8 @@ setSomeResult( char, setCharResult )
 
 -(void)cleanup
 {
-	if ( copyOfOriginalObject ) {
-		memcpy( originalObject, copyOfOriginalObject, class_getInstanceSize([copyOfOriginalObject class]));
+	if ( copyOfOriginalObject  && size) {
+		memcpy( originalObject, copyOfOriginalObject, size );
 	}
 }
 
