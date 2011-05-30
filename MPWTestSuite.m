@@ -7,7 +7,7 @@
 #import "MPWTestResults.h"
 #import "NSObjectTestingSupport.h"
 #import "NSBundleClassEnumeration.h"
-#import <objc/runtime.h>
+#import "MPWClassMirror.h"
 
 @implementation MPWTestSuite
 
@@ -53,14 +53,14 @@
 
 }
 
-+testSuiteWithName:aName classNames:(NSArray*)classNames testTypes:testTypeNames
++testSuiteWithName:aName classMirrors:(NSArray*)classMirrors testTypes:testTypeNames
 {
     id subTests=[NSMutableArray array];
-    NSEnumerator* classEnumerator=[classNames objectEnumerator];
+    NSEnumerator* classEnumerator=[classMirrors objectEnumerator];
     id nextClass;
     while ( nextClass=[classEnumerator nextObject]) {
 		for ( NSString* testType in testTypeNames ) {
-			id testSuite = [self testSuiteWithClass:NSClassFromString(nextClass) testType:testType];
+			id testSuite = [self testSuiteWithClass:[nextClass theClass] testType:testType];
 			if ( testSuite ) {
 				[subTests addObject:testSuite];
 			} else {
@@ -122,9 +122,9 @@ int havePrinted=0;
 				  @"MPWPoint",
 				  nil]];
 #else		
-		NSArray *classNames = [aBundle classNames];
-		NSLog(@"got classNames initializing suite");
-		suite = [MPWTestSuite testSuiteWithName:aName  classNames:classNames testTypes:testTypeNames];
+		NSArray *classMirrors = [aBundle classes];
+		NSLog(@"got classes initializing suite");
+		suite = [MPWTestSuite testSuiteWithName:aName  classMirrors:classMirrors testTypes:testTypeNames];
 		NSLog(@"got suite");
 //				[initial addObjectsFromArray:newClasses];
 #endif

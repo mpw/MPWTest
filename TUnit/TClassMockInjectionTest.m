@@ -22,6 +22,7 @@
     _class = [TMockTestClass class];
 }
 
+#if 0
 
 - (void)testNormalClassMockingAMessageReturnsMockedValueOnMockedCall
 {
@@ -33,7 +34,6 @@
     ASSERTEQUALSINT(666, [_class testClassMethod: 3]);
 }
 
-#if 0
 
 - (void)testNormalClassMockingAMessageReturnsToNormalBehaviourAfterReceivingMockedCall
 {

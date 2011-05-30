@@ -4,6 +4,6 @@
 
 @interface NSBundle(classEnumeration)
 
-- (NSArray*) classNames;
+- (NSArray*) classes;
 
 @end

@@ -12,6 +12,13 @@
 //#include "TUnit/TMockMessage.h"
 //#include "TUnit/TObject.Mock.h"
 
+#pragma .h #import <Foundation/Foundation.h>
+#pragma .h #include "HSFoundation.h"
+#pragma .h #include "AccessorMacros.h"
+int PROFILE_CHANNEL_TEST = 0;
+#pragma .h extern int PROFILE_CHANNEL_TEST;
+#pragma .h #define PROFILE_CHANNEL_NAME_TEST @"test"
+
 
 
 @implementation NSException(exceptionAt)
@@ -20,6 +27,12 @@
 {
 	return [NSException exceptionWithName:@"exception" reason:[NSString stringWithFormat:@"%@ %s %d",msg,file,line] userInfo:nil];
 }
+
++exceptionAt: (const char*)file : (int)line withFormat:(NSString*)msg,...
+{
+	return [self exceptionAt: file : line withMessage:msg];
+}
+
 
 +(void)raiseAt: (const char*)file : (int)line withMessage:(NSString*)msg
 {
@@ -30,6 +43,121 @@
 @end
 
 
+#pragma .h typedef void(TUnitCallBack)();
+#pragma .h extern TUnitCallBack *tUnitBeforeSetUp;
+#pragma .h #define _ASSERT(sel) [self sel file: __FILE__ line: __LINE__]; [self clearHint];
+#pragma .h #define ASSERTEQUALSINT(int1, int2) _ASSERT(_assertInt: int1 equalsInt: int2)
+#pragma .h #define ASSERTEQUALSUINT(int1, int2) _ASSERT(_assertUInt: int1 equalsUInt: int2)
+#pragma .h #define ASSERTISGREATERTHANINT(int1, int2) _ASSERT(_assertInt: int2 isGreaterThan: int1)
+#pragma .h #define ASSERTISLESSTHANINT(int1, int2) _ASSERT(_assertInt: int2 isLessThan: int1)
+#pragma .h #define ASSERTEQUALS(obj1, obj2) _ASSERT(_assert: obj1 equals: obj2)
+#pragma .h #define ASSERTIDENTICAL(obj1, obj2) _ASSERT(_assert: obj1 isIdenticalTo: obj2)
+#pragma .h #define ASSERT(x) _ASSERT(_assert: @#x isTrue: x shouldBeFalse: NO)
+#pragma .h #define ASSERTFALSE(x) _ASSERT(_assert: @#x isTrue: x shouldBeFalse: YES)
+#pragma .h #define ASSERTNIL(x) ASSERT((x) == nil);
+#pragma .h #define ASSERTNOTNIL(x) ASSERT((x) != nil);
+#pragma .h #define ASSERTKINDOF(expectedClass, obj) _ASSERT(_assert: obj isKindOf: expectedClass)
+#pragma .h #define ASSERTLISTCONTENTSEQUAL(expected, got)\
+#pragma .h         _ASSERT(_assertList: got containsEqualElementsAs: expected)
+#pragma .h #define ASSERTLISTCONTAINS(expected, got)\
+#pragma .h         _ASSERT(_assertList: got containsElementsFrom: expected)
+#pragma .h #define ASSERTSUBSTRING(expected, got) _ASSERT(_assert: got hasSubstring: expected)
+#pragma .h #define ASSERTMATCHES(expected, result) _ASSERT(_assert: result matches: expected)
+
+#pragma .h #define ASSERTISFASTERTHAN(fast, slow, howMany) {\
+#pragma .h     long long __fastTime__ = [TTime currentTimeMillis];\
+#pragma .h \
+#pragma .h     for (int __i__ = 0; __i__ < howMany; ++__i__) {\
+#pragma .h         fast;\
+#pragma .h     }\
+#pragma .h     __fastTime__ = [TTime currentTimeMillis] - __fastTime__;\
+#pragma .h \
+#pragma .h     long long __slowTime__ = [TTime currentTimeMillis];\
+#pragma .h \
+#pragma .h     for (int __i__ = 0; __i__ < howMany; ++__i__) {\
+#pragma .h         slow;\
+#pragma .h     }\
+#pragma .h     __slowTime__ = [TTime currentTimeMillis] - __slowTime__;\
+#pragma .h     ASSERTISLESSTHANINT(__slowTime__, __fastTime__);\
+#pragma .h }
+
+#pragma .h #define _FAIL(eClass, eId, expectedE, x, code...) {\
+#pragma .h     eClass e = nil;\
+#pragma .h     id unexpectedException = nil;\
+#pragma .h \
+#pragma .h     @try {\
+#pragma .h         x;\
+#pragma .h     } @catch(eClass caught) {\
+#pragma .h         e = caught; \
+#pragma .h     } @catch(id u) {\
+#pragma .h         unexpectedException = u;\
+#pragma .h     }\
+#pragma .h     if (e == nil && unexpectedException == nil) {\
+#pragma .h         @throw [TTestException exceptionAt: __FILE__ : __LINE__ \
+#pragma .h                 withMessage: @#x @" did not fail"];\
+#pragma .h     } else if (expectedE != nil && ![expectedE isEqualTo: e]) {\
+#pragma .h         @throw [TTestException exceptionAt: __FILE__ : __LINE__ \
+#pragma .h                 withFormat: @#x @" failed with unexpected exception %@ instead of %@",\
+#pragma .h                 e, expectedE];\
+#pragma .h     } else if (unexpectedException != nil) {\
+#pragma .h         @throw [TTestException exceptionAt: __FILE__ : __LINE__ \
+#pragma .h                 withFormat: @#x @" failed with unexpected exception %@ instead of %@",\
+#pragma .h                 unexpectedException, @#eClass];\
+#pragma .h     } else if (eId != 0 && eId != [(id)e errorId]) {\
+#pragma .h         @throw [TTestException exceptionAt: __FILE__ : __LINE__ \
+#pragma .h                 withFormat: @#x@" failed with unexpected exception ID %d instead of %d",\
+#pragma .h                 [(id)e errorId], eId];\
+#pragma .h     }\
+#pragma .h     code;\
+#pragma .h }
+#pragma .h //#define FAIL(x...) _FAIL(id, 0, nil, x)
+#pragma .h #define FIXME_FAIL(x...) _FAIL(id, 0, nil, x)
+#pragma .h 
+#pragma .h #define FAIL_WITH_CLASS(exceptionClass, x...)\
+#pragma .h         _FAIL(exceptionClass *, 0, nil, x)
+#pragma .h 
+#pragma .h #define FAIL_WITH_CLASS_AND_ID(exceptionClass, exceptionId, x...)\
+#pragma .h         _FAIL(exceptionClass *, exceptionId, nil, x)
+#pragma .h 
+#pragma .h #define FAIL_WITH_EQUAL(expectedException, x...)\
+#pragma .h         _FAIL(id, 0, expectedException, x)
+#pragma .h 
+#pragma .h 
+#pragma .h #define FAIL(x) {\
+#pragma .h     BOOL __failed__ = NO;\
+#pragma .h \
+#pragma .h     @try {\
+#pragma .h         x;\
+#pragma .h     } @catch(NSException *e) {\
+#pragma .h         __failed__ = YES;\
+#pragma .h     }\
+#pragma .h     if (!__failed__) {\
+#pragma .h         [NSException raiseAt: __FILE__ : __LINE__ \
+#pragma .h                 withMessage: @"Assertion " @#x @" did not fail"];\
+#pragma .h     }\
+#pragma .h }
+#pragma .h #define ASSERTISFAST(expectedMaxMilliSeconds, method, howMany) {\
+#pragma .h     long long __expected__ = (long long)expectedMaxMilliSeconds;\
+#pragma .h     struct rusage __usage__;\
+#pragma .h     long long __before__;\
+#pragma .h     long long __after__;\
+#pragma .h     getrusage(RUSAGE_SELF, &__usage__);\
+#pragma .h     __before__ = (long long)__usage__.ru_utime.tv_sec * 1000000 +\
+#pragma .h             (long long)__usage__.ru_utime.tv_usec;\
+#pragma .h \
+#pragma .h     for (int __i__ = 0; __i__ < howMany; ++__i__) {\
+#pragma .h         method;\
+#pragma .h     }\
+#pragma .h     getrusage(RUSAGE_SELF, &__usage__);\
+#pragma .h     __after__ = (long long)__usage__.ru_utime.tv_sec * 1000000 +\
+#pragma .h             (long long)__usage__.ru_utime.tv_usec;\
+#pragma .h \
+#pragma .h     ASSERTISLESSTHANINT(__expected__, (__after__ - __before__) / 1000);\
+#pragma .h }
+
+#pragma .h #define TTestException NSException
+
+
 
 TUnitCallBack *tUnitBeforeSetUp = NULL;
 
@@ -37,6 +165,19 @@ TUnitCallBack *tUnitBeforeSetUp = NULL;
 static NSString *__baseDir = nil;
 static NSString *__dataDir = nil;
 static NSString *__package = nil;
+
+#if TARGET_OS_MAC
+@interface OSEnvironment : NSObject { }
+-(NSString*)getEnv:(NSString*)var;
+@end
+@implementation OSEnvironment
+-(NSString*)getEnv:(NSString *)var { return [NSString stringWithUTF8String:getenv([var UTF8String])]; }
+@end
+
+#define STRING(s) ([(s) UTF8String])
+#define STRINGVALUE(o) STRING([o description])
+#define LOGALERT(a,b) 
+#endif
 
 
 @implementation TTestCase:NSObject
@@ -333,10 +474,78 @@ static NSString *__package = nil;
     [TUserIO print: [self className]];
    [TUserIO print: @" "];
 #else
-	NSLog(@"objc.%@",[self className]);
+//	NSLog(@"objc.%@",[self className]);
 #endif
 }
 
+- (BOOL)runTestMethod: (SEL)sel
+{
+    NSString *method = NSStringFromSelector(sel);
+    BOOL isOk = YES;
+
+#if 0
+	NSLog(@"will run: %@",method);
+#endif
+	@try {
+		[self clearHint];
+		[self setUp];
+		@try {
+				printf(".");
+//               [OSUserIO print: @"."];
+               [self performSelector: sel];
+		} @finally {
+			@try {
+				verifyAndCleanupMocks();
+			} @finally {
+				[self tearDown];
+			}
+		}
+
+	} @catch (id e ) {
+		isOk = NO;
+		NSLog(@"Test %@:%@ failed %@",[self class],method,e);	
+	}
+	return isOk;
+}
+
+static int runs=0;
+
+- (int)run
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    int failures = 0;
+
+    NSString *methodFilter = [OSEnvironment getEnv: @"TESTMETHOD"];
+    [self printRunning];
+	unsigned int methodCount;
+	Method *methodList=class_copyMethodList( [self class], &methodCount );
+	if ( methodList ) {
+		for (int i=0;i<methodCount;i++) {
+            NSAutoreleasePool *testPool = [[NSAutoreleasePool alloc] init];
+			Method m=methodList[i];
+			SEL sel=method_getName(m);
+			NSString *method=NSStringFromSelector(sel);
+            if ([method hasPrefix: @"test"] || [method hasPrefix: @"itShould"]) {
+                if (nil != methodFilter && ![method matches: methodFilter]) {
+                    // skip tests specified in TESTMETHOD-filter
+                } else if ([method matches: @"Broken$"]) {
+                    // skip broken tests
+                } else {
+					runs++;
+                    if (![self runTestMethod: sel]) {
+                        ++failures;
+                    }
+                }
+			}
+			[testPool release];
+		}
+		free(methodList);
+	}
+
+
+	[pool release];
+	return failures;	
+}
 
 #if 0
 
@@ -400,18 +609,15 @@ static NSString *__package = nil;
 }
 
 
+#endif
+
+
 + (NSString *)testDataDir
 {
-    NSString *dir = [self objectForClassKey: @"TEST_DATA_DIR"];
-    if (dir == nil) {
-        dir = [TFile stringByAppendingPath: [self className] to: __dataDir];
-        [self setObject: dir forClassKey: @"TEST_DATA_DIR"];
-        [TFile makePath: dir];
-    }
-    return dir;
+    return [[OSEnvironment getEnv: @"TEST_DATA_DIR"]
+            stringByAppendingPathComponent: NSStringFromClass([self class])];
 }
 
-#endif
 
 - (NSString *)testDataDir
 {
@@ -480,43 +686,115 @@ static NSString *__package = nil;
 @end
 
 
+void uncaughtNSExceptionHandler(NSException* exception)
+{
+    LOGALERT(@"Uncaught Objective-C exception:\n%s",
+            STRING([exception errorString]));
+    [NSException printBacktrace];
+    abort();
+}
+
 #if 0
+extern Class objc_next_class( void *iter );
+int debug=0;
 int objcmain(int argc, char *argv[])
 {
-    int result = 0;
     void *classIterator = NULL;
     Class class;
-    Class testCaseClass = [TTestCase class];
-    if (argc < 4) {
-        @throw [NSException exceptionWithMessage: @"Need test base dir, data dir and package"];
+    int result = 0;
+
+    if (argc > 1) {
+        debug = atoi(argv[1]);
     }
-    __baseDir = [[NSString stringWithCString: argv[1]] retain];
-    __dataDir = [[NSString stringWithCString: argv[2]] retain];
-    __package = [[NSString stringWithCString: argv[3]] retain];
-    NSString *classFilter = (argc > 4) ? [NSString stringWithCString: argv[4]] : nil;
-    NSString *methodFilter = (argc > 5) ? [NSString stringWithCString: argv[5]] : nil;
+
+    NSString *classFilter = [OSEnvironment getEnv: @"TESTCLASS"];
     if ([classFilter hasSuffix: @"Test"]) {
         classFilter = [classFilter substringToIndex: [classFilter length] - 4];
     }
+    while ((class = objc_next_class(&classIterator)) != nil) {
+		const char *className = class_getName(class);
+		if ( !strcmp( "TMock", className ) ||
+			 !strcmp( "NSScriptCommandDescriptionMoreIVars", className ) ||
+			 !strcmp( "OSFilePath", className )) {
+			continue;
+		}
+        if ([class respondsToSelector: @selector(isSubclassOfClass:)] &&
+				[class isSubclassOfClass:[TTestCase class]] && 
+                class != [TTestCase class]) {
+            TTestCase *test = [[class alloc] init];
+            NSString *className = NSStringFromClass(class);
+#if 0
+			NSLog(@"will test class: %@",className);
+#endif
+			@try {
 
-    NSMutableDictionary *testClasses = [NSMutableDictionary dictionary];
-    while ((class = objc_next_class(&classIterator)) != Nil) {
-        if (class_get_class_method(class->class_pointer, @selector(isKindOfClass:)) &&
-                [class isKindOfClass: testCaseClass] && ![[class className] matches: @"TestCase$"] &&
-                (classFilter == nil || [[class className] matches: classFilter])) {
-            [testClasses setObject: class forKey: [class className]];
-        }
-    }
-    for (id i = [[[testClasses allKeys] sortedArrayUsingSelector:
-            @selector(caseInsensitiveCompare:)] iterator]; [i hasCurrent]; [i next]) {
-        TTestCase *test = nil;
-        @try {
-            test = [[[testClasses objectForKey: [i current]] alloc] init];
-            result += [test run: methodFilter];
-        } @finally {
+            if (classFilter == nil || [className matches: classFilter]) {
+                if ([className matches: @"TestCase$"]) {
+                    // skip TestCases
+                } else {
+                    if (YES) {
+                        result += [test run];
+                    } else {
+#if !TARGET_OS_MAC
+                        [OSUserIO eprintLn: @"Errors during initialization:"];
+                        [OSUserIO eprintLn: [ERRORHANDLER
+                                errorStackMessagesStringWithIndent: @"    "]];
+                        [ERRORHANDLER reset];
+#endif
+                    }
+                }
+            }
+			} @catch ( id e ) {
+				NSLog(@"=== uncaught exception in %@",className);
+			}
             [test release];
         }
     }
     return result;
 }
+
+
+int main(int argc, char *argv[])
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    char **environment = [OSEnvironment getEnvironment];
+    int result = 1;
+
+#if !TARGET_OS_MAC
+    __objc_msg_forward = objc_msg_forward;
+    [NSProcessInfo initializeWithArguments: argv count: argc
+            environment: environment];
+
+    if ([[OSEnvironment getEnv: @"EXTENDED_DEBUG"] containsData]) {
+        OSDebugPrinter *printer = [OSDebugPrinter globalDebugPrinter];
+        PROFILE_CHANNEL_TEST = [printer registerProfileChannel: PROFILE_CHANNEL_NAME_TEST];
+        [printer setProfileChannelsActive: [NSArray arrayWithObject: PROFILE_CHANNEL_NAME_TEST]];
+    }
+#endif
+
+    NSSetUncaughtExceptionHandler(uncaughtNSExceptionHandler);
+#if !TARGET_OS_MAC
+    tUnitInitializeTest();
+    ERRORHANDLER = [HSErrorHandler errorHandler];
+#endif
+    @try {
+        result = objcmain(argc, argv);
+		printf("\n\n  === result: %d failures of %d total tests, %g%% correct\n",result,runs,(100.0*(runs-result))/runs);
+    } @catch (id e) {
+#if !TARGET_OS_MAC
+        [OSUserIO eprintLn: [NSString stringWithRestrictedFormat: @"Uncaught exception: %s",
+                STRINGVALUE(e)]];
+#else
+		NSLog(@"uncaught exception: %@",STRINGVALUE(e));
+#endif
+    } 
+#if !TARGET_OS_MAC
+    if (!ERRORSTATE_OK) {
+        [OSUserIO eprintLn: [ERRORHANDLER errorStackMessagesStringWithIndent: nil]];
+    }
+#endif
+    [pool release];
+    return result;
+}
+
 #endif

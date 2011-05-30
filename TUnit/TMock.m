@@ -6,10 +6,14 @@
 //  Copyright 2011 metaobject ltd. All rights reserved.
 //
 
+#pragma .h #import <Foundation/Foundation.h>
 #import "TMock.h"
 #import "TMockController.h"
 
-@implementation TMock
+@implementation TMock : NSProxy
+{
+	id controller;
+}
 
 
 -controller { return controller; }
@@ -88,6 +92,7 @@
 {
 	[[self controller] recordOneMessage];
 	[[self controller] setExpectedCount:-1];
+	[[self controller] setPartialMockAllowed:YES];
 	return self;
 }
 
@@ -100,7 +105,7 @@
 -mock
 {
 	[[self controller] recordOneMessage];
-	[[self controller] setPartialMockAllowed:YES];
+	[[self controller] setPartialMockllowed:YES];
 	return self;
 }
 
@@ -139,6 +144,7 @@
 	[controller recordOneMessage];
 	id stub = [controller inlineMock];
 	[controller setExpectedCount:-1];
+	[controller setPartialMockAllowed:YES];
 //	NSLog(@"will return inline mock: %p",stub);
 	return stub;
 }
@@ -189,5 +195,9 @@
 	//	NSLog(@"will return inline mock: %p",stub);
 	return stub;
 }
+
++shouldReceive { return self; }
++stub { return self; }
+
 
 @end

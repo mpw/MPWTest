@@ -7,12 +7,27 @@
 //
 
 #import "TMockController.h"
-#import <objc/objc-runtime.h>
 #import "TMock.h"
 #import "TMessageExpectation.h"
+#import "AccessorMacros.h"
+#import "MPWClassMirror.h"
 
+#pragma .h #import <Foundation/Foundation.h>
+#pragma .h @class TMessageExpectation;
 
-@implementation TMockController
+@implementation TMockController : NSObject
+{
+        id originalObject;
+        NSMutableArray* expectations;
+        id mock;
+//      NSMutableDictionary* results;
+        int recordNumberOfMessages;
+        id  copyOfOriginalObject;
+        int nextExpectedCount;
+        BOOL partialMockAllowed;
+        int  size;
+}
+
 
 
 static NSMapTable* mockControllers=nil;
@@ -51,10 +66,17 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 	if ( self ) {
 		originalObject=[anObject retain];
 		expectations=[[NSMutableArray alloc] init];
-		recordNumberOfMessages=100000;
+		[self record];
 	}
 	return self;
 }
+
+- (void)record
+{
+    recordNumberOfMessages=100000;
+
+}
+
 
 
 +mockController
@@ -92,7 +114,7 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 	return mock;
 }
 
-#if 1
+#if 0
 -inlineMockClass
 {
 	if ( !mock ) {
@@ -106,6 +128,11 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 //		[mock initWithController:self];
 	}
 	return mock;
+}
+#else
+-inlineMockClass
+{
+	return originalObject;
 }
 #endif
 
@@ -226,7 +253,6 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 		} else {
 			[NSException raise:@"mock" format:@"mock doesn't match: %@ %@",NSStringFromSelector([invocation selector]),expectations];
 		}
-
 	}
 }
 
@@ -261,7 +287,7 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 }
 
 #define setSomeResult( type, methodName ) \
--(void)methodName:(type)aResult {\
+/**/   -(void)methodName:(type)aResult {\
 	[(NSInvocation*)[self currentExpectation] setReturnValue:&aResult];\
 }\
 
@@ -274,6 +300,15 @@ setSomeResult( short, setShortResult )
 setSomeResult( char, setCharResult )
 
 
+-(void)expect:(id)dummy withIntResult:(int)result
+{
+	[self setIntResult:result];
+}
+
+-(void)expect:(id)dummy withResult:(id)result
+{
+	[self setResult:result];
+}
 
 -(void)verify
 {
@@ -285,6 +320,11 @@ setSomeResult( char, setCharResult )
 	}
 }
 
+-(void)verifyMocks
+{
+	[self verify];
+}
+
 -(void)cleanup
 {
 	if ( copyOfOriginalObject  && size) {
@@ -294,13 +334,15 @@ setSomeResult( char, setCharResult )
 
 void verifyAndCleanupMocks() 
 {
-	for ( TMockController* controller in [[TMockController mockControllers] objectEnumerator]  ) {
-//		NSLog(@"verify controller: %@",controller);
-		[controller cleanup];
-		[controller verify];
-
+	@try {
+		for ( TMockController* controller in [[TMockController mockControllers] objectEnumerator]  ) {
+	//		NSLog(@"verify controller: %@",controller);
+			[controller cleanup];
+			[controller verify];
+		}
+	} @finally {
+		[TMockController removeMocks];
 	}
-	[TMockController removeMocks];
 }
 
 

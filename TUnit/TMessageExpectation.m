@@ -6,15 +6,25 @@
 //  Copyright 2011 metaobject ltd. All rights reserved.
 //
 
+#pragma .h #import <Foundation/Foundation.h>
 #import "TMessageExpectation.h"
 #import "AccessorMacros.h"
 
 
-@implementation TMessageExpectation
+@implementation TMessageExpectation : NSObject
+{
+        NSInvocation *invocationToMatch;
+        int                      expectedCount;
+        int                      actualMatch;
+        id                       exceptionToThrow;
+        NSMutableIndexSet *skippedParameters;
+        BOOL            isOrdered;
+}
+
 
 idAccessor( exceptionToThrow, setExceptionToThrow )
-objectAccessor( NSInvocation* , invocationToMatch, setInvocationToMatch )
-objectAccessor( NSMutableIndexSet* , skippedParameters, setSkippedParameters )
+objectAccessor( NSInvocation , invocationToMatch, setInvocationToMatch )
+objectAccessor( NSMutableIndexSet , skippedParameters, setSkippedParameters )
 
 
 -initWithInvocation:(NSInvocation*)invocation
@@ -80,7 +90,9 @@ objectAccessor( NSMutableIndexSet* , skippedParameters, setSkippedParameters )
 						break;
 					default:
 						if ( memcmp(argbuf1, argbuf2, 128 ) ) {
+#if 0
 							NSLog(@"arg at index %d with type %s didn't match!",i,argType);
+#endif
 							//						for (int j=0;j<10;j++ ) {
 							//							NSLog(@"%d: %x %x",j,argbuf1[j],argbuf2[j]);
 							//						}

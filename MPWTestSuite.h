@@ -9,7 +9,7 @@
 	id testTypes;
 }
 
-+testSuiteWithName:aName classNames:(NSArray*)classNames;
++testSuiteWithName:aName classMirrors:(NSArray*)classMirrors;
 
 -(void)runTest:testResults;
 -(int)numberOfTests;
