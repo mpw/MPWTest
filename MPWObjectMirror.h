@@ -17,6 +17,6 @@
 -initWithObject:anObject;
 +mirrorWithObject:anObject;
 -(MPWClassMirror*)classMirror;
--(void)setObjectClass:(Class)aClass;
+-(Class)setObjectClass:(Class)aClass;
 
 @end

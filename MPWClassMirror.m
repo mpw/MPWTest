@@ -7,7 +7,7 @@
 //
 
 #import "MPWClassMirror.h"
-
+#import "MPWMethodMirror.h"
 
 @implementation MPWClassMirror
 
@@ -199,7 +199,6 @@
 }
 
 
-
 @end
 
 #elif 0
@@ -227,7 +226,7 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 	[inv setReturnValue:&hi];
 }
 
-+(void)testCreateSubclass
++(void)testCreatePerObjectSubclassWithMethodAndForwarding
 {
 	NSObject *hi=[[[NSObject alloc] init] autorelease];
 	id result=nil;
@@ -238,7 +237,7 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 		;
 	}
 	EXPECTNIL( result, @"should not have assigned a value");
-	MPWClassMirror *mirror=[MPWClassMirror mirrorWithClass:[hi class]];
+	MPWClassMirror *mirror=[objectMirror classMirror];
 	MPWClassMirror *sub= [mirror createSubclassWithName:@"NSObjectSubclass"];
 	[sub addMethod:[mirror methodForSelector:@selector(__testMessageHi)] forSelector:@selector(__testMessage)];
 	[sub registerClass];
@@ -251,11 +250,36 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 	IDEXPECT(result,@"hi there",@"via invocation");
 }
 
++(void)testCreatePerClassSubclassWithMethodAndForwarding
+{
+	id result=nil;
+	MPWObjectMirror *classObjectMirror=[MPWObjectMirror mirrorWithObject:[NSObject class]];
+
+	MPWClassMirror *mirror=[MPWClassMirror mirrorWithClass:[NSObject class]];
+	MPWClassMirror *sub= [mirror createSubclassWithName:@"NSObjectSubclass1"];
+	MPWClassMirror *metaclass=[MPWClassMirror mirrorWithClass:object_getClass([sub theClass])];
+	[metaclass addMethod:[mirror methodForSelector:@selector(__testMessageHi)] forSelector:@selector(__testMessage)];
+	[sub registerClass];
+	Class previous = [classObjectMirror setObjectClass:[metaclass theClass]];
+	result = [[NSObject class] __testMessage];
+	IDEXPECT( result, @"Hello added method", @"after addition");
+	EXPECTTRUE( [[NSObject class] respondsToSelector:@selector(__testMessage)],@"should now know my test method")
+	[metaclass replaceMethod:_objc_msgForward  forSelector:@selector(__testMessage)];
+	[metaclass replaceMethod:[mirror methodForSelector:@selector(forwardInvocation:)] forSelector:@selector(forwardInvocation:)];
+	result = [[NSObject class] __testMessage];
+	IDEXPECT(result,@"hi there",@"via invocation");
+	[classObjectMirror setObjectClass:previous];
+	EXPECTFALSE( [[NSObject class] respondsToSelector:@selector(__testMessage)],@"should no longer know my test method")
+	
+}
+
+
 
 +testSelectors
 {
 	return [NSArray arrayWithObjects:
-				@"testCreateSubclass",
+			@"testCreatePerObjectSubclassWithMethodAndForwarding",
+			@"testCreatePerClassSubclassWithMethodAndForwarding",
 			nil];
 }
 

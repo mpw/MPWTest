@@ -9,6 +9,7 @@
 #import "MPWObjectMirror.h"
 #import "AccessorMacros.h"
 #import "MPWClassMirror.h"
+#import <objc/runtime.h>
 
 @implementation MPWObjectMirror
 
@@ -27,12 +28,15 @@ idAccessor( theObject, setTheObject )
 }
 -(MPWClassMirror*)classMirror
 {
-	return [MPWClassMirror mirrorWithClass:[theObject class]];
+	return [MPWClassMirror mirrorWithClass:object_getClass(theObject)];
 }
 
--(void)setObjectClass:(Class)aClass
+-(Class)setObjectClass:(Class)aClass
 {
-	*(Class*)theObject=aClass;
+	Class *ptr=(Class*)theObject;
+	Class previous=*ptr;
+	*ptr=aClass;
+	return previous;
 }
 
 @end
