@@ -1952,16 +1952,16 @@
 	};
 	1FFC4FF013520ADE00377C45 /* TTestCase.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {922, 10556}}";
-			sepNavSelRange = "{23633, 16}";
-			sepNavVisRange = "{23249, 1178}";
+			sepNavIntBoundsRect = "{{0, 0}, {947, 11115}}";
+			sepNavSelRange = "{16145, 0}";
+			sepNavVisRange = "{3, 956}";
 		};
 	};
 	1FFC4FF213520AE900377C45 /* TTestCase.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {947, 2197}}";
+			sepNavIntBoundsRect = "{{0, 0}, {947, 2210}}";
 			sepNavSelRange = "{575, 0}";
-			sepNavVisRange = "{0, 1106}";
+			sepNavVisRange = "{0, 945}";
 		};
 	};
 	1FFC50391352197900377C45 /* PlistBookmark */ = {

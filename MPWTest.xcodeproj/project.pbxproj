@@ -69,6 +69,13 @@
 		1FADC21013939A8000E6A52A /* MPWObjectMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FADC20A13939A8000E6A52A /* MPWObjectMirror.h */; };
 		1FADC21113939A8000E6A52A /* MPWObjectMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC20B13939A8000E6A52A /* MPWObjectMirror.m */; };
 		1FADC21213939A8000E6A52A /* MPWObjectMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC20B13939A8000E6A52A /* MPWObjectMirror.m */; };
+		1FADC2391393A62900E6A52A /* MPWMethodMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FADC2371393A62900E6A52A /* MPWMethodMirror.h */; };
+		1FADC23A1393A62900E6A52A /* MPWMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC2381393A62900E6A52A /* MPWMethodMirror.m */; };
+		1FADC23B1393A62900E6A52A /* MPWMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC2381393A62900E6A52A /* MPWMethodMirror.m */; };
+		1FADC23C1393A62900E6A52A /* MPWMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC2381393A62900E6A52A /* MPWMethodMirror.m */; };
+		1FADC23D1393A62900E6A52A /* MPWMethodMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FADC2371393A62900E6A52A /* MPWMethodMirror.h */; };
+		1FADC23E1393A62900E6A52A /* MPWMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC2381393A62900E6A52A /* MPWMethodMirror.m */; };
+		1FADC23F1393A62900E6A52A /* MPWMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC2381393A62900E6A52A /* MPWMethodMirror.m */; };
 		1FB53F8E1376F39D009973F0 /* AccessorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FB53F8D1376F39D009973F0 /* AccessorMacros.h */; };
 		1FC7E3291392BDFD0002E44E /* MPWClassMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FC7E3271392BDFD0002E44E /* MPWClassMirror.h */; };
 		1FC7E32A1392BDFD0002E44E /* MPWClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7E3281392BDFD0002E44E /* MPWClassMirror.m */; };
@@ -191,6 +198,8 @@
 		1F9C964F110D6BA500492929 /* testlogger.exe */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testlogger.exe; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FADC20A13939A8000E6A52A /* MPWObjectMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWObjectMirror.h; sourceTree = "<group>"; };
 		1FADC20B13939A8000E6A52A /* MPWObjectMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPWObjectMirror.m; sourceTree = "<group>"; };
+		1FADC2371393A62900E6A52A /* MPWMethodMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWMethodMirror.h; sourceTree = "<group>"; };
+		1FADC2381393A62900E6A52A /* MPWMethodMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPWMethodMirror.m; sourceTree = "<group>"; };
 		1FB53F8D1376F39D009973F0 /* AccessorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessorMacros.h; sourceTree = "<group>"; };
 		1FC7E3271392BDFD0002E44E /* MPWClassMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWClassMirror.h; sourceTree = "<group>"; };
 		1FC7E3281392BDFD0002E44E /* MPWClassMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPWClassMirror.m; sourceTree = "<group>"; };
@@ -300,6 +309,8 @@
 				1FC7E3281392BDFD0002E44E /* MPWClassMirror.m */,
 				1FADC20A13939A8000E6A52A /* MPWObjectMirror.h */,
 				1FADC20B13939A8000E6A52A /* MPWObjectMirror.m */,
+				1FADC2371393A62900E6A52A /* MPWMethodMirror.h */,
+				1FADC2381393A62900E6A52A /* MPWMethodMirror.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -425,6 +436,7 @@
 				1FB53F8E1376F39D009973F0 /* AccessorMacros.h in Headers */,
 				1FC7E3291392BDFD0002E44E /* MPWClassMirror.h in Headers */,
 				1FADC20C13939A8000E6A52A /* MPWObjectMirror.h in Headers */,
+				1FADC2391393A62900E6A52A /* MPWMethodMirror.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +453,7 @@
 				1F33C5A9117E61D100245E3E /* MPWTestSuite.h in Headers */,
 				1FC7E32D1392BDFD0002E44E /* MPWClassMirror.h in Headers */,
 				1FADC21013939A8000E6A52A /* MPWObjectMirror.h in Headers */,
+				1FADC23D1393A62900E6A52A /* MPWMethodMirror.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,6 +630,7 @@
 				1F61A04210F901070043BB22 /* MPWTestSuite.m in Sources */,
 				1FC7E32C1392BDFD0002E44E /* MPWClassMirror.m in Sources */,
 				1FADC20F13939A8000E6A52A /* MPWObjectMirror.m in Sources */,
+				1FADC23C1393A62900E6A52A /* MPWMethodMirror.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +648,7 @@
 				1F4B926B0D4D37B100EA8493 /* testlogger_main.m in Sources */,
 				1FC7E32B1392BDFD0002E44E /* MPWClassMirror.m in Sources */,
 				1FADC20E13939A8000E6A52A /* MPWObjectMirror.m in Sources */,
+				1FADC23B1393A62900E6A52A /* MPWMethodMirror.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,6 +675,7 @@
 				1F1EC7B3137960D500CDA323 /* TClassMockInjectionTest.m in Sources */,
 				1FC7E32A1392BDFD0002E44E /* MPWClassMirror.m in Sources */,
 				1FADC20D13939A8000E6A52A /* MPWObjectMirror.m in Sources */,
+				1FADC23A1393A62900E6A52A /* MPWMethodMirror.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,6 +693,7 @@
 				1F9C9647110D6BA500492929 /* MPWTestSuite.m in Sources */,
 				1FC7E32F1392BDFD0002E44E /* MPWClassMirror.m in Sources */,
 				1FADC21213939A8000E6A52A /* MPWObjectMirror.m in Sources */,
+				1FADC23F1393A62900E6A52A /* MPWMethodMirror.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,6 +711,7 @@
 				1F61A03E10F901070043BB22 /* MPWTestSuite.m in Sources */,
 				1FC7E32E1392BDFD0002E44E /* MPWClassMirror.m in Sources */,
 				1FADC21113939A8000E6A52A /* MPWObjectMirror.m in Sources */,
+				1FADC23E1393A62900E6A52A /* MPWMethodMirror.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
