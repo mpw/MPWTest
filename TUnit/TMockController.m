@@ -243,6 +243,16 @@ static void forward( id self, SEL selector, NSInvocation *invocation ) {
 
 extern id _objc_msgForward(id receiver, SEL sel, ...);
 
+-(SEL)translatedSelector:(SEL)originalSelector
+{
+	NSString* translatedSelectorName = [ @"_mockOriginal_" stringByAppendingString:NSStringFromSelector(originalSelector)];
+//	NSLog(@"translated selector name: %@",translatedSelectorName);
+	SEL translated = NSSelectorFromString( translatedSelectorName );
+//	NSLog(@"selector ptr %p",translated);
+	return translated;
+	
+}
+
 -(void)addMockedMessage:(SEL)selector
 {
 //	NSLog(@"addMockedMessage");
@@ -253,6 +263,8 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 		MPWMethodMirror *method=[[self mockingSubclass] methodMirrorForSelector:selector];
 		[[self mockedMessagesForClass] setObject:method forKey:messageName];
 		[[self mockingSubclass] replaceMethod:_objc_msgForward  forSelector:selector typeString:[method typestring]];
+		[[self mockingSubclass] addMethod:[method imp]  forSelector:[self translatedSelector: selector] typeString:[method typestring]];
+		[[self mockingSubclass] replaceMethod:[method imp]  forSelector:[self translatedSelector: selector] typeString:[method typestring]];
 
 	}
 //	NSLog(@"did addMockedMessage");
@@ -314,7 +326,9 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 //	[invocation setReturnValue:&empty];
 	if (! [self matchesInvocation:invocation]) {
 		if ( [self partialMockAllowed] ) {
-			[invocation invokeWithTarget:copyOfOriginalObject];
+			NSLog(@"sending %@ to original object %p",NSStringFromSelector([invocation selector]), copyOfOriginalObject);
+			[invocation setSelector:[self translatedSelector:[invocation selector]]];
+			[invocation invokeWithTarget:originalObject];
 		} else {
 			[NSException raise:@"mock" format:@"mock doesn't match: %@ %@",NSStringFromSelector([invocation selector]),expectations];
 		}

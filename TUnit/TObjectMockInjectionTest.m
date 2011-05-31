@@ -150,10 +150,13 @@
 {
 	[[_obj mock] testMethod: 3];
     [[_obj andReturnInt: 666] receiveTimes: 3];
+	NSLog(@"==== testMockCountCanBeSet ==== ");
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
     ASSERTEQUALSINT(666, [_obj testMethod: 3]);
-    ASSERTEQUALSINT(6, [_obj testMethod: 3]);
+ 	NSLog(@"==== after 3 testMockCountCanBeSet ==== ");
+   ASSERTEQUALSINT(6, [_obj testMethod: 3]);
+	NSLog(@"==== done testMockCountCanBeSet ==== ");
 }
 
 
