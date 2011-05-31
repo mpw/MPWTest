@@ -126,7 +126,7 @@ objectAccessor( MPWObjectMirror, objectMirror, setObjectMirror  )
 -inlineMock
 {
 	if ( !mock ) {
-#if 0		
+#if 1
 		[self setOriginalClass:[MPWClassMirror mirrorWithClass:[originalObject class]]];
 		[self setObjectMirror:[MPWObjectMirror mirrorWithObject:originalObject]];
 		
