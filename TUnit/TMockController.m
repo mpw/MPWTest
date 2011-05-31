@@ -11,6 +11,7 @@
 #import "TMessageExpectation.h"
 #import "AccessorMacros.h"
 #import "MPWClassMirror.h"
+#import "MPWMethodMirror.h"
 
 #pragma .h #import <Foundation/Foundation.h>
 #pragma .h @class TMessageExpectation;
@@ -27,6 +28,7 @@
 	int  size;
 	MPWClassMirror *originalClass,*mockingSubclass;
 	MPWObjectMirror *objectMirror;
+	NSMutableDictionary *mockedMessagesForClass;
 }
 
 
@@ -39,6 +41,7 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 objectAccessor( MPWClassMirror, originalClass, setOriginalClass )
 objectAccessor( MPWClassMirror, mockingSubclass, setMockingSubclass )
 objectAccessor( MPWObjectMirror, objectMirror, setObjectMirror  )
+objectAccessor( NSMutableDictionary, mockedMessagesForClass, setMockedMessagesForClass  )
 
 +(NSMapTable*)mockControllers
 {
@@ -83,6 +86,7 @@ objectAccessor( MPWObjectMirror, objectMirror, setObjectMirror  )
 	if ( self ) {
 		originalObject=[anObject retain];
 		expectations=[[NSMutableArray alloc] init];
+		[self setMockedMessagesForClass:[NSMutableDictionary dictionary]];
 		[self record];
 	}
 	return self;
@@ -132,6 +136,7 @@ objectAccessor( MPWObjectMirror, objectMirror, setObjectMirror  )
 		
 		[self setMockingSubclass: [[self originalClass] createAnonymousSubclass]];
 		[[self objectMirror] setObjectClass:[[self mockingSubclass] theClass]];
+		mock=NSAllocateObject(NSClassFromString(@"TMockRecorder"), 0, NSDefaultMallocZone());
 #else
 		
 		size =  class_getInstanceSize( [originalObject class] );
@@ -140,7 +145,6 @@ objectAccessor( MPWObjectMirror, objectMirror, setObjectMirror  )
 		mock=originalObject;
 		memset( mock,0, size );
 #endif		
-		*(Class*)mock=NSClassFromString(@"TMockRecorder");
 		[mock initWithController:self];
 		[self mapMock];
 	}
@@ -222,6 +226,10 @@ objectAccessor( MPWObjectMirror, objectMirror, setObjectMirror  )
 	recordNumberOfMessages=0;
 }
 
+static id forward( id self, SEL selector, NSInvocation *invocation ) {
+	[[TMockController fetchControllerForObject:self] handleMockedInvocation:invocation];
+}
+
 -(NSMethodSignature*)methodSignatureForMockedSelector:(SEL)sel
 {
 //	NSLog(@"methodSignatureForMockedSelector: %@",NSStringFromSelector(sel));
@@ -229,11 +237,27 @@ objectAccessor( MPWObjectMirror, objectMirror, setObjectMirror  )
 	return [copyOfOriginalObject ? copyOfOriginalObject : originalObject methodSignatureForSelector:sel];
 }
 
+
+extern id _objc_msgForward(id receiver, SEL sel, ...);
+
+-(void)addMockedMessage:(SEL)selector
+{
+	NSString *messageName = NSStringFromSelector(selector);
+	id alreadyMocked = [[self mockedMessagesForClass] objectForKey:messageName];
+	if ( !alreadyMocked ) {
+		MPWMethodMirror *method=[[self mockingSubclass] methodMirrorForSelector:selector];
+		[[self mockedMessagesForClass] setObject:method forKey:messageName];
+		[[self mockingSubclass] replaceMethod:_objc_msgForward  forSelector:selector typeString:[method typestring]];
+
+	}
+}
+
 -(void)recordInvocation:(NSInvocation *)invocation
 {
 //	NSLog(@"recordInvocation %@",invocation);
 	[expectations addObject:[TMessageExpectation expectationWithInvocation: invocation]];
 	[self setCurrentExpectedCount:nextExpectedCount];
+	[self addMockedMessage:[invocation selector]];
 }
 
 -(BOOL)matchesInvocation:(NSInvocation*)invocation

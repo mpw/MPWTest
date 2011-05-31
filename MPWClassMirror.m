@@ -192,16 +192,23 @@
 	return allClasses;
 }
 
--(void)addMethod:(IMP)aMethod forSelector:(SEL)aSelector
+-(void)addMethod:(IMP)aMethod forSelector:(SEL)aSelector typeString:(const char*)typestring 
 {
-	class_addMethod([self theClass], aSelector, aMethod, "@@:");
+	class_addMethod([self theClass], aSelector, aMethod, typestring );
 }
 
--(void)replaceMethod:(IMP)aMethod forSelector:(SEL)aSelector
+-(void)replaceMethod:(IMP)aMethod forSelector:(SEL)aSelector typeString:(const char*)typestring
 {
-	class_replaceMethod([self theClass], aSelector, aMethod, "@@:");
+	class_replaceMethod([self theClass], aSelector, aMethod,typestring);
 }
 
+-(MPWMethodMirror*)methodMirrorForSelector:(SEL)aSelector
+{
+	Method m=class_getInstanceMethod([self theClass], aSelector);
+	MPWMethodMirror *method=[[[MPWMethodMirror alloc] initWithSelector:aSelector typestring:method_getTypeEncoding(m)] autorelease];
+	[method setImp:method_getImplementation(m)];
+	return method;
+}
 
 @end
 
@@ -243,12 +250,12 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 	EXPECTNIL( result, @"should not have assigned a value");
 	MPWClassMirror *mirror=[objectMirror classMirror];
 	MPWClassMirror *sub= [mirror createAnonymousSubclass];
-	[sub addMethod:[mirror methodForSelector:@selector(__testMessageHi)] forSelector:@selector(__testMessage)];
+	[sub addMethod:[mirror methodForSelector:@selector(__testMessageHi)] forSelector:@selector(__testMessage) typeString:"@@:"];
 	[objectMirror setObjectClass:[sub theClass]];
 	result = [hi __testMessage];
 	IDEXPECT( result, @"Hello added method", @"after addition");
-	[sub replaceMethod:_objc_msgForward  forSelector:@selector(__testMessage)];
-	[sub replaceMethod:[mirror methodForSelector:@selector(forwardInvocation:)] forSelector:@selector(forwardInvocation:)];
+	[sub replaceMethod:_objc_msgForward  forSelector:@selector(__testMessage)  typeString:"@@:"];
+	[sub replaceMethod:[mirror methodForSelector:@selector(forwardInvocation:)] forSelector:@selector(forwardInvocation:)  typeString:"@@:"];
 	result = [hi __testMessage];
 	IDEXPECT(result,@"hi there",@"via invocation");
 }
@@ -261,13 +268,13 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 	MPWClassMirror *mirror=[MPWClassMirror mirrorWithClass:[NSObject class]];
 	MPWClassMirror *sub= [mirror createAnonymousSubclass];
 	MPWClassMirror *metaclass=[MPWClassMirror mirrorWithClass:object_getClass([sub theClass])];
-	[metaclass addMethod:[mirror methodForSelector:@selector(__testMessageHi)] forSelector:@selector(__testMessage)];
+	[metaclass addMethod:[mirror methodForSelector:@selector(__testMessageHi)] forSelector:@selector(__testMessage)  typeString:"@@:"];
 	Class previous = [classObjectMirror setObjectClass:[metaclass theClass]];
 	result = [[NSObject class] __testMessage];
 	IDEXPECT( result, @"Hello added method", @"after addition");
 	EXPECTTRUE( [[NSObject class] respondsToSelector:@selector(__testMessage)],@"should now know my test method")
-	[metaclass replaceMethod:_objc_msgForward  forSelector:@selector(__testMessage)];
-	[metaclass replaceMethod:[mirror methodForSelector:@selector(forwardInvocation:)] forSelector:@selector(forwardInvocation:)];
+	[metaclass replaceMethod:_objc_msgForward  forSelector:@selector(__testMessage)  typeString:"@@:"];
+	[metaclass replaceMethod:[mirror methodForSelector:@selector(forwardInvocation:)] forSelector:@selector(forwardInvocation:)  typeString:"@@:"];
 	result = [[NSObject class] __testMessage];
 	IDEXPECT(result,@"hi there",@"via invocation");
 	[classObjectMirror setObjectClass:previous];

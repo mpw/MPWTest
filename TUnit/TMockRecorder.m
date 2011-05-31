@@ -117,7 +117,6 @@
 
 -skipParameterCheck:(int)parameterToIgnore
 {
-	NSLog(@"skipParameterCheck: %d",parameterToIgnore);
 	[[self controller] skipParameterCheck:parameterToIgnore];
 	return self;
 }
@@ -126,6 +125,44 @@
 
 
 @implementation NSObject(mock)
+
+
+-andThrow:objectToThrow
+{
+	[[TMockController mockControllerForObject:self] setExceptionResult:objectToThrow];
+	return self;
+}
+
+
+-skipParameterChecks
+{
+	[[TMockController mockControllerForObject:self] skipParameterChecks];
+	return self;
+}
+
+
+-receiveTimes:(int)expected
+{
+	//	NSLog(@"receiveTimes: %d forwarding to controller",expected);
+	[[TMockController mockControllerForObject:self]  setCurrentExpectedCount:expected];
+	return self;
+}
+
+
+-(void)returnBool:(BOOL)aValue
+{
+	//	NSLog(@"should return bool: %d",aValue);
+	[[TMockController mockControllerForObject:self] setCharResult:aValue];
+}
+
+
+-andReturnBool:(BOOL)aValue
+{
+	[[TMockController mockControllerForObject:self] setCharResult:aValue];
+	return self;
+}
+
+
 
 -mock
 {
@@ -197,6 +234,17 @@
 
 +shouldReceive { return self; }
 +stub { return self; }
+
+-(void)forwardInvocation:(NSInvocation *)invocation
+{
+	[[TMockController fetchControllerForObject:self] handleMockedInvocation:invocation];
+}
+
++(void)forwardInvocation:(NSInvocation *)invocation
+{
+	[[TMockController fetchControllerForObject:self] handleMockedInvocation:invocation];
+}
+
 
 
 @end

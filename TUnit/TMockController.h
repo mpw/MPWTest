@@ -22,6 +22,7 @@
 	int  size;
 	MPWClassMirror *originalClass,*mockingSubclass;
 	MPWObjectMirror *objectMirror;
+	NSMutableDictionary *mockedMessagesForClass;
 }
 
 +fetchControllerForObject:anObject;
