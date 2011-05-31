@@ -77,19 +77,12 @@
 {
     float value = 1234.5678;
 
-	NSLog(@"recording: %d",[_controller shouldRecordMessage]);
 
- 	NSLog(@"will record floatMethod");
    [_mock floatMethod];
-	NSLog(@"will set float result");
     [_controller setFloatResult: value];
-	NSLog(@"will set replay");
     [_controller replay];
-	NSLog(@"did set replay");
 	float retval = [_mock floatMethod];
-	NSLog(@"float value: %g retval=%g diff=%g",value,retval,value-retval);
     ASSERT( (retval == value ));
-	NSLog(@"===after");
 }
 
 

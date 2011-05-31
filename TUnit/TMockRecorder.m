@@ -218,6 +218,7 @@
 
 -ordered 
 {
+	[[TMockController mockControllerForObject:self] ordered];
 	return self;
 }
 

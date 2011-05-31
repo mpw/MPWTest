@@ -375,8 +375,10 @@
     [[_obj shouldReceive] intMethod];
     [[_obj ordered] andReturnInt: 456];
     ASSERTEQUALS(@"1", [_obj methodReturningArgument: @"1"]);
+	NSLog(@"expecting 123");
     ASSERTEQUALSINT(123, [_obj intMethod]);
     ASSERTEQUALS(@"3", [_obj methodReturningArgument: @"1"]);
+	NSLog(@"expecting 456");
     ASSERTEQUALSINT(456, [_obj intMethod]);
 }
 
