@@ -118,11 +118,14 @@ objectAccessor( NSMutableDictionary, mockedMessagesForClass, setMockedMessagesFo
 	recordNumberOfMessages=100000;
 	[self setExpectedCount:1];
 	[self mapMock];
+	NSLog(@"mockForObject: %p",anObject);
+	NSLog(@"mockForObject: %prec",anObject);
 	return mock;
 }
 
 -mockForClass:(Class)aClass
 {
+	NSLog(@"mockForClass:");
 	return [self mockForObject:[[[aClass alloc] init] autorelease]];
 }
 
@@ -226,7 +229,7 @@ objectAccessor( NSMutableDictionary, mockedMessagesForClass, setMockedMessagesFo
 	recordNumberOfMessages=0;
 }
 
-static id forward( id self, SEL selector, NSInvocation *invocation ) {
+static void forward( id self, SEL selector, NSInvocation *invocation ) {
 	[[TMockController fetchControllerForObject:self] handleMockedInvocation:invocation];
 }
 
@@ -242,22 +245,26 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 
 -(void)addMockedMessage:(SEL)selector
 {
+	NSLog(@"addMockedMessage");
 	NSString *messageName = NSStringFromSelector(selector);
 	id alreadyMocked = [[self mockedMessagesForClass] objectForKey:messageName];
-	if ( !alreadyMocked ) {
+	if ( !alreadyMocked && [self mockingSubclass]) {
+		NSLog(@"create method");
 		MPWMethodMirror *method=[[self mockingSubclass] methodMirrorForSelector:selector];
 		[[self mockedMessagesForClass] setObject:method forKey:messageName];
 		[[self mockingSubclass] replaceMethod:_objc_msgForward  forSelector:selector typeString:[method typestring]];
 
 	}
+	NSLog(@"did addMockedMessage");
 }
 
 -(void)recordInvocation:(NSInvocation *)invocation
 {
-//	NSLog(@"recordInvocation %@",invocation);
+	NSLog(@"recordInvocation %@",invocation);
 	[expectations addObject:[TMessageExpectation expectationWithInvocation: invocation]];
 	[self setCurrentExpectedCount:nextExpectedCount];
 	[self addMockedMessage:[invocation selector]];
+	NSLog(@"did record invocation");
 }
 
 -(BOOL)matchesInvocation:(NSInvocation*)invocation
@@ -326,9 +333,9 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 
 -(void)handleMockedInvocation:(NSInvocation *)invocation
 {
-//	NSLog(@"handleMockedInvocation %@",invocation);
+	NSLog(@"handleMockedInvocation %@",invocation);
 	if ( [self shouldRecordMessage] ) {
-//		NSLog(@"recording %@",NSStringFromSelector([invocation selector]));
+		NSLog(@"recording %@",NSStringFromSelector([invocation selector]));
 		recordNumberOfMessages--;
 		[self recordInvocation:invocation];
 #if 1		
@@ -338,7 +345,7 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 		}
 #endif		
 	} else {
-//		NSLog(@"replay / check %@",NSStringFromSelector([invocation selector]));
+		NSLog(@"replay / check %@",NSStringFromSelector([invocation selector]));
 		[self checkAndRunInvocation:invocation];
 	}
 	
@@ -370,8 +377,9 @@ setSomeResult( char, setCharResult )
 
 -(void)verify
 {
+	NSLog(@"verify");
 	for ( TMessageExpectation *expectation in expectations ) {
-//		NSLog(@"verify expectation: %@",expectation);
+		NSLog(@"verify expectation: %@",expectation);
 		if ( [expectation unfulfilled] ) {
 			[NSException raise:@"mock"  format:@"remaining expected messages: %@",expectations];
 		}
