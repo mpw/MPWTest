@@ -16,14 +16,12 @@
 
 
 -controller {
-	id mc1=  [TMockController fetchControllerForObject:self];
-	return mc1;
+	return [TMockController fetchControllerForObject:self];
 }
 
 -(void)forwardInvocation:(NSInvocation *)invocation
 {
-//	NSLog(@"forwarding %@ to %@",invocation,controller);
-	[[self controller] handleMockedInvocation:invocation];
+	[[TMockController fetchControllerForObject:self] handleMockedInvocation:invocation];
 }
 
 -(NSMethodSignature*)methodSignatureForSelector:(SEL)sel
