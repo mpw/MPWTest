@@ -10,7 +10,8 @@
 
 @class MPWClassMirror;
 
-@interface MPWObjectMirror : NSObject {
+@interface MPWObjectMirror : NSObject
+{
 	id	theObject;
 }
 

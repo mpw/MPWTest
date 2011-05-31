@@ -6,10 +6,11 @@
 //  Copyright 2011 metaobject ltd. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 
-@interface MPWClassMirror : NSObject {
+@interface MPWClassMirror : NSObject
+{
 	Class theClass;
 }
 
@@ -20,6 +21,7 @@
 -(Class)superclass;
 -(BOOL)isInBundle:(NSBundle*)aBundle;
 -(MPWClassMirror*)createAnonymousSubclass;
+-(NSArray*)methodMirrors;
 
 @end
 

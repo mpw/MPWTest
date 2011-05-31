@@ -9,7 +9,16 @@
 #import "MPWClassMirror.h"
 #import "MPWMethodMirror.h"
 
-@implementation MPWClassMirror
+#pragma .h #import <Foundation/Foundation.h>
+#pragma .h @class MPWObjectMirror;
+
+
+
+@implementation MPWClassMirror : NSObject
+{
+	Class theClass;
+}
+
 
 -initWithClass:(Class)aClass
 {
@@ -202,12 +211,31 @@
 	class_replaceMethod([self theClass], aSelector, aMethod,typestring);
 }
 
--(MPWMethodMirror*)methodMirrorForSelector:(SEL)aSelector
+static MPWMethodMirror* methodMirrorFromMethod( Method m ) 
 {
-	Method m=class_getInstanceMethod([self theClass], aSelector);
-	MPWMethodMirror *method=[[[MPWMethodMirror alloc] initWithSelector:aSelector typestring:method_getTypeEncoding(m)] autorelease];
+	MPWMethodMirror *method=[[[MPWMethodMirror alloc] initWithSelector:method_getName(m) typestring:method_getTypeEncoding(m)] autorelease];
 	[method setImp:method_getImplementation(m)];
 	return method;
+}
+
+-(MPWMethodMirror*)methodMirrorForSelector:(SEL)aSelector
+{
+	return methodMirrorFromMethod(class_getInstanceMethod([self theClass], aSelector)) ;
+}
+
+-(NSArray*)methodMirrors
+{
+	NSMutableArray *methods=[NSMutableArray array];
+	int methodCount=0;
+	Method *methodList = class_copyMethodList([self theClass], &methodCount );
+	if ( methodList ) {
+		int i;
+		for (i=0;i<methodCount;i++) {
+			[methods addObject:methodMirrorFromMethod(methodList[i] )];
+		}
+		free(methodList);
+	}
+	return  methods;
 }
 
 @end

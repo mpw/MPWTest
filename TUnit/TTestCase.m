@@ -4,6 +4,8 @@
 
 #import "TTestCase.h"
 #import "TMockController.h"
+#import "MPWMethodMirror.h"
+#import "MPWClassMirror.h"
 
 #include <objc/runtime.h>
 
@@ -20,6 +22,7 @@ int PROFILE_CHANNEL_TEST = 0;
 #pragma .h #define PROFILE_CHANNEL_NAME_TEST @"test"
 
 
+#define MPWTEST 1    // 
 
 @implementation NSException(exceptionAt)
 
@@ -266,7 +269,7 @@ static NSString *__package = nil;
 }
 
 
-#if 0
+#if !MPWTEST
 - objDescription: obj
 {
     return objc_get_class(obj) == [TMock class] ? (id)[TMockController descriptionFor: obj] : obj;
@@ -465,7 +468,7 @@ static NSString *__package = nil;
 
 - (void)printRunning
 {
-#if 0
+#if !MPWTEST
     [TUserIO print: @"objc."];
     if ([__package containsData]) {
         [TUserIO print: __package];
@@ -517,7 +520,28 @@ static int runs=0;
 
     NSString *methodFilter = [OSEnvironment getEnv: @"TESTMETHOD"];
     [self printRunning];
-	unsigned int methodCount;
+#if 1
+	return 10;
+	MPWClassMirror *classMirror=[MPWClassMirror mirrorWithClass:[self class]];
+	
+	for ( MPWMethodMirror *method in [classMirror methodMirrors] ) {
+		NSAutoreleasePool *testPool = [[NSAutoreleasePool alloc] init];
+		NSString *methodName = [method name];
+		if ( [methodName hasPrefix:"@test"] || [methodName hasPrefix:"itShould"] ) {
+			if (nil != methodFilter && ![methodName matches: methodFilter]) {
+				// skip tests specified in TESTMETHOD-filter
+			} else if ([methodName matches: @"Broken$"]) {
+				// skip broken tests
+			} else {
+				runs++;
+				if (![self runTestMethod: [method selector]]) {
+					++failures;
+				}
+			}
+		}
+		[testPool release];
+	}
+#else	
 	Method *methodList=class_copyMethodList( [self class], &methodCount );
 	if ( methodList ) {
 		for (int i=0;i<methodCount;i++) {
@@ -526,28 +550,18 @@ static int runs=0;
 			SEL sel=method_getName(m);
 			NSString *method=NSStringFromSelector(sel);
             if ([method hasPrefix: @"test"] || [method hasPrefix: @"itShould"]) {
-                if (nil != methodFilter && ![method matches: methodFilter]) {
-                    // skip tests specified in TESTMETHOD-filter
-                } else if ([method matches: @"Broken$"]) {
-                    // skip broken tests
-                } else {
-					runs++;
-                    if (![self runTestMethod: sel]) {
-                        ++failures;
-                    }
-                }
-			}
+ 			}
 			[testPool release];
 		}
 		free(methodList);
 	}
-
+#endif
 
 	[pool release];
 	return failures;	
 }
 
-#if 0
+#if !MPWTEST
 
 - (int)run: (NSString *)methodFilter
 {
@@ -641,16 +655,17 @@ static int runs=0;
 +testFixture
 {
 	id fixture=[[[self alloc] init] autorelease];
+	return fixture;
 }
 
 +testSelectors
 {
 	NSMutableArray *testSelectors=[NSMutableArray array];
 	if ( self != [TTestCase class] ) { 
-		int methodCount=0;
-		Method *methods= class_copyMethodList(self, &methodCount);
-		for (int i=0;i<methodCount;i++) {
-			NSString *msgName=NSStringFromSelector( method_getName( methods[i]) );
+		NSArray *methods = [[MPWClassMirror mirrorWithClass:self] methodMirrors];
+		
+		for (int i=0;i<[methods count];i++) {
+			NSString *msgName=[[methods objectAtIndex:i] name];
 			if ( [msgName hasPrefix:@"test"] || [msgName hasPrefix:@"itShould"] ) {
 				[testSelectors addObject:msgName];
 			}
@@ -664,7 +679,7 @@ static int runs=0;
     SEL testMethod=NSSelectorFromString(testName);
 	
     if ( testMethod &&  [self respondsToSelector:testMethod] ) {
-        objc_msgSend( self, testMethod );
+        [self performSelector:testMethod];
     } else {
         [NSException raise:@"test-inconsistency" format:@"error: fixture %@ doesn't respond to test message %@ for test %@",self,testName,[test description]];
     }
@@ -694,13 +709,10 @@ void uncaughtNSExceptionHandler(NSException* exception)
     abort();
 }
 
-#if 0
-extern Class objc_next_class( void *iter );
 int debug=0;
 int objcmain(int argc, char *argv[])
 {
-    void *classIterator = NULL;
-    Class class;
+	MPWClassMirror *currentClass;
     int result = 0;
 
     if (argc > 1) {
@@ -711,18 +723,20 @@ int objcmain(int argc, char *argv[])
     if ([classFilter hasSuffix: @"Test"]) {
         classFilter = [classFilter substringToIndex: [classFilter length] - 4];
     }
-    while ((class = objc_next_class(&classIterator)) != nil) {
-		const char *className = class_getName(class);
-		if ( !strcmp( "TMockRecorder", className ) ||
-			 !strcmp( "NSScriptCommandDescriptionMoreIVars", className ) ||
-			 !strcmp( "OSFilePath", className )) {
+	NSArray *allClasses = [MPWClassMirror allUsefulClasses];
+	NSEnumerator *classEnumerator = [allClasses objectEnumerator];
+    while ((currentClass = [classEnumerator nextObject]) != nil) {
+		NSString *className =[currentClass name];
+		if  ( [className isEqual:@"TMockRecorder"] ||
+			 [className isEqual:@"NSScriptCommandDescriptionMoreIVars"] ||
+			 [className isEqual:@"OSFilePath"]) {
 			continue;
 		}
-        if ([class respondsToSelector: @selector(isSubclassOfClass:)] &&
-				[class isSubclassOfClass:[TTestCase class]] && 
-                class != [TTestCase class]) {
-            TTestCase *test = [[class alloc] init];
-            NSString *className = NSStringFromClass(class);
+
+        if ([[currentClass theClass] respondsToSelector: @selector(isSubclassOfClass:)] &&
+				[[currentClass theClass] isSubclassOfClass:[TTestCase class]] && 
+                [currentClass theClass] != [TTestCase class]) {
+            TTestCase *test = [[[currentClass theClass] alloc] init];
 #if 0
 			NSLog(@"will test class: %@",className);
 #endif
@@ -753,6 +767,7 @@ int objcmain(int argc, char *argv[])
     return result;
 }
 
+#if !MPWTEST
 
 int main(int argc, char *argv[])
 {

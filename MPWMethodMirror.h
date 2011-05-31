@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 
 
-@interface MPWMethodMirror : NSObject {
+@interface MPWMethodMirror : NSObject
+{
 	SEL selector;
 	IMP imp;
 	const char *typestring;
 }
 
 -initWithSelector:(SEL)newSel typestring:(const char*)newTypes;
-
+-(SEL)selector;
 @end

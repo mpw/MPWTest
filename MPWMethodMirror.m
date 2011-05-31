@@ -9,11 +9,23 @@
 #import "MPWMethodMirror.h"
 #import "AccessorMacros.h"
 
+#pragma .h #import <Foundation/Foundation.h>
+
 @implementation MPWMethodMirror
+{
+	SEL selector;
+	IMP imp;
+	const char *typestring;
+}
 
 scalarAccessor( SEL, selector,setSelector )
 scalarAccessor( IMP, imp, setImp )
 scalarAccessor( const char *, typestring, setTypestring )
+
+-(NSString*)name
+{
+	return NSStringFromSelector(selector);
+}
 
 -initWithSelector:(SEL)newSel typestring:(const char*)newTypes
 {

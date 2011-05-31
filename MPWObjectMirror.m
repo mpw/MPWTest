@@ -11,7 +11,13 @@
 #import "MPWClassMirror.h"
 #import <objc/runtime.h>
 
+#pragma .h #import <Foundation/Foundation.h>
+#pragma .h @class MPWClassMirror;
+
 @implementation MPWObjectMirror
+{
+	id	theObject;
+}
 
 idAccessor( theObject, setTheObject )
 
@@ -26,6 +32,7 @@ idAccessor( theObject, setTheObject )
 {
 	return [[[self alloc] initWithObject:anObject] autorelease];
 }
+
 -(MPWClassMirror*)classMirror
 {
 	return [MPWClassMirror mirrorWithClass:object_getClass(theObject)];
