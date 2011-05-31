@@ -167,7 +167,6 @@
 
 -andReturnInt:(int)anInt
 {
-	NSLog(@"NSObject should return int: %d",anInt);
 	[[TMockController mockControllerForObject:self] setIntResult:anInt];
 	return self;
 }
