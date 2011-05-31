@@ -103,7 +103,7 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 -mockForObject:anObject
 {
 	originalObject=[anObject retain];
-	mock=NSAllocateObject(NSClassFromString(@"TMock"), 0, NSDefaultMallocZone());
+	mock=NSAllocateObject(NSClassFromString(@"TMockRecorder"), 0, NSDefaultMallocZone());
 	[mock initWithController:self];
 	recordNumberOfMessages=100000;
 	[self setExpectedCount:1];
@@ -125,7 +125,7 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 		memcpy( copyOfOriginalObject, originalObject, size );
 		mock=originalObject;
 		memset( mock,0, size );
-		*(Class*)mock=NSClassFromString(@"TMock");
+		*(Class*)mock=NSClassFromString(@"TMockRecorder");
 		[mock initWithController:self];
 		[self mapMock];
 	}
@@ -142,7 +142,7 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 		memcpy( copyOfOriginalObject, originalObject, size );
 		mock=originalObject;
 		memset( mock,0, size );
-		memcpy( mock, NSClassFromString(@"TMock"), size );
+		memcpy( mock, NSClassFromString(@"TMockRecorder"), size );
 //		[mock initWithController:self];
 	}
 	return mock;
@@ -157,7 +157,7 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 -mockForMetaClassOfClass:(Class)aClass
 {
 	originalObject = aClass;
-	mock=NSAllocateObject(NSClassFromString(@"TMock"), 0, NSDefaultMallocZone());
+	mock=NSAllocateObject(NSClassFromString(@"TMockRecorder"), 0, NSDefaultMallocZone());
 	recordNumberOfMessages=100000;
 	[mock initWithController:self];
 	[self setExpectedCount:1];

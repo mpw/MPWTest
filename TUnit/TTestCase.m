@@ -713,7 +713,7 @@ int objcmain(int argc, char *argv[])
     }
     while ((class = objc_next_class(&classIterator)) != nil) {
 		const char *className = class_getName(class);
-		if ( !strcmp( "TMock", className ) ||
+		if ( !strcmp( "TMockRecorder", className ) ||
 			 !strcmp( "NSScriptCommandDescriptionMoreIVars", className ) ||
 			 !strcmp( "OSFilePath", className )) {
 			continue;
