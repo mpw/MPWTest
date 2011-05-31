@@ -17,22 +17,28 @@
 
 @implementation TMockController : NSObject
 {
-        id originalObject;
-        NSMutableArray* expectations;
-        id mock;
-//      NSMutableDictionary* results;
-        int recordNumberOfMessages;
-        id  copyOfOriginalObject;
-        int nextExpectedCount;
-        BOOL partialMockAllowed;
-        int  size;
+	id originalObject;
+	NSMutableArray* expectations;
+	id mock;
+	int recordNumberOfMessages;
+	id  copyOfOriginalObject;
+	int nextExpectedCount;
+	BOOL partialMockAllowed;
+	int  size;
+	MPWClassMirror *originalClass,*mockingSubclass;
+	MPWObjectMirror *objectMirror;
 }
 
 
 
 static NSMapTable* mockControllers=nil;
 
+
+
 boolAccessor( partialMockAllowed, setPartialMockAllowed )
+objectAccessor( MPWClassMirror, originalClass, setOriginalClass )
+objectAccessor( MPWClassMirror, mockingSubclass, setMockingSubclass )
+objectAccessor( MPWObjectMirror, objectMirror, setObjectMirror  )
 
 +(NSMapTable*)mockControllers
 {
@@ -62,11 +68,11 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 {
 	TMockController* controller=[self fetchControllerForObject:anObject];
 	if ( !controller ) {
-		NSLog(@"create controller for: %p",anObject);
+//		NSLog(@"create controller for: %p",anObject);
 		controller=[[[self alloc] initWithObject:anObject] autorelease];
 		[self addController:controller forObject:anObject];
 	}
-	NSLog(@"controller for object %p is %p",anObject,controller);
+//	NSLog(@"controller for object %p is %p",anObject,controller);
 	return controller;
 	
 }
@@ -120,11 +126,20 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 -inlineMock
 {
 	if ( !mock ) {
+#if 0		
+		[self setOriginalClass:[MPWClassMirror mirrorWithClass:[originalObject class]]];
+		[self setObjectMirror:[MPWObjectMirror mirrorWithObject:originalObject]];
+		
+		[self setMockingSubclass: [[self originalClass] createAnonymousSubclass]];
+		[[self objectMirror] setObjectClass:[[self mockingSubclass] theClass]];
+#else
+		
 		size =  class_getInstanceSize( [originalObject class] );
 		copyOfOriginalObject=malloc( size );
 		memcpy( copyOfOriginalObject, originalObject, size );
 		mock=originalObject;
 		memset( mock,0, size );
+#endif		
 		*(Class*)mock=NSClassFromString(@"TMockRecorder");
 		[mock initWithController:self];
 		[self mapMock];

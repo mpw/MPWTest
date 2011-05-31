@@ -3,7 +3,7 @@
 //
 
 #include "TObjectMockInjectionTest.h"
-#import "TMock.h"
+#import "TMockRecorder.h"
 
 #pragma .h #include <TUnit/TUnit.h>
 

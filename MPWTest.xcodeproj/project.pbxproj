@@ -77,6 +77,7 @@
 		1FADC23E1393A62900E6A52A /* MPWMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC2381393A62900E6A52A /* MPWMethodMirror.m */; };
 		1FADC23F1393A62900E6A52A /* MPWMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC2381393A62900E6A52A /* MPWMethodMirror.m */; };
 		1FB53F8E1376F39D009973F0 /* AccessorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FB53F8D1376F39D009973F0 /* AccessorMacros.h */; };
+		1FBB174613954C8B00AA9954 /* TObjectMockInjectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FDB135209FE00377C45 /* TObjectMockInjectionTest.m */; };
 		1FC7E3291392BDFD0002E44E /* MPWClassMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FC7E3271392BDFD0002E44E /* MPWClassMirror.h */; };
 		1FC7E32A1392BDFD0002E44E /* MPWClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7E3281392BDFD0002E44E /* MPWClassMirror.m */; };
 		1FC7E32B1392BDFD0002E44E /* MPWClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7E3281392BDFD0002E44E /* MPWClassMirror.m */; };
@@ -676,6 +677,7 @@
 				1FC7E32A1392BDFD0002E44E /* MPWClassMirror.m in Sources */,
 				1FADC20D13939A8000E6A52A /* MPWObjectMirror.m in Sources */,
 				1FADC23A1393A62900E6A52A /* MPWMethodMirror.m in Sources */,
+				1FBB174613954C8B00AA9954 /* TObjectMockInjectionTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

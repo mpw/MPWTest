@@ -147,6 +147,12 @@
 	return [[self class] mirrorWithClass:[self _createClass:[name UTF8String]]];
 }
 
+-(MPWClassMirror*)createAnonymousSubclass
+{
+	NSString *madeUpName=[NSString stringWithFormat:@"%@-subclass-%p-%d",[self name],self,random()];
+	return [self createSubclassWithName:madeUpName];
+}
+
 @end
 
 #if __NEXT_RUNTIME__
@@ -236,7 +242,7 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 	}
 	EXPECTNIL( result, @"should not have assigned a value");
 	MPWClassMirror *mirror=[objectMirror classMirror];
-	MPWClassMirror *sub= [mirror createSubclassWithName:@"NSObjectSubclass"];
+	MPWClassMirror *sub= [mirror createAnonymousSubclass];
 	[sub addMethod:[mirror methodForSelector:@selector(__testMessageHi)] forSelector:@selector(__testMessage)];
 	[objectMirror setObjectClass:[sub theClass]];
 	result = [hi __testMessage];
@@ -253,7 +259,7 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 	MPWObjectMirror *classObjectMirror=[MPWObjectMirror mirrorWithObject:[NSObject class]];
 
 	MPWClassMirror *mirror=[MPWClassMirror mirrorWithClass:[NSObject class]];
-	MPWClassMirror *sub= [mirror createSubclassWithName:@"NSObjectSubclass1"];
+	MPWClassMirror *sub= [mirror createAnonymousSubclass];
 	MPWClassMirror *metaclass=[MPWClassMirror mirrorWithClass:object_getClass([sub theClass])];
 	[metaclass addMethod:[mirror methodForSelector:@selector(__testMessageHi)] forSelector:@selector(__testMessage)];
 	Class previous = [classObjectMirror setObjectClass:[metaclass theClass]];

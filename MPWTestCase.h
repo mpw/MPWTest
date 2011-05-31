@@ -10,8 +10,6 @@
     id		fixture;
 }
 
--initWithClass:(Class)classToTest name:testName arguments:args;
--initWithClass:(Class)classToTest name:testName;
 -(void)setup;
 -(void)doTest;
 -(void)cleanup;

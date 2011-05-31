@@ -9,21 +9,22 @@
 #import <Foundation/Foundation.h>
 #import "AccessorMacros.h"
 
+@class MPWClassMirror,MPWObjectMirror;
+
 @interface TMockController : NSObject {
 	id originalObject;
 	NSMutableArray* expectations;
 	id mock;
-//	NSMutableDictionary* results;
 	int recordNumberOfMessages;
 	id  copyOfOriginalObject;
 	int nextExpectedCount;
 	BOOL partialMockAllowed;
 	int  size;
-	
-
-	
+	MPWClassMirror *originalClass,*mockingSubclass;
+	MPWObjectMirror *objectMirror;
 }
 
++fetchControllerForObject:anObject;
 +mockControllerForObject:anObject;
 -initWithObject:anObject;
 

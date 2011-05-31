@@ -41,7 +41,7 @@ int main (int argc, const char *argv[])
             [NSClassFromString(@"NSApplication") sharedApplication];
         } else if ( !strcmp( argv[i], "-tt" )) {
 			if ( argv[i+1] ) {
-				[testTypeNames addObject:[NSString stringWithCString:argv[i+1]]];
+				[testTypeNames addObject:[NSString stringWithUTF8String:argv[i+1]]];
 				i++;
 			}
         } else if ( !strcmp( argv[i], "-tn" )) {
@@ -56,7 +56,7 @@ int main (int argc, const char *argv[])
                 NSDebugEnabled=YES;
             }
         } else {
-			id suitename = [NSString stringWithCString:argv[i]];
+			id suitename = [NSString stringWithUTF8String:argv[i]];
 			[testSuiteNames addObject:suitename];
        }
     }

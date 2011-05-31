@@ -10,6 +10,7 @@
 }
 
 +testSuiteWithName:aName classMirrors:(NSArray*)classMirrors;
++testSuiteForLocalFramework:(NSString*)frameworkName testTypes:testTypeNames;
 
 -(void)runTest:testResults;
 -(int)numberOfTests;

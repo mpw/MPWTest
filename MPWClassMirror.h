@@ -19,6 +19,7 @@
 -(Class)theClass;
 -(Class)superclass;
 -(BOOL)isInBundle:(NSBundle*)aBundle;
+-(MPWClassMirror*)createAnonymousSubclass;
 
 @end
 
