@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>1FBB17FC1395611D00AA9954</string>
+						<string>1FBB18221395618F00AA9954</string>
 						<key>history</key>
 						<array>
 							<string>1FB540311378083E009973F0</string>
@@ -257,7 +257,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>1FBB17FD1395611D00AA9954</string>
+						<string>1FBB18231395618F00AA9954</string>
 						<key>history</key>
 						<array>
 							<string>1FB53F4D1376ED31009973F0</string>
@@ -314,6 +314,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -359,7 +361,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>16</integer>
+									<integer>12</integer>
 									<integer>11</integer>
 									<integer>1</integer>
 									<integer>0</integer>
@@ -396,14 +398,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>TClassMockTest.m</string>
+								<string>TObjectMockInjectionTest.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -411,11 +411,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TClassMockTest.m</string>
+										<string>TObjectMockInjectionTest.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1FBB17FB1395611D00AA9954</string>
+										<string>1FBB18211395618F00AA9954</string>
 										<key>history</key>
 										<array>
 											<string>1FFC50391352197900377C45</string>
@@ -433,7 +433,6 @@
 											<string>1F1EC6AC1379211F00CDA323</string>
 											<string>1FC7E3451392C2BA0002E44E</string>
 											<string>1FC7E3481392C2BA0002E44E</string>
-											<string>1FC7E3491392C2BA0002E44E</string>
 											<string>1FC7E3871392C5AA0002E44E</string>
 											<string>1FC7E3A61392D2470002E44E</string>
 											<string>1FC7E3B91392E6600002E44E</string>
@@ -458,17 +457,18 @@
 											<string>1FBB178A13955D4A00AA9954</string>
 											<string>1FBB178B13955D4A00AA9954</string>
 											<string>1FBB178D13955D4A00AA9954</string>
-											<string>1FBB179113955D4A00AA9954</string>
-											<string>1FBB17A013955D6800AA9954</string>
 											<string>1FBB17A713955D7C00AA9954</string>
-											<string>1FBB17AF13955DD000AA9954</string>
 											<string>1FBB17B813955EAA00AA9954</string>
 											<string>1FBB17B913955EAA00AA9954</string>
 											<string>1FBB17BA13955EAA00AA9954</string>
 											<string>1FBB17BB13955EAA00AA9954</string>
 											<string>1FBB17BD13955EAA00AA9954</string>
 											<string>1FBB17F91395611D00AA9954</string>
-											<string>1FBB17FA1395611D00AA9954</string>
+											<string>1FBB18021395614900AA9954</string>
+											<string>1FBB180A1395615900AA9954</string>
+											<string>1FBB18191395618300AA9954</string>
+											<string>1FBB18201395618F00AA9954</string>
+											<string>1FBB18181395618300AA9954</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -668,8 +668,8 @@
 	<array>
 		<string>1FB53F391376ECAC009973F0</string>
 		<string>1FB53F291376EC16009973F0</string>
-		<string>1FFC4FD4135209C500377C45</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
+		<string>1FFC4FD4135209C500377C45</string>
 		<string>/Users/marcel/programming/Kits/MPWTest/MPWTest.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -689,14 +689,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>TMockController.m</string>
+								<string>TObjectMockTest.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -705,7 +703,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1094, 371}}</string>
 								<key>RubberWindowFrame</key>
-								<string>229 198 1094 653 0 0 1440 878 </string>
+								<string>774 208 1094 653 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -713,6 +711,8 @@
 							<string>371pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -729,7 +729,7 @@
 								<key>Frame</key>
 								<string>{{0, 376}, {1094, 236}}</string>
 								<key>RubberWindowFrame</key>
-								<string>229 198 1094 653 0 0 1440 878 </string>
+								<string>774 208 1094 653 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXBuildResultsModule</string>
@@ -761,7 +761,7 @@
 			<key>WindowContentMinSize</key>
 			<string>486 300</string>
 			<key>WindowString</key>
-			<string>229 198 1094 653 0 0 1440 878 </string>
+			<string>774 208 1094 653 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>1FFC4FD4135209C500377C45</string>
 			<key>WindowToolIsVisible</key>
