@@ -48,14 +48,25 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 	mockControllers=nil;
 }
 
++(void)addController:aController forObject:anObject
+{
+	[[self mockControllers] setObject:aController forKey:anObject];
+}
+
++fetchControllerForObject:anObject
+{
+	return [[self mockControllers] objectForKey:anObject];
+}
+
 +mockControllerForObject:anObject
 {
-	TMockController* controller=[[self mockControllers] objectForKey:anObject];
+	TMockController* controller=[self fetchControllerForObject:anObject];
 	if ( !controller ) {
+		NSLog(@"create controller for: %p",anObject);
 		controller=[[[self alloc] initWithObject:anObject] autorelease];
-		[[self mockControllers] setObject:controller forKey:anObject];
+		[self addController:controller forObject:anObject];
 	}
-//	NSLog(@"controller for object %p is %p",anObject,controller);
+	NSLog(@"controller for object %p is %p",anObject,controller);
 	return controller;
 	
 }
@@ -84,6 +95,11 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 	return [[[self alloc] initWithObject:nil] autorelease];
 }
 
+-(void)mapMock
+{
+	[[self class] addController:self forObject:mock];
+}
+
 -mockForObject:anObject
 {
 	originalObject=[anObject retain];
@@ -91,6 +107,7 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 	[mock initWithController:self];
 	recordNumberOfMessages=100000;
 	[self setExpectedCount:1];
+	[self mapMock];
 	return mock;
 }
 
@@ -110,6 +127,7 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 		memset( mock,0, size );
 		*(Class*)mock=NSClassFromString(@"TMock");
 		[mock initWithController:self];
+		[self mapMock];
 	}
 	return mock;
 }
@@ -143,6 +161,7 @@ boolAccessor( partialMockAllowed, setPartialMockAllowed )
 	recordNumberOfMessages=100000;
 	[mock initWithController:self];
 	[self setExpectedCount:1];
+	[self mapMock];
 	return mock;
 }
 

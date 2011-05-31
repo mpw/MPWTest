@@ -29,6 +29,5 @@
 +(Class)superclassOfClass:(Class)aClass;
 +(NSArray*)allClasses;
 -(Class)_createClass:(const char*)name;
--(void)registerClass;
 
 @end

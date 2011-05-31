@@ -12,38 +12,40 @@
 
 @implementation TMock : NSProxy
 {
-	id controller;
 }
 
 
--controller { return controller; }
+-controller {
+	id mc1=  [TMockController fetchControllerForObject:self];
+	return mc1;
+}
 
 -(void)forwardInvocation:(NSInvocation *)invocation
 {
 //	NSLog(@"forwarding %@ to %@",invocation,controller);
-	[controller handleMockedInvocation:invocation];
+	[[self controller] handleMockedInvocation:invocation];
 }
 
 -(NSMethodSignature*)methodSignatureForSelector:(SEL)sel
 {
-	return [controller methodSignatureForMockedSelector:sel];
+	TMockController *mc=[self controller];
+	return [mc methodSignatureForMockedSelector:sel];
 }
 
 -initWithController:anObject
 {
-	controller=[anObject retain];
 	return self;
 }
 
 -(void)returnBool:(BOOL)aValue
 {
 //	NSLog(@"should return bool: %d",aValue);
-	[controller setCharResult:aValue];
+	[[self controller] setCharResult:aValue];
 }
 
 -andReturnBool:(BOOL)aValue
 {
-	[controller setCharResult:aValue];
+	[[self controller] setCharResult:aValue];
 	return self;
 }
 

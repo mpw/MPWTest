@@ -167,13 +167,11 @@
 
 -(Class)_createClass:(const char*)name
 {
-	return objc_allocateClassPair([self theClass], name,0);
+	Class *klass = objc_allocateClassPair([self theClass], name,0);
+	objc_registerClassPair(klass);
+	return klass;
 }
 
--(void)registerClass
-{
-	objc_registerClassPair([self theClass]);
-}
 
 +(NSArray*)allClasses
 {
@@ -240,7 +238,6 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 	MPWClassMirror *mirror=[objectMirror classMirror];
 	MPWClassMirror *sub= [mirror createSubclassWithName:@"NSObjectSubclass"];
 	[sub addMethod:[mirror methodForSelector:@selector(__testMessageHi)] forSelector:@selector(__testMessage)];
-	[sub registerClass];
 	[objectMirror setObjectClass:[sub theClass]];
 	result = [hi __testMessage];
 	IDEXPECT( result, @"Hello added method", @"after addition");
@@ -259,7 +256,6 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 	MPWClassMirror *sub= [mirror createSubclassWithName:@"NSObjectSubclass1"];
 	MPWClassMirror *metaclass=[MPWClassMirror mirrorWithClass:object_getClass([sub theClass])];
 	[metaclass addMethod:[mirror methodForSelector:@selector(__testMessageHi)] forSelector:@selector(__testMessage)];
-	[sub registerClass];
 	Class previous = [classObjectMirror setObjectClass:[metaclass theClass]];
 	result = [[NSObject class] __testMessage];
 	IDEXPECT( result, @"Hello added method", @"after addition");
