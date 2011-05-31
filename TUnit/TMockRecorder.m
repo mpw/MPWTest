@@ -7,10 +7,10 @@
 //
 
 #pragma .h #import <Foundation/Foundation.h>
-#import "TMock.h"
+#import "TMockRecorder.h"
 #import "TMockController.h"
 
-@implementation TMock : NSProxy
+@implementation TMockRecorder : NSProxy
 {
 }
 

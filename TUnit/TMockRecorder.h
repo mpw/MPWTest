@@ -10,7 +10,7 @@
 
 #define TUNIT_UNLIMITEDCALLCOUNT   -1
 
-@interface TMock : NSProxy {
+@interface TMockRecorder : NSProxy {
 @public
 	id controller;
 }

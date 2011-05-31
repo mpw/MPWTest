@@ -4,7 +4,7 @@
 
 #include "TMetaClassMockTest.h"
 #include "TMockTestClass.h"
-#include "TMock.h"
+#include "TMockRecorder.h"
 #import <objc/objc-runtime.h>
 
 @implementation TMetaClassMockTest:TTestCase
@@ -107,10 +107,10 @@
 
 - (void)_testInvalidMethod
 {
-    FAIL([_mock descriptionFor: (TMock *)_mock]);
+    FAIL([_mock descriptionFor: (TMockRecorder *)_mock]);
     FAIL([(TMockTestClass *)_mock intMethod]);
     [_controller replay];
-    FAIL([_mock descriptionFor: (TMock *)_mock]);
+    FAIL([_mock descriptionFor: (TMockRecorder *)_mock]);
     FAIL([(TMockTestClass *)_mock intMethod]);
 }
 

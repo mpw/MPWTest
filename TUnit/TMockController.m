@@ -7,7 +7,7 @@
 //
 
 #import "TMockController.h"
-#import "TMock.h"
+#import "TMockRecorder.h"
 #import "TMessageExpectation.h"
 #import "AccessorMacros.h"
 #import "MPWClassMirror.h"

@@ -215,7 +215,7 @@
 		fRef = 1FFC50981352470400377C45 /* TMockController.h */;
 		name = "TMockController.h: 21";
 		rLen = 0;
-		rLoc = 454;
+		rLoc = 459;
 		rType = 0;
 		vrLen = 793;
 		vrLoc = 0;
@@ -242,7 +242,7 @@
 	};
 	1F1EC7C81379625500CDA323 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1FFC50C81352496D00377C45 /* TMock.h */;
+		fRef = 1FFC50C81352496D00377C45 /* TMockRecorder.h */;
 		name = "TMock.h: 11";
 		rLen = 0;
 		rLoc = 203;
@@ -429,7 +429,7 @@
 		fRef = 1FC7E3281392BDFD0002E44E /* MPWClassMirror.m */;
 		name = "MPWClassMirror.m: 263";
 		rLen = 14;
-		rLoc = 5981;
+		rLoc = 5925;
 		rType = 0;
 		vrLen = 1526;
 		vrLoc = 5316;
@@ -439,7 +439,7 @@
 		fRef = 1FC7E3281392BDFD0002E44E /* MPWClassMirror.m */;
 		name = "MPWClassMirror.m: 206";
 		rLen = 0;
-		rLoc = 4031;
+		rLoc = 4019;
 		rType = 0;
 		vrLen = 1753;
 		vrLoc = 4957;
@@ -456,20 +456,20 @@
 	};
 	1FADC2AB1393BEAD00E6A52A /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1FFC50C91352496D00377C45 /* TMock.m */;
+		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMock.m: 66";
 		rLen = 0;
-		rLoc = 1184;
+		rLoc = 1202;
 		rType = 0;
 		vrLen = 1051;
 		vrLoc = 423;
 	};
 	1FB48FE11392A4E80047FBEB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1FFC50C91352496D00377C45 /* TMock.m */;
+		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMock.m: 115";
 		rLen = 0;
-		rLoc = 2044;
+		rLoc = 2062;
 		rType = 0;
 		vrLen = 948;
 		vrLoc = 2094;
@@ -496,7 +496,7 @@
 	};
 	1FB53F4D1376ED31009973F0 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1FFC50C81352496D00377C45 /* TMock.h */;
+		fRef = 1FFC50C81352496D00377C45 /* TMockRecorder.h */;
 		name = "TMock.h: 17";
 		rLen = 0;
 		rLoc = 290;
@@ -523,16 +523,16 @@
 	};
 	1FC7E3271392BDFD0002E44E /* MPWClassMirror.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {947, 455}}";
-			sepNavSelRange = "{256, 0}";
-			sepNavVisRange = "{0, 585}";
+			sepNavIntBoundsRect = "{{0, 0}, {789, 459}}";
+			sepNavSelRange = "{557, 0}";
+			sepNavVisRange = "{0, 563}";
 		};
 	};
 	1FC7E3281392BDFD0002E44E /* MPWClassMirror.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1033, 3445}}";
-			sepNavSelRange = "{6473, 0}";
-			sepNavVisRange = "{4773, 1546}";
+			sepNavIntBoundsRect = "{{0, 0}, {947, 3575}}";
+			sepNavSelRange = "{3370, 13}";
+			sepNavVisRange = "{3031, 773}";
 		};
 	};
 	1FC7E3451392C2BA0002E44E /* PBXTextBookmark */ = {
@@ -668,10 +668,10 @@
 	};
 	1FC7E4101393809F0002E44E /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1FFC50C91352496D00377C45 /* TMock.m */;
+		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMock.m: 66";
 		rLen = 0;
-		rLoc = 1184;
+		rLoc = 1202;
 		rType = 0;
 		vrLen = 1051;
 		vrLoc = 423;
@@ -807,9 +807,9 @@
 	};
 	1FFC4FDA135209FE00377C45 /* TMockTestClass.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {789, 2288}}";
-			sepNavSelRange = "{1305, 327}";
-			sepNavVisRange = "{1134, 509}";
+			sepNavIntBoundsRect = "{{0, 0}, {947, 2288}}";
+			sepNavSelRange = "{1242, 35}";
+			sepNavVisRange = "{388, 319}";
 		};
 	};
 	1FFC4FDB135209FE00377C45 /* TObjectMockInjectionTest.m */ = {
@@ -889,9 +889,9 @@
 	};
 	1FFC5082135223F500377C45 /* TMockTestClass.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {789, 1040}}";
-			sepNavSelRange = "{1509, 0}";
-			sepNavVisRange = "{720, 798}";
+			sepNavIntBoundsRect = "{{0, 0}, {947, 1040}}";
+			sepNavSelRange = "{584, 0}";
+			sepNavVisRange = "{518, 809}";
 		};
 	};
 	1FFC5088135245DE00377C45 /* TClassMockTest.h */ = {
@@ -903,16 +903,16 @@
 	};
 	1FFC50981352470400377C45 /* TMockController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {947, 585}}";
-			sepNavSelRange = "{454, 0}";
-			sepNavVisRange = "{0, 793}";
+			sepNavIntBoundsRect = "{{0, 0}, {947, 650}}";
+			sepNavSelRange = "{457, 0}";
+			sepNavVisRange = "{0, 640}";
 		};
 	};
 	1FFC50991352470400377C45 /* TMockController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {947, 4745}}";
-			sepNavSelRange = "{273, 0}";
-			sepNavVisRange = "{25, 789}";
+			sepNavIntBoundsRect = "{{0, 0}, {947, 5070}}";
+			sepNavSelRange = "{2412, 0}";
+			sepNavVisRange = "{2189, 795}";
 		};
 	};
 	1FFC50A01352471500377C45 /* PBXTextBookmark */ = {
@@ -935,18 +935,18 @@
 		vrLen = 67;
 		vrLoc = 0;
 	};
-	1FFC50C81352496D00377C45 /* TMock.h */ = {
+	1FFC50C81352496D00377C45 /* TMockRecorder.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {947, 474}}";
+			sepNavIntBoundsRect = "{{0, 0}, {947, 455}}";
 			sepNavSelRange = "{203, 0}";
 			sepNavVisRange = "{0, 467}";
 		};
 	};
-	1FFC50C91352496D00377C45 /* TMock.m */ = {
+	1FFC50C91352496D00377C45 /* TMockRecorder.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {784, 2717}}";
-			sepNavSelRange = "{1184, 0}";
-			sepNavVisRange = "{423, 1051}";
+			sepNavIntBoundsRect = "{{0, 0}, {947, 2639}}";
+			sepNavSelRange = "{335, 142}";
+			sepNavVisRange = "{15, 664}";
 		};
 	};
 	1FFC5145135257EA00377C45 /* NSInvocation.h */ = {
@@ -1174,9 +1174,9 @@
 	};
 	1FFFF9AB13743FAD00133789 /* TMessageExpectation.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1033, 2236}}";
-			sepNavSelRange = "{622, 0}";
-			sepNavVisRange = "{249, 763}";
+			sepNavIntBoundsRect = "{{0, 0}, {947, 2262}}";
+			sepNavSelRange = "{822, 19}";
+			sepNavVisRange = "{775, 893}";
 		};
 	};
 }
