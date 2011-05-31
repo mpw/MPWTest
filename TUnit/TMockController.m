@@ -393,8 +393,8 @@ setSomeResult( char, setCharResult )
 
 -(void)cleanup
 {
-	if ( copyOfOriginalObject  && size) {
-		memcpy( originalObject, copyOfOriginalObject, size );
+	if ( [self objectMirror] && [self mockedMessagesForClass] && [self originalClass]) {
+		[[self objectMirror] setObjectClass:[[self originalClass] theClass]];
 	}
 }
 
