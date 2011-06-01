@@ -46,6 +46,7 @@
 		1F61A03E10F901070043BB22 /* MPWTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F61A03D10F901070043BB22 /* MPWTestSuite.m */; };
 		1F61A03F10F901070043BB22 /* MPWTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F61A03D10F901070043BB22 /* MPWTestSuite.m */; };
 		1F61A04210F901070043BB22 /* MPWTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F61A03D10F901070043BB22 /* MPWTestSuite.m */; };
+		1F7926E1139616AD00C21BF9 /* TClassMockInjectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FD6135209FE00377C45 /* TClassMockInjectionTest.m */; };
 		1F9C9640110D6BA500492929 /* MPWTestAssertionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A50E8072E69A1006C07C4 /* MPWTestAssertionHandler.m */; };
 		1F9C9641110D6BA500492929 /* MPWTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F93660066CF95C35ADD82 /* MPWTestCase.m */; };
 		1F9C9642110D6BA500492929 /* MPWTestResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F93670066CF95C35ADD82 /* MPWTestResults.m */; };
@@ -676,6 +677,7 @@
 				1FADC23A1393A62900E6A52A /* MPWMethodMirror.m in Sources */,
 				1FBB17FE1395614600AA9954 /* TMetaClassMockTest.m in Sources */,
 				1FBB181D1395618D00AA9954 /* TObjectMockInjectionTest.m in Sources */,
+				1F7926E1139616AD00C21BF9 /* TClassMockInjectionTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

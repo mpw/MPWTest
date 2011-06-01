@@ -8,6 +8,7 @@
 
 #import "MPWClassMirror.h"
 #import "MPWMethodMirror.h"
+#import "MPWObjectMirror.h"
 
 #pragma .h #import <Foundation/Foundation.h>
 #pragma .h @class MPWObjectMirror;
@@ -236,6 +237,11 @@ static MPWMethodMirror* methodMirrorFromMethod( Method m )
 		free(methodList);
 	}
 	return  methods;
+}
+
+-(MPWClassMirror*)metaClassMirror
+{
+	return [[MPWObjectMirror mirrorWithObject:[self theClass]] classMirror];
 }
 
 @end

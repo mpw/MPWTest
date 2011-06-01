@@ -16,7 +16,6 @@
 	NSMutableArray* expectations;
 	id mock;
 	int recordNumberOfMessages;
-	id  copyOfOriginalObject;
 	int nextExpectedCount;
 	BOOL partialMockAllowed;
 	int  size;

@@ -22,7 +22,6 @@
     _class = [TMockTestClass class];
 }
 
-#if 0
 
 - (void)testNormalClassMockingAMessageReturnsMockedValueOnMockedCall
 {
@@ -30,10 +29,12 @@
 	NSLog(@"_class: %@",_class);
     ASSERTEQUALSINT(7, [_class testClassMethod: 3]);
 	[[_class mock] testClassMethod: 3];
+	NSLog(@"_class: %@",_class);
     [_class andReturnInt: 666];
     ASSERTEQUALSINT(666, [_class testClassMethod: 3]);
 }
 
+#if 0
 
 - (void)testNormalClassMockingAMessageReturnsToNormalBehaviourAfterReceivingMockedCall
 {

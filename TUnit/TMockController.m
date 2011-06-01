@@ -22,7 +22,6 @@
 	NSMutableArray* expectations;
 	id mock;
 	int recordNumberOfMessages;
-	id  copyOfOriginalObject;
 	int nextExpectedCount;
 	BOOL partialMockAllowed;
 	int  size;
@@ -133,39 +132,35 @@ objectAccessor( NSMutableDictionary, mockedMessagesForClass, setMockedMessagesFo
 -inlineMock
 {
 	if ( !mock ) {
-#if 1
 		[self setOriginalClass:[MPWClassMirror mirrorWithClass:[originalObject class]]];
 		[self setObjectMirror:[MPWObjectMirror mirrorWithObject:originalObject]];
 		
 		[self setMockingSubclass: [[self originalClass] createAnonymousSubclass]];
 		[[self objectMirror] setObjectClass:[[self mockingSubclass] theClass]];
 		mock=NSAllocateObject(NSClassFromString(@"TMockRecorder"), 0, NSDefaultMallocZone());
-#else
-		
-		size =  class_getInstanceSize( [originalObject class] );
-		copyOfOriginalObject=malloc( size );
-		memcpy( copyOfOriginalObject, originalObject, size );
-		mock=originalObject;
-		memset( mock,0, size );
-#endif		
 		[mock initWithController:self];
 		[self mapMock];
 	}
 	return mock;
 }
 
-#if 0
+#if 1
 -inlineMockClass
 {
 	if ( !mock ) {
-		size =  class_getInstanceSize( object_getClass(originalObject) );
-		NSLog(@"size for inlineMockClass: %d",size);
-		copyOfOriginalObject=malloc( size );
-		memcpy( copyOfOriginalObject, originalObject, size );
-		mock=originalObject;
-		memset( mock,0, size );
-		memcpy( mock, NSClassFromString(@"TMockRecorder"), size );
-//		[mock initWithController:self];
+		NSLog(@"=== mocking a class");
+		MPWClassMirror *thisClass=[MPWClassMirror mirrorWithClass:originalObject];
+		MPWClassMirror *subClass =[thisClass createAnonymousSubclass];
+		MPWClassMirror *metaClass =[subClass metaClassMirror];
+		NSLog(@"metaClass: %@",[metaClass name]);
+		[self setObjectMirror:[MPWObjectMirror mirrorWithObject:originalObject]];
+		[self setOriginalClass:[thisClass metaClassMirror]];
+		[self setMockingSubclass:metaClass];
+		[[self objectMirror] setObjectClass:[metaClass theClass]];
+		mock=NSAllocateObject(NSClassFromString(@"TMockRecorder"), 0, NSDefaultMallocZone());
+		[mock initWithController:self];
+		[self mapMock];
+		
 	}
 	return mock;
 }
@@ -237,7 +232,7 @@ static void forward( id self, SEL selector, NSInvocation *invocation ) {
 {
 //	NSLog(@"methodSignatureForMockedSelector: %@",NSStringFromSelector(sel));
 //	NSLog(@"originalObject: %@",originalObject);
-	return [copyOfOriginalObject ? copyOfOriginalObject : originalObject methodSignatureForSelector:sel];
+	return [originalObject methodSignatureForSelector:sel];
 }
 
 
@@ -326,7 +321,7 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 //	[invocation setReturnValue:&empty];
 	if (! [self matchesInvocation:invocation]) {
 		if ( [self partialMockAllowed] ) {
-			NSLog(@"sending %@ to original object %p",NSStringFromSelector([invocation selector]), copyOfOriginalObject);
+			NSLog(@"sending %@ to original object %p",NSStringFromSelector([invocation selector]), originalObject);
 			[invocation setSelector:[self translatedSelector:[invocation selector]]];
 			[invocation invokeWithTarget:originalObject];
 		} else {
