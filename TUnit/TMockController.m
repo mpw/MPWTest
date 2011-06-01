@@ -149,13 +149,13 @@ objectAccessor( NSMutableDictionary, mockedMessagesForClass, setMockedMessagesFo
 -inlineMockClass
 {
 	if ( !mock ) {
-		NSLog(@"=== mocking a class");
+//		NSLog(@"=== mocking a class");
 		MPWClassMirror *thisClass=[MPWClassMirror mirrorWithClass:originalObject];
 		MPWClassMirror *subClass =[thisClass createAnonymousSubclass];
 		MPWClassMirror *metaClass =[subClass metaClassMirror];
 		[self setOriginalClass:[thisClass metaClassMirror]];
-		NSLog(@"original metaClass via mirror: %p via class directly: %p",[[self originalClass] theClass],object_getClass(originalObject));
-		NSLog(@"metaClass: %@",[metaClass name]);
+//		NSLog(@"original metaClass via mirror: %p via class directly: %p",[[self originalClass] theClass],object_getClass(originalObject));
+//		NSLog(@"metaClass: %@",[metaClass name]);
 		[self setObjectMirror:[MPWObjectMirror mirrorWithObject:originalObject]];
 		[self setMockingSubclass:metaClass];
 		[[self objectMirror] setObjectClass:[metaClass theClass]];
@@ -323,7 +323,7 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 //	[invocation setReturnValue:&empty];
 	if (! [self matchesInvocation:invocation]) {
 		if ( [self partialMockAllowed] ) {
-			NSLog(@"sending %@ to original object %p",NSStringFromSelector([invocation selector]), originalObject);
+//			NSLog(@"sending %@ to original object %p",NSStringFromSelector([invocation selector]), originalObject);
 			[invocation setSelector:[self translatedSelector:[invocation selector]]];
 			[invocation invokeWithTarget:originalObject];
 		} else {
@@ -404,9 +404,9 @@ setSomeResult( char, setCharResult )
 
 -(void)cleanup
 {
-	NSLog(@"cleanup");
+//	NSLog(@"cleanup");
 	if ( [self objectMirror] && [self mockedMessagesForClass] && [self originalClass]) {
-		NSLog(@"setting class back to %p",[[self originalClass] theClass]);
+//		NSLog(@"setting class back to %p",[[self originalClass] theClass]);
 		[[self objectMirror] setObjectClass:[[self originalClass] theClass]];
 	}
 }

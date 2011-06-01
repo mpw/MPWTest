@@ -231,7 +231,25 @@
 	return stub;
 }
 
-+shouldReceive { return self; }
+
++shouldReceive:(int)count
+{
+	TMockController *controller=[TMockController mockControllerForObject:self];
+	[controller recordOneMessage];
+	[controller setExpectedCount:count];
+	return [controller inlineMockClass];
+}
+
++shouldReceive
+{
+	return [self shouldReceive:1];
+}
+
++shouldNotReceive
+{
+	return [self shouldReceive:0];
+}
+
 +stub { return [self mock]; }
 
 -(void)forwardInvocation:(NSInvocation *)invocation

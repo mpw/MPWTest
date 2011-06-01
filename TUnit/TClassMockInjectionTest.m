@@ -117,7 +117,6 @@
     ASSERTEQUALSINT(7, [_class testClassMethod: 3]);
 }
 
-#if 0
 
 - (void)testMockedMethodCanThrowException
 {
@@ -133,25 +132,11 @@
 }
 
 
-- (void)testVerifyAndCleanupMocksShouldRaiseAnExceptionIfNotAllMockedMethodsWereCalled
-{
-    [(id)[[_class mock] testClassMethod: 3] andReturnInt: 666];
-    [[[_class mock] classMethodReturningArgument: _class] andReturn: @"hui"];
-    [_class testClassMethod: 3];
-    BOOL exceptionCaught = NO;
-    @try {
-        verifyAndCleanupMocks();
-    } @catch (id  e) {
-        [e autorelease];
-        exceptionCaught = YES;
-    }
-    ASSERT(exceptionCaught);
-}
-
 
 - (void)testVerifyAndCleanupMocksShouldNotRaiseAnExceptionIfAllMockedMethodsWereCalled
 {
-    [(id)[[_class mock] testClassMethod: 3] andReturnInt: 666];
+    [[_class mock] testClassMethod: 3];
+    [_class andReturnInt: 666];
     [[[_class mock] classMethodReturningArgument: _class] andReturn: @"hui"];
     [_class testClassMethod: 3];
     [_class classMethodReturningArgument: _class];
@@ -159,22 +144,27 @@
 }
 
 
+
 - (void)testVerifyAndCleanupMocksShouldNotRaiseAnExceptionIfAllMockedMethodsWereStubbed
 {
-    [(id)[[_class stub] testClassMethod: 3] andReturnInt: 666];
+    [[_class stub] testClassMethod: 3];
+    [_class andReturnInt: 666];
     [[[_class stub] classMethodReturningArgument: _class] andReturn: @"hui"];
     verifyAndCleanupMocks();
 }
 
 
+
 - (void)testStubbedMethodsShouldBeRemovedAfterVerifyAndCleanupMocks
 {
-    [(id)[[_class stub] testClassMethod: 3] andReturnInt: 666];
+    [[_class stub] testClassMethod: 3];
+    [_class andReturnInt: 666];
     [[[_class stub] classMethodReturningArgument: _class] andReturn: @"hui"];
     verifyAndCleanupMocks();
     ASSERTEQUALSINT(7, [_class testClassMethod: 3]);
     ASSERTEQUALS(_class, [_class classMethodReturningArgument: _class]);
 }
+
 
 
 - (void)testShouldReceiveMocksMethodAndThrowsExceptionIfMethodIsCalledToOften
@@ -185,11 +175,30 @@
 }
 
 
+
 - (void)testMethodMockedViaShouldReceiveThrowsExceptionIfArgumentIsWrong
 {
     [[[_class shouldReceive] classMethodReturningArgument: @"hallo"] andReturn: @"du da"];
     FAIL([_class classMethodReturningArgument: @"falscher parameter"]);
     [_class classMethodReturningArgument: @"hallo"];
+}
+
+#if 0
+
+
+- (void)testVerifyAndCleanupMocksShouldRaiseAnExceptionIfNotAllMockedMethodsWereCalled
+{
+    [[_class mock] testClassMethod: 3];
+    [_class andReturnInt: 666];
+    [[[_class mock] classMethodReturningArgument: _class] andReturn: @"hui"];
+    [_class testClassMethod: 3];
+    BOOL exceptionCaught = NO;
+    @try {
+        verifyAndCleanupMocks();
+    } @catch (id  e) {
+        exceptionCaught = YES;
+    }
+    ASSERT(exceptionCaught);
 }
 
 
