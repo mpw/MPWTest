@@ -185,11 +185,13 @@
 
 
 
+
 - (void)testVerifyAndCleanupMocksShouldRaiseAnExceptionIfNotAllMockedMethodsWereCalled
 {
-    [[_class mock] testClassMethod: 3];
+	NSLog(@"====  testVerifyAndCleanupMocksShouldRaiseAnExceptionIfNotAllMockedMethodsWereCalled ");
+    [[_class shouldReceive] testClassMethod: 3];
     [_class andReturnInt: 666];
-    [[[_class mock] classMethodReturningArgument: _class] andReturn: @"hui"];
+    [[[_class shouldReceive] classMethodReturningArgument: _class] andReturn: @"hui"];
     [_class testClassMethod: 3];
     BOOL exceptionCaught = NO;
     @try {
@@ -197,11 +199,12 @@
     } @catch (id  e) {
         exceptionCaught = YES;
     }
+	NSLog(@"====  DONE testVerifyAndCleanupMocksShouldRaiseAnExceptionIfNotAllMockedMethodsWereCalled ");
     ASSERT(exceptionCaught);
 }
 
-
 #if 0
+
 
 - (void)testNormalClassMockingAMessageReturnsToNormalBehaviourAfterReceivingMockedCall
 {
@@ -210,6 +213,7 @@
     [_class testClassMethod: 3];
     ASSERTEQUALSINT(7, [_class testClassMethod: 3]);
 }
+
 
 
 
