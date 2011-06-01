@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>1F79279813963B1900C21BF9</string>
+						<string>1F79279D13963B4600C21BF9</string>
 						<key>history</key>
 						<array>
 							<string>1FB540311378083E009973F0</string>
@@ -257,7 +257,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>1F79279913963B1900C21BF9</string>
+						<string>1F79279E13963B4600C21BF9</string>
 						<key>history</key>
 						<array>
 							<string>1FB53F4D1376ED31009973F0</string>
@@ -366,7 +366,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {231, 723}}</string>
+							<string>{{0, 433}, {231, 723}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -415,7 +415,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1F79279713963B1900C21BF9</string>
+										<string>1F79279C13963B4600C21BF9</string>
 										<key>history</key>
 										<array>
 											<string>1FFC50391352197900377C45</string>

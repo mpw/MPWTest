@@ -84,7 +84,6 @@
 }
 
 
-#if 0
 
 // FIXME andere typen unterstützen
 
@@ -95,6 +94,7 @@
     ASSERTEQUALS(@"Hallo", [_class classMethodReturningArgument: @"Hallo"]);
     ASSERTEQUALS(@"ist da wer?", [_class classMethodReturningArgument: @"du da"]);
 }
+#if 0
 
 
 - (void)testStubbingAMethodLastsForever
