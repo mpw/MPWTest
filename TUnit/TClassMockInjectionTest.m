@@ -183,7 +183,6 @@
     [_class classMethodReturningArgument: @"hallo"];
 }
 
-#if 0
 
 
 - (void)testVerifyAndCleanupMocksShouldRaiseAnExceptionIfNotAllMockedMethodsWereCalled
@@ -201,6 +200,8 @@
     ASSERT(exceptionCaught);
 }
 
+
+#if 0
 
 - (void)testNormalClassMockingAMessageReturnsToNormalBehaviourAfterReceivingMockedCall
 {
