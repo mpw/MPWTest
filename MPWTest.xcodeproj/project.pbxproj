@@ -47,6 +47,7 @@
 		1F61A03F10F901070043BB22 /* MPWTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F61A03D10F901070043BB22 /* MPWTestSuite.m */; };
 		1F61A04210F901070043BB22 /* MPWTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F61A03D10F901070043BB22 /* MPWTestSuite.m */; };
 		1F7926E1139616AD00C21BF9 /* TClassMockInjectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FD6135209FE00377C45 /* TClassMockInjectionTest.m */; };
+		1F79276413963A3D00C21BF9 /* TObjectMockInjectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FDB135209FE00377C45 /* TObjectMockInjectionTest.m */; };
 		1F9C9640110D6BA500492929 /* MPWTestAssertionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A50E8072E69A1006C07C4 /* MPWTestAssertionHandler.m */; };
 		1F9C9641110D6BA500492929 /* MPWTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F93660066CF95C35ADD82 /* MPWTestCase.m */; };
 		1F9C9642110D6BA500492929 /* MPWTestResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F93670066CF95C35ADD82 /* MPWTestResults.m */; };
@@ -78,7 +79,6 @@
 		1FADC23F1393A62900E6A52A /* MPWMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC2381393A62900E6A52A /* MPWMethodMirror.m */; };
 		1FB53F8E1376F39D009973F0 /* AccessorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FB53F8D1376F39D009973F0 /* AccessorMacros.h */; };
 		1FBB17FE1395614600AA9954 /* TMetaClassMockTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FD8135209FE00377C45 /* TMetaClassMockTest.m */; };
-		1FBB181D1395618D00AA9954 /* TObjectMockInjectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FDB135209FE00377C45 /* TObjectMockInjectionTest.m */; };
 		1FC7E3291392BDFD0002E44E /* MPWClassMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FC7E3271392BDFD0002E44E /* MPWClassMirror.h */; };
 		1FC7E32A1392BDFD0002E44E /* MPWClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7E3281392BDFD0002E44E /* MPWClassMirror.m */; };
 		1FC7E32B1392BDFD0002E44E /* MPWClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7E3281392BDFD0002E44E /* MPWClassMirror.m */; };
@@ -676,8 +676,8 @@
 				1FADC20D13939A8000E6A52A /* MPWObjectMirror.m in Sources */,
 				1FADC23A1393A62900E6A52A /* MPWMethodMirror.m in Sources */,
 				1FBB17FE1395614600AA9954 /* TMetaClassMockTest.m in Sources */,
-				1FBB181D1395618D00AA9954 /* TObjectMockInjectionTest.m in Sources */,
 				1F7926E1139616AD00C21BF9 /* TClassMockInjectionTest.m in Sources */,
+				1F79276413963A3D00C21BF9 /* TObjectMockInjectionTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -693,7 +693,7 @@ static int runs=0;
 		[self doTestBasic:testName withTest:test];
 	}
 	@finally {
-		[TMockController removeMocks];
+		cleanupMocks();
 		[self tearDown];
 	}
 }

@@ -34,14 +34,6 @@
     ASSERTEQUALSINT(666, [_class testClassMethod: 3]);
 }
 
-#if 0
-
-- (void)testNormalClassMockingAMessageReturnsToNormalBehaviourAfterReceivingMockedCall
-{
-    [(Class)[[_class mock] testClassMethod: 3] andReturnInt: 666];
-    [_class testClassMethod: 3];
-    ASSERTEQUALSINT(7, [_class testClassMethod: 3]);
-}
 
 
 - (void)testVoidMethodCanBeMocked
@@ -53,17 +45,19 @@
 
 - (void)testIntMethodCanBeMocked
 {
-    [(id)[[_class mock] intClassMethod] andReturnInt: 666];
+	[[_class mock] intClassMethod];
+    [_class andReturnInt: 666];
     ASSERTEQUALSINT(666, [_class intClassMethod]);
 }
 
 
-- (void)_disabled_testPointerMethodCanBeMocked
+- (void)testPointerMethodCanBeMocked
 {
     const char *wert = "hallo";
     [(id)[[_class mock] pointerClassMethod] andReturn: wert];
     ASSERT(wert == [_class pointerClassMethod]);
 }
+
 
 
 - (void)testBoolMethodCanBeMocked
@@ -89,6 +83,8 @@
     ASSERT(wert == [_class boolClassMethod]);
 }
 
+
+#if 0
 
 // FIXME andere typen unterstützen
 
@@ -193,6 +189,16 @@
     FAIL([_class classMethodReturningArgument: @"falscher parameter"]);
     [_class classMethodReturningArgument: @"hallo"];
 }
+
+
+- (void)testNormalClassMockingAMessageReturnsToNormalBehaviourAfterReceivingMockedCall
+{
+    [[_class mock] testClassMethod: 3];
+    [_class andReturnInt: 666];
+    [_class testClassMethod: 3];
+    ASSERTEQUALSINT(7, [_class testClassMethod: 3]);
+}
+
 
 
 #endif

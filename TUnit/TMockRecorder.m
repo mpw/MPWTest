@@ -12,16 +12,17 @@
 
 @implementation TMockRecorder : NSProxy
 {
+	id controller;
 }
 
 
 -controller {
-	return [TMockController fetchControllerForObject:self];
+	return controller;
 }
 
 -(void)forwardInvocation:(NSInvocation *)invocation
 {
-	[[TMockController fetchControllerForObject:self] handleMockedInvocation:invocation];
+	[[self controller] handleMockedInvocation:invocation];
 }
 
 -(NSMethodSignature*)methodSignatureForSelector:(SEL)sel
@@ -32,6 +33,7 @@
 
 -initWithController:anObject
 {
+	controller=anObject;
 	return self;
 }
 

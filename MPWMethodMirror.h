@@ -18,4 +18,6 @@
 
 -initWithSelector:(SEL)newSel typestring:(const char*)newTypes;
 -(SEL)selector;
+-(IMP)imp;
+-(void)setImp:(IMP)newImp;
 @end

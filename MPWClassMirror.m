@@ -227,7 +227,7 @@ static MPWMethodMirror* methodMirrorFromMethod( Method m )
 -(NSArray*)methodMirrors
 {
 	NSMutableArray *methods=[NSMutableArray array];
-	int methodCount=0;
+	unsigned int methodCount=0;
 	Method *methodList = class_copyMethodList([self theClass], &methodCount );
 	if ( methodList ) {
 		int i;

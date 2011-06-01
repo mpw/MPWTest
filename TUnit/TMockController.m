@@ -12,6 +12,7 @@
 #import "AccessorMacros.h"
 #import "MPWClassMirror.h"
 #import "MPWMethodMirror.h"
+#import <objc/runtime.h>
 
 #pragma .h #import <Foundation/Foundation.h>
 #pragma .h @class TMessageExpectation;
@@ -116,7 +117,7 @@ objectAccessor( NSMutableDictionary, mockedMessagesForClass, setMockedMessagesFo
 	[mock initWithController:self];
 	recordNumberOfMessages=100000;
 	[self setExpectedCount:1];
-	[self mapMock];
+//	[self mapMock];
 //	NSLog(@"mockForObject: %p",anObject);
 //	NSLog(@"mockForObject: %prec",anObject);
 	return mock;
@@ -139,7 +140,7 @@ objectAccessor( NSMutableDictionary, mockedMessagesForClass, setMockedMessagesFo
 		[[self objectMirror] setObjectClass:[[self mockingSubclass] theClass]];
 		mock=NSAllocateObject(NSClassFromString(@"TMockRecorder"), 0, NSDefaultMallocZone());
 		[mock initWithController:self];
-		[self mapMock];
+//		[self mapMock];
 	}
 	return mock;
 }
@@ -152,14 +153,15 @@ objectAccessor( NSMutableDictionary, mockedMessagesForClass, setMockedMessagesFo
 		MPWClassMirror *thisClass=[MPWClassMirror mirrorWithClass:originalObject];
 		MPWClassMirror *subClass =[thisClass createAnonymousSubclass];
 		MPWClassMirror *metaClass =[subClass metaClassMirror];
+		[self setOriginalClass:[thisClass metaClassMirror]];
+		NSLog(@"original metaClass via mirror: %p via class directly: %p",[[self originalClass] theClass],object_getClass(originalObject));
 		NSLog(@"metaClass: %@",[metaClass name]);
 		[self setObjectMirror:[MPWObjectMirror mirrorWithObject:originalObject]];
-		[self setOriginalClass:[thisClass metaClassMirror]];
 		[self setMockingSubclass:metaClass];
 		[[self objectMirror] setObjectClass:[metaClass theClass]];
 		mock=NSAllocateObject(NSClassFromString(@"TMockRecorder"), 0, NSDefaultMallocZone());
 		[mock initWithController:self];
-		[self mapMock];
+//		[self mapMock];
 		
 	}
 	return mock;
@@ -178,7 +180,7 @@ objectAccessor( NSMutableDictionary, mockedMessagesForClass, setMockedMessagesFo
 	recordNumberOfMessages=100000;
 	[mock initWithController:self];
 	[self setExpectedCount:1];
-	[self mapMock];
+//	[self mapMock];
 	return mock;
 }
 
@@ -402,8 +404,22 @@ setSomeResult( char, setCharResult )
 
 -(void)cleanup
 {
+	NSLog(@"cleanup");
 	if ( [self objectMirror] && [self mockedMessagesForClass] && [self originalClass]) {
+		NSLog(@"setting class back to %p",[[self originalClass] theClass]);
 		[[self objectMirror] setObjectClass:[[self originalClass] theClass]];
+	}
+}
+
+void cleanupMocks()
+{
+	@try {
+		for ( TMockController* controller in [[TMockController mockControllers] objectEnumerator]  ) {
+			//		NSLog(@"verify controller: %@",controller);
+			[controller cleanup];
+		}
+	} @finally {
+		[TMockController removeMocks];
 	}
 }
 
