@@ -179,29 +179,25 @@
 
 -stub
 {
+	return [self mock];
+}
+
+-shouldReceive:(int)count
+{
 	TMockController *controller=[TMockController mockControllerForObject:self];
 	[controller recordOneMessage];
-	id stub = [controller inlineMock];
-	[controller setExpectedCount:-1];
-	[controller setPartialMockAllowed:YES];
-//	NSLog(@"will return inline mock: %p",stub);
-	return stub;
+	[controller setExpectedCount:count];
+	return [controller inlineMock];
 }
 
 -shouldReceive
 {
-	TMockController *controller=[TMockController mockControllerForObject:self];
-	[controller recordOneMessage];
-	[controller setExpectedCount:1];
-	return [controller inlineMock];
+	return [self shouldReceive:1];
 }
 
 -shouldNotReceive
 {
-	TMockController *controller=[TMockController mockControllerForObject:self];
-	[controller recordOneMessage];
-	[controller setExpectedCount:0];
-	return [controller inlineMock];
+	return [self shouldReceive:0];
 }
 
 -andReturnInt:(int)anInt
@@ -236,7 +232,7 @@
 }
 
 +shouldReceive { return self; }
-+stub { return self; }
++stub { return [self mock]; }
 
 -(void)forwardInvocation:(NSInvocation *)invocation
 {

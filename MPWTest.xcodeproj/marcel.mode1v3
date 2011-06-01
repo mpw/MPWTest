@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>1F79279D13963B4600C21BF9</string>
+						<string>1F7927B413963C2E00C21BF9</string>
 						<key>history</key>
 						<array>
 							<string>1FB540311378083E009973F0</string>
@@ -257,7 +257,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>1F79279E13963B4600C21BF9</string>
+						<string>1F7927B513963C2E00C21BF9</string>
 						<key>history</key>
 						<array>
 							<string>1FB53F4D1376ED31009973F0</string>
@@ -359,14 +359,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>14</integer>
-									<integer>11</integer>
+									<integer>8</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 433}, {231, 723}}</string>
+							<string>{{0, 0}, {231, 723}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -403,7 +402,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>TClassMockInjectionTest.m</string>
+								<string>TMockRecorder.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -411,11 +410,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TClassMockInjectionTest.m</string>
+										<string>TMockRecorder.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1F79279C13963B4600C21BF9</string>
+										<string>1F7927B313963C2E00C21BF9</string>
 										<key>history</key>
 										<array>
 											<string>1FFC50391352197900377C45</string>
@@ -464,11 +463,11 @@
 											<string>1F79274D13963A1700C21BF9</string>
 											<string>1F79274E13963A1700C21BF9</string>
 											<string>1F79275013963A1700C21BF9</string>
-											<string>1F79275F13963A3400C21BF9</string>
 											<string>1F79277013963A9A00C21BF9</string>
 											<string>1F79277713963AA700C21BF9</string>
 											<string>1F79277813963AA700C21BF9</string>
-											<string>1F79276E13963A9A00C21BF9</string>
+											<string>1F7927B113963C2E00C21BF9</string>
+											<string>1F7927B213963C2E00C21BF9</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -666,6 +665,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1FB53F391376ECAC009973F0</string>
 		<string>1FB53F291376EC16009973F0</string>
 		<string>1FFC4FD4135209C500377C45</string>
@@ -874,13 +874,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>1FADC2541393B4B300E6A52A</string>
+				<string>1F7927B613963C2E00C21BF9</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>1FADC2551393B4B300E6A52A</string>
-				<string>1FADC2561393B4B300E6A52A</string>
-				<string>1FADC2571393B4B300E6A52A</string>
-				<string>1FADC2581393B4B300E6A52A</string>
-				<string>1FADC2591393B4B300E6A52A</string>
+				<string>1F7927B713963C2E00C21BF9</string>
+				<string>1F7927B813963C2E00C21BF9</string>
+				<string>1F7927B913963C2E00C21BF9</string>
+				<string>1F7927BA13963C2E00C21BF9</string>
+				<string>1F7927BB13963C2E00C21BF9</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>

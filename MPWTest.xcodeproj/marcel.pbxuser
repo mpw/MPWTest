@@ -197,6 +197,17 @@
 			1F79279C13963B4600C21BF9 /* PBXTextBookmark */ = 1F79279C13963B4600C21BF9 /* PBXTextBookmark */;
 			1F79279D13963B4600C21BF9 /* PBXTextBookmark */ = 1F79279D13963B4600C21BF9 /* PBXTextBookmark */;
 			1F79279E13963B4600C21BF9 /* PBXTextBookmark */ = 1F79279E13963B4600C21BF9 /* PBXTextBookmark */;
+			1F7927A113963B5100C21BF9 /* PBXTextBookmark */ = 1F7927A113963B5100C21BF9 /* PBXTextBookmark */;
+			1F7927A213963B5100C21BF9 /* PBXTextBookmark */ = 1F7927A213963B5100C21BF9 /* PBXTextBookmark */;
+			1F7927A313963B5100C21BF9 /* PBXTextBookmark */ = 1F7927A313963B5100C21BF9 /* PBXTextBookmark */;
+			1F7927A813963B7B00C21BF9 /* PBXTextBookmark */ = 1F7927A813963B7B00C21BF9 /* PBXTextBookmark */;
+			1F7927A913963B7B00C21BF9 /* PBXTextBookmark */ = 1F7927A913963B7B00C21BF9 /* PBXTextBookmark */;
+			1F7927AA13963B7B00C21BF9 /* PBXTextBookmark */ = 1F7927AA13963B7B00C21BF9 /* PBXTextBookmark */;
+			1F7927B113963C2E00C21BF9 /* PBXTextBookmark */ = 1F7927B113963C2E00C21BF9 /* PBXTextBookmark */;
+			1F7927B213963C2E00C21BF9 /* PBXTextBookmark */ = 1F7927B213963C2E00C21BF9 /* PBXTextBookmark */;
+			1F7927B313963C2E00C21BF9 /* PBXTextBookmark */ = 1F7927B313963C2E00C21BF9 /* PBXTextBookmark */;
+			1F7927B413963C2E00C21BF9 /* PBXTextBookmark */ = 1F7927B413963C2E00C21BF9 /* PBXTextBookmark */;
+			1F7927B513963C2E00C21BF9 /* PBXTextBookmark */ = 1F7927B513963C2E00C21BF9 /* PBXTextBookmark */;
 			1FADC188139391E000E6A52A = 1FADC188139391E000E6A52A /* PBXTextBookmark */;
 			1FADC22A13939C1B00E6A52A = 1FADC22A13939C1B00E6A52A /* PBXTextBookmark */;
 			1FB53F4D1376ED31009973F0 = 1FB53F4D1376ED31009973F0 /* PBXTextBookmark */;
@@ -499,7 +510,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 252";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 351;
@@ -569,7 +580,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 252";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 351;
@@ -599,7 +610,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 252";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 351;
@@ -629,7 +640,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 252";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 351;
@@ -659,7 +670,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 227";
 		rLen = 0;
-		rLoc = 4327;
+		rLoc = 3989;
 		rType = 0;
 		vrLen = 820;
 		vrLoc = 4053;
@@ -679,7 +690,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 253";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 351;
@@ -699,7 +710,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 229";
 		rLen = 15;
-		rLoc = 4459;
+		rLoc = 4121;
 		rType = 0;
 		vrLen = 792;
 		vrLoc = 4053;
@@ -759,7 +770,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 252";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 351;
@@ -789,7 +800,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 252";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 351;
@@ -819,7 +830,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 252";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 351;
@@ -849,7 +860,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 252";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 351;
@@ -949,7 +960,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 252";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 351;
@@ -979,7 +990,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 252";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 351;
@@ -1029,7 +1040,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 252";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 351;
@@ -1069,7 +1080,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 252";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 351;
@@ -1159,7 +1170,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 255";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1073;
 		vrLoc = 330;
@@ -1209,7 +1220,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 254";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1055;
 		vrLoc = 330;
@@ -1259,7 +1270,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 254";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1055;
 		vrLoc = 330;
@@ -1309,7 +1320,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 254";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1055;
 		vrLoc = 330;
@@ -1379,7 +1390,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 254";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1055;
 		vrLoc = 330;
@@ -1429,7 +1440,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 254";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1055;
 		vrLoc = 330;
@@ -1459,7 +1470,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 254";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1055;
 		vrLoc = 330;
@@ -1489,7 +1500,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 254";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1055;
 		vrLoc = 330;
@@ -1519,7 +1530,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 254";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1055;
 		vrLoc = 330;
@@ -1549,7 +1560,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 254";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1055;
 		vrLoc = 330;
@@ -1579,7 +1590,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 254";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1055;
 		vrLoc = 330;
@@ -1609,7 +1620,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 254";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1055;
 		vrLoc = 330;
@@ -1619,7 +1630,7 @@
 		fRef = 1FFC4FD6135209FE00377C45 /* TClassMockInjectionTest.m */;
 		name = "TClassMockInjectionTest.m: 98";
 		rLen = 0;
-		rLoc = 2023;
+		rLoc = 2017;
 		rType = 0;
 		vrLen = 834;
 		vrLoc = 1233;
@@ -1639,7 +1650,117 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 254";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
+		rType = 0;
+		vrLen = 1055;
+		vrLoc = 330;
+	};
+	1F7927A113963B5100C21BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1FFC4FD6135209FE00377C45 /* TClassMockInjectionTest.m */;
+		name = "TClassMockInjectionTest.m: 119";
+		rLen = 0;
+		rLoc = 2706;
+		rType = 0;
+		vrLen = 1144;
+		vrLoc = 1718;
+	};
+	1F7927A213963B5100C21BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1FFC4FDB135209FE00377C45 /* TObjectMockInjectionTest.m */;
+		name = "TObjectMockInjectionTest.m: 160";
+		rLen = 0;
+		rLoc = 3808;
+		rType = 0;
+		vrLen = 1737;
+		vrLoc = 2560;
+	};
+	1F7927A313963B5100C21BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
+		name = "TMockRecorder.m: 254";
+		rLen = 0;
+		rLoc = 4636;
+		rType = 0;
+		vrLen = 1055;
+		vrLoc = 330;
+	};
+	1F7927A813963B7B00C21BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1FFC4FD6135209FE00377C45 /* TClassMockInjectionTest.m */;
+		name = "TClassMockInjectionTest.m: 113";
+		rLen = 0;
+		rLoc = 2435;
+		rType = 0;
+		vrLen = 1064;
+		vrLoc = 1718;
+	};
+	1F7927A913963B7B00C21BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1FFC4FDB135209FE00377C45 /* TObjectMockInjectionTest.m */;
+		name = "TObjectMockInjectionTest.m: 160";
+		rLen = 0;
+		rLoc = 3808;
+		rType = 0;
+		vrLen = 1737;
+		vrLoc = 2560;
+	};
+	1F7927AA13963B7B00C21BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
+		name = "TMockRecorder.m: 254";
+		rLen = 0;
+		rLoc = 4636;
+		rType = 0;
+		vrLen = 1055;
+		vrLoc = 330;
+	};
+	1F7927B113963C2E00C21BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1FFC4FD6135209FE00377C45 /* TClassMockInjectionTest.m */;
+		name = "TClassMockInjectionTest.m: 101";
+		rLen = 4;
+		rLoc = 2074;
+		rType = 0;
+		vrLen = 1064;
+		vrLoc = 1718;
+	};
+	1F7927B213963C2E00C21BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
+		name = "TMockRecorder.m: 36";
+		rLen = 0;
+		rLoc = 627;
+		rType = 0;
+		vrLen = 573;
+		vrLoc = 289;
+	};
+	1F7927B313963C2E00C21BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
+		name = "TMockRecorder.m: 200";
+		rLen = 0;
+		rLoc = 3567;
+		rType = 0;
+		vrLen = 526;
+		vrLoc = 3206;
+	};
+	1F7927B413963C2E00C21BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1FFC4FDB135209FE00377C45 /* TObjectMockInjectionTest.m */;
+		name = "TObjectMockInjectionTest.m: 160";
+		rLen = 0;
+		rLoc = 3808;
+		rType = 0;
+		vrLen = 1737;
+		vrLoc = 2560;
+	};
+	1F7927B513963C2E00C21BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
+		name = "TMockRecorder.m: 250";
+		rLen = 0;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1055;
 		vrLoc = 330;
@@ -1890,7 +2011,7 @@
 		fRef = 1FFC50C91352496D00377C45 /* TMockRecorder.m */;
 		name = "TMockRecorder.m: 251";
 		rLen = 0;
-		rLoc = 4967;
+		rLoc = 4636;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 351;
@@ -2113,9 +2234,9 @@
 	};
 	1FFC4FD6135209FE00377C45 /* TClassMockInjectionTest.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {947, 2847}}";
-			sepNavSelRange = "{2023, 0}";
-			sepNavVisRange = "{1233, 834}";
+			sepNavIntBoundsRect = "{{0, 0}, {947, 2743}}";
+			sepNavSelRange = "{2074, 4}";
+			sepNavVisRange = "{1718, 1064}";
 			sepNavWindowFrame = "{{56, 0}, {843, 878}}";
 		};
 	};
@@ -2280,8 +2401,8 @@
 	};
 	1FFC50C91352496D00377C45 /* TMockRecorder.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {784, 3367}}";
-			sepNavSelRange = "{4967, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {784, 3146}}";
+			sepNavSelRange = "{4636, 0}";
 			sepNavVisRange = "{330, 1055}";
 		};
 	};

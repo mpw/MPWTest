@@ -94,12 +94,12 @@
     ASSERTEQUALS(@"Hallo", [_class classMethodReturningArgument: @"Hallo"]);
     ASSERTEQUALS(@"ist da wer?", [_class classMethodReturningArgument: @"du da"]);
 }
-#if 0
 
 
 - (void)testStubbingAMethodLastsForever
 {
-    [(id)[[_class stub] testClassMethod: 3] andReturnInt: 666];
+    [[_class stub] testClassMethod: 3];
+    [_class andReturnInt: 666];
     ASSERTEQUALSINT(666, [_class testClassMethod: 3]);
     ASSERTEQUALSINT(666, [_class testClassMethod: 3]);
     ASSERTEQUALSINT(666, [_class testClassMethod: 3]);
@@ -109,13 +109,15 @@
 
 - (void)testMockCountCanBeSet
 {
-    [[(id)[[_class mock] testClassMethod: 3] andReturnInt: 666] receiveTimes: 3];
+    [[_class mock] testClassMethod: 3];
+    [[_class andReturnInt: 666] receiveTimes: 3];
     ASSERTEQUALSINT(666, [_class testClassMethod: 3]);
     ASSERTEQUALSINT(666, [_class testClassMethod: 3]);
     ASSERTEQUALSINT(666, [_class testClassMethod: 3]);
     ASSERTEQUALSINT(7, [_class testClassMethod: 3]);
 }
 
+#if 0
 
 - (void)testMockedMethodCanThrowException
 {
