@@ -262,6 +262,18 @@
 	[[TMockController fetchControllerForObject:self] handleMockedInvocation:invocation];
 }
 
+-andReturn:returnValue
+{
+    [[TMockController mockControllerForObject:self] setResult:returnValue];
+    return self;
+}
+
++andReturn:returnValue
+{
+    [[TMockController mockControllerForObject:self] setResult:returnValue];
+    return self;
+}
+
 
 
 @end

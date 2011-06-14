@@ -4,6 +4,7 @@
 
 #import "TTestCase.h"
 #import "TMockController.h"
+#import "TMockRecorder.h"
 #import "MPWMethodMirror.h"
 #import "MPWClassMirror.h"
 
@@ -169,23 +170,29 @@ static NSString *__baseDir = nil;
 static NSString *__dataDir = nil;
 static NSString *__package = nil;
 
-#if TARGET_OS_MAC
-@interface OSEnvironment : NSObject { }
--(NSString*)getEnv:(NSString*)var;
-@end
+#if MPWTEST
+#pragma .h #if MPWTEST
 @implementation OSEnvironment
 -(NSString*)getEnv:(NSString *)var { return [NSString stringWithUTF8String:getenv([var UTF8String])]; }
 @end
 
+#ifndef STRING
 #define STRING(s) ([(s) UTF8String])
+#endif
+#ifndef STRINGVALUE
 #define STRINGVALUE(o) STRING([o description])
+#endif
+#ifndef LOGALERT
 #define LOGALERT(a,b) 
+#endif
+#pragma .h #endif
 #endif
 
 
 @implementation TTestCase:NSObject
 {
     NSString *_hint;
+    NSString *_testDataDir;
 }
 
 
@@ -272,7 +279,7 @@ static NSString *__package = nil;
 #if !MPWTEST
 - objDescription: obj
 {
-    return objc_get_class(obj) == [TMock class] ? (id)[TMockController descriptionFor: obj] : obj;
+    return [[[MPWObjectMirror mirrorWithObject:obj] classMirror] theClass] == [TMockRecorder class] ? (id)[TMockController descriptionFor: obj] : obj;
 }
 #else
 - objDescription: obj
@@ -342,7 +349,7 @@ static NSString *__package = nil;
 }
 
 
-- (void)_assert: obj isKindOfClass: (Class)expectedClass
+- (void)_assert: obj isKindOf: (Class)expectedClass
         file: (const char *)file line: (int)line
 {
     if (![obj isKindOfClass: expectedClass]) {
@@ -468,7 +475,7 @@ static NSString *__package = nil;
 
 - (void)printRunning
 {
-#if !MPWTEST
+#if 0
     [TUserIO print: @"objc."];
     if ([__package containsData]) {
         [TUserIO print: __package];
@@ -521,19 +528,19 @@ static int runs=0;
     NSString *methodFilter = [OSEnvironment getEnv: @"TESTMETHOD"];
     [self printRunning];
 #if 1
-	return 10;
 	MPWClassMirror *classMirror=[MPWClassMirror mirrorWithClass:[self class]];
 	
 	for ( MPWMethodMirror *method in [classMirror methodMirrors] ) {
 		NSAutoreleasePool *testPool = [[NSAutoreleasePool alloc] init];
 		NSString *methodName = [method name];
-		if ( [methodName hasPrefix:"@test"] || [methodName hasPrefix:"itShould"] ) {
+		if ( [methodName hasPrefix:@"test"] || [methodName hasPrefix:@"itShould"] ) {
 			if (nil != methodFilter && ![methodName matches: methodFilter]) {
 				// skip tests specified in TESTMETHOD-filter
 			} else if ([methodName matches: @"Broken$"]) {
 				// skip broken tests
 			} else {
 				runs++;
+//				NSLog(@"test method: %s",[method selector]);
 				if (![self runTestMethod: [method selector]]) {
 					++failures;
 				}
@@ -561,7 +568,7 @@ static int runs=0;
 	return failures;	
 }
 
-#if !MPWTEST
+#if 0
 
 - (int)run: (NSString *)methodFilter
 {
@@ -635,8 +642,15 @@ static int runs=0;
 
 - (NSString *)testDataDir
 {
-    return [[self class] testDataDir];
+    if (_testDataDir == nil) {
+        _testDataDir = [[[self class] testDataDir] retain];
+#if !MPWTEST		
+        [OSFilePath makePath: _testDataDir];
+#endif
+    }
+    return _testDataDir;
 }
+
 
 
 + (NSString *)testBaseDir
@@ -744,6 +758,7 @@ int objcmain(int argc, char *argv[])
 
             if (classFilter == nil || [className matches: classFilter]) {
                 if ([className matches: @"TestCase$"]) {
+					NSLog(@"skip");
                     // skip TestCases
                 } else {
                     if (YES) {

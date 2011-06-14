@@ -7,6 +7,7 @@
 @interface TTestCase:NSObject
 {
     NSString *_hint;
+    NSString *_testDataDir;
 }
 
 
@@ -159,3 +160,9 @@ extern TUnitCallBack *tUnitBeforeSetUp;
                 withMessage: @"Assertion " @#x @" did not fail"];\
     }\
 }
+
+
+@interface OSEnvironment : NSObject {
+	
+}
+@end

@@ -11,7 +11,7 @@
 
 #pragma .h #import <Foundation/Foundation.h>
 
-@implementation MPWMethodMirror
+@implementation MPWMethodMirror : NSObject
 {
 	SEL selector;
 	IMP imp;

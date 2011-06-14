@@ -16,6 +16,7 @@
 
 #pragma .h #import <Foundation/Foundation.h>
 #pragma .h @class TMessageExpectation;
+#pragma .h @class MPWClassMirror,MPWObjectMirror;
 
 @implementation TMockController : NSObject
 {

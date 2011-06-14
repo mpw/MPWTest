@@ -11,7 +11,7 @@
 #import "MPWObjectMirror.h"
 
 #pragma .h #import <Foundation/Foundation.h>
-#pragma .h @class MPWObjectMirror;
+#pragma .h @class MPWObjectMirror,MPWMethodMirror;
 
 
 
