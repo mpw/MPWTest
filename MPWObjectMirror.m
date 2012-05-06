@@ -40,10 +40,14 @@ idAccessor( theObject, setTheObject )
 
 -(Class)setObjectClass:(Class)aClass
 {
+#if 1
+	return object_setClass( theObject, aClass);
+#else
 	Class *ptr=(Class*)theObject;
 	Class previous=*ptr;
 	*ptr=aClass;
 	return previous;
+#endif	
 }
 
 @end

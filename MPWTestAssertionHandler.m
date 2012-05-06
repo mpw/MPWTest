@@ -58,8 +58,8 @@ id MPWTestFailedException = @"MPWTestFailedException";
     va_start(ap, format);
     message =
         [NSString
-      stringWithFormat: @"%@:%d: error: Test failed in %@.  %@",
-            fileName, line, functionName, format];
+      stringWithFormat: @"%@:%d: error: '%@' in %@",
+            fileName, line, format,functionName];
 //    NSLogv(message, ap);
     
     [NSException raise: [[self class] failureException]
@@ -80,10 +80,10 @@ id MPWTestFailedException = @"MPWTestFailedException";
     va_start(ap, format);
     message =
         [NSString
-      stringWithFormat: @"%@:%d: error: Test failed in %@(%@), method %@.  %@",
-            fileName, line, NSStringFromClass([object class]), 
+      stringWithFormat: @"%@:%d: error: '%@' in  %@(%@), method %@.",
+            fileName, line, format, NSStringFromClass([object class]), 
       [object isInstance] ? @"instance" : @"class",
-            NSStringFromSelector(aSelector), format];
+            NSStringFromSelector(aSelector) ];
 //    NSLogv(message, ap);
 #if WINDOWS	
     NSLog(@"failure: %@",format);
