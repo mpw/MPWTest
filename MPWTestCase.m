@@ -35,7 +35,9 @@
 }
 -(void)doTest
 {
+    timeToRun=-[NSDate timeIntervalSinceReferenceDate];
     [fixture doTest:name withTest:self];
+    timeToRun+=[NSDate timeIntervalSinceReferenceDate];
 }
 
 -(void)cleanup
@@ -46,6 +48,11 @@
 -(void)reportFailure:aFailure inResults:testResults
 {
 	[testResults addFailure:aFailure];
+}
+
+-(NSComparisonResult)compare:(MPWTestCase*)other
+{
+    return (int)[other timeToRun] - [self timeToRun];
 }
 
 -(void)runTest:testResults
@@ -80,14 +87,35 @@
     return name;
 }
 
+-(NSString*)timeString
+{
+    if ( timeToRun > 0) {
+        if ( timeToRun > 1)  {
+            return [NSString stringWithFormat:@"%.3g seconds",timeToRun];
+        } else if ( timeToRun > 0.001) {
+            return [NSString stringWithFormat:@"%.3g milliseconds",timeToRun*1000];
+        } else {
+            return [NSString stringWithFormat:@"%.3g microseconds",timeToRun*1000000];
+        }
+        
+        
+    }
+}
+
 -description
 {
-    return [self name];
+    return timeToRun > 0 ?  [NSString stringWithFormat:@"%@ in %@",[self name],[self timeString]] : [self name];
+
 }
 
 -(int)numberOfTests
 {
     return 1;
+}
+
+-(double)timeToRun
+{
+    return timeToRun;
 }
 
 -(void)dealloc

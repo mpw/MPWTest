@@ -17,13 +17,72 @@ void handler(int theSignal)
     [NSException raise:@"signal" format:@"toplevel:1: signal %d",theSignal];
 }
 
+void usage( const char *name )
+{
+    char *only=strrchr( name ,'/');
+    if ( only ) {
+        name=only+1;
+    }
+    printf("usage: %s [-v][-a][-tt][-tn][-d [debugflag]] <frameworks>\n\n",name);
+
+    printf("   -v  verbose, also show successful results\n");
+    printf("   -vv very verbose, log test names as they are executing\n");
+    printf("   -tt test type, message to ask for tests\n");
+    printf("       default is testSelectors\n");
+    printf("   -a  load AppKit\n");
+    printf("   -d  NSDebugEnabled=debugflag or YES if not given\n\n");
+    printf("   <frameworks> one or more framework names, without the .framework extension\n");
+    printf("       will look in /Library/Frameworks or in the current directory\n");
+}
+
+int runTests( NSArray *testSuiteNames , NSMutableArray *testTypeNames,  BOOL verbose ,BOOL veryVerbose ) {
+    NSMutableArray *testsuites=[NSMutableArray array];
+    MPWTestSuite* test;
+    MPWLoggingTester* results;
+    int exitCode=0;
+    
+	if ( [testTypeNames count] == 0 ) {
+		[testTypeNames addObject:@"testSelectors"];
+	}
+	for ( id suitename in testSuiteNames ) {
+		id suite = [MPWTestSuite testSuiteForLocalFramework:suitename testTypes:testTypeNames];
+		//			NSLog(@"suite name= %@",suitename);
+		//			NSLog(@"suite = %@",suite);
+		if ( suite ) {
+			[testsuites addObject:suite];
+		} else {
+			NSLog(@"couldn't load framework: %@",suitename);
+		}
+		
+	}
+	
+    test=[MPWTestSuite testSuiteWithName:@"all" testCases:testsuites];
+    //	NSLog(@"test: %@",test);
+    results=[[MPWLoggingTester alloc] init];
+    [results setVerbose:veryVerbose];
+    fprintf(stderr,"Will run %d tests\n",[test numberOfTests]);
+	[results addToTotalTests:[test numberOfTests]];
+    [test runTest:results];
+    if ( !veryVerbose ){
+        if ( verbose) {
+            [results printAllResults];
+        } else {
+            [results printResults];
+        }
+    }
+    if ( [results failureCount] >0 ) {
+        exitCode=1;
+    }
+    return exitCode;
+}
+
+
 int main (int argc, const char *argv[])
 {
-   NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     int exitCode=0;
-    id test,results;
+   [NSAutoreleasePool new];
     id testsuites = [NSMutableArray array];
-    int i,verbose=0;
+    int i,verbose=0,veryVerbose=0;
     for (i=0;i<12;i++) {
         if ( i != 3 && i != 5 && i!=2   ) {
  //           signal( i, handler  );
@@ -33,11 +92,15 @@ int main (int argc, const char *argv[])
 	NSMutableArray *testSuiteNames=[NSMutableArray array];
 //	NSLog(@"did signals, now doing %d args %d classes",argc, objc_getClassList(NULL, 0));
     for (i=1;i<argc;i++) {
-		NSLog(@"arg[%d]=%s",i,argv[i]);
+//		NSLog(@"arg[%d]=%s",i,argv[i]);
         if ( !strcmp( argv[i], "-v" )) {
 			verbose=1;
+        } else if ( !strcmp( argv[i], "-vv" )) {
+            veryVerbose=1;
         } else if ( !strcmp( argv[i], "-a" )) {
-			NSLog(@"loading appkit: %d",[[NSBundle bundleWithPath:@"/System/Library/Frameworks/AppKit.framework"] load]);
+            BOOL didLoadAppKit;
+            didLoadAppKit=[[NSBundle bundleWithPath:@"/System/Library/Frameworks/AppKit.framework"] load];
+//            NSLog(@"loaded appkit: %d",didLoadAppKit);
             [NSClassFromString(@"NSApplication") sharedApplication];
         } else if ( !strcmp( argv[i], "-tt" )) {
 			if ( argv[i+1] ) {
@@ -60,35 +123,13 @@ int main (int argc, const char *argv[])
 			[testSuiteNames addObject:suitename];
        }
     }
-	if ( [testTypeNames count] == 0 ) {
-		[testTypeNames addObject:@"testSelectors"];
-	}
-	for ( id suitename in testSuiteNames ) {
-		id suite = [MPWTestSuite testSuiteForLocalFramework:suitename testTypes:testTypeNames];
-		//			NSLog(@"suite name= %@",suitename);
-		//			NSLog(@"suite = %@",suite);
-		if ( suite ) {
-			[testsuites addObject:suite];
-		} else {
-			NSLog(@"couldn't load framework: %@",suitename);
-		}
-		
-	}
-	
-    test=[MPWTestSuite testSuiteWithName:@"all" testCases:testsuites];
-	NSLog(@"test: %@",test);
-    results=[[MPWLoggingTester alloc] init];
-    [results setVerbose:verbose];
-    fprintf(stderr,"Will run %d tests\n",[test numberOfTests]);
-	[results addToTotalTests:[test numberOfTests]];
-    [test runTest:results];
-    if ( !verbose ){
-        [results printResults];
-    }
-    if ( [results failureCount] >0 ) {
+    if ( [testSuiteNames count] >0  ) {
+        exitCode = runTests( testSuiteNames, testTypeNames, verbose, veryVerbose);
+    } else {
+        usage(argv[0]);
         exitCode=1;
     }
-   [pool release];
+    
    exit(exitCode);       // insure the process exit status is 0
    return exitCode;      // ...and make main fit the ANSI spec.
 }

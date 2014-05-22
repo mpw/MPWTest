@@ -78,10 +78,12 @@ id MPWTestFailedException = @"MPWTestFailedException";
     va_list       ap;
     NSLog(@"failure in method");
     va_start(ap, format);
+    unichar flagchar=9873;
+    NSString *flag=[NSString stringWithCharacters:&flagchar length:1];
     message =
         [NSString
-      stringWithFormat: @"%@:%d: error: '%@' in  %@(%@), method %@.",
-            fileName, line, format, NSStringFromClass([object class]), 
+      stringWithFormat: @"%@:%d: error: %@ %@ in  %@(%@), method %@.",
+            fileName, line,flag, format, NSStringFromClass([object class]), 
       [object isInstance] ? @"instance" : @"class",
             NSStringFromSelector(aSelector) ];
 //    NSLogv(message, ap);

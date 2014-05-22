@@ -18,7 +18,7 @@
 {
     [super addFailure:aFailure];
     if ( verbose ) {
-        fprintf(stderr, "\033[1;32mfailed: %s : %s\033[1;0m\n",[[self currentTestDescription] UTF8String],[[aFailure description] UTF8String]);
+        fprintf(stdout, "\033[1;32mfailed: %s : %s\033[1;0m\n",[[self currentTestDescription] UTF8String],[[aFailure description] UTF8String]);
     }
 }
 
@@ -26,7 +26,7 @@
 {
     [super addSuccess:aSuccess];
     if ( verbose ) {
-        fprintf(stderr, "success:%s : %s\n",[[self currentTestDescription] UTF8String],[[aSuccess description] UTF8String]);
+        fprintf( stdout ,"success:%s : %s\n",[[self currentTestDescription] UTF8String],[[aSuccess description] UTF8String]);
     }
     //
 }
@@ -34,7 +34,7 @@
 -(void)beginTest:aTest
 {
     if ( verbose && [aTest isKindOfClass:[MPWTestCase class]] ) {
-        fprintf(stderr,"start: %s : %s\n",[[self currentTestDescription] UTF8String],[[aTest description] UTF8String]);
+        fprintf( stdout ,"start: %s : %s\n",[[self currentTestDescription] UTF8String],[[aTest description] UTF8String]);
     }
     [super beginTest:aTest];
 //    NSLog(@"Test: %@",[currentTest componentsJoinedByString:@":"]);

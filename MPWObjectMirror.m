@@ -14,10 +14,7 @@
 #pragma .h #import <Foundation/Foundation.h>
 #pragma .h @class MPWClassMirror;
 
-@implementation MPWObjectMirror : NSObject
-{
-	id	theObject;
-}
+@implementation MPWObjectMirror
 
 idAccessor( theObject, setTheObject )
 

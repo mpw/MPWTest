@@ -8,6 +8,7 @@
     id		name;
     id		arguments;
     id		fixture;
+    double  timeToRun;
 }
 
 -(void)setup;

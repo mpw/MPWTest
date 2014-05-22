@@ -106,6 +106,18 @@
     return [failures count]==0;
 }
 
+-(BOOL)printOKResults
+{
+    return printOKResults;
+}
+
+-(char*)reportString
+{
+    return [self failureCount]==0 ?
+    ([self printOKResults] ? "tests:1:warning: " : "") :
+    "tests:1:error: ";
+}
+
 -(void)printResults
 {
 	if ( [self allOk] ) {
@@ -113,7 +125,7 @@
 	} else {
 		fprintf(stderr, "\033[91;31m" );
 	}
-    fprintf(stderr,"tests:1:%s %d tests (of %d) executed, %d failures (%g %% success rate)\n",([self failureCount]==0 ? " warning: " :" error:"),[self successCount], totalTestsToRun,[self failureCount],[self percentSucces]);
+    fprintf(stderr,"%s%d tests (of %d) executed, %d failures (%g %% success rate)\n",[self reportString],[self successCount], totalTestsToRun,[self failureCount],[self percentSucces]);
     if ( ![self allOk] ) {
         int i;
         fprintf(stderr,"failures:\n");
@@ -127,7 +139,7 @@
 -(void)printAllResults
 {
     [self printResults];
-    NSLog(@"successes: %@",successes);
+    NSLog(@"successes: %@",[successes sortedArrayUsingSelector:@selector(compare:)]);
 }
 
 -(NSString*)currentTestDescription

@@ -10,6 +10,7 @@
     id	successes;
     id	errors;
     id  currentTest;
+    BOOL printOKResults;
 }
 
 -(void)addFailure:aFailure;

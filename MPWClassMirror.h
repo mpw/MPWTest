@@ -14,6 +14,7 @@
 	Class theClass;
 }
 
+
 +mirrorWithClass:(Class)aClass;
 -(NSString*)name;
 +(NSArray*)allUsefulClasses;

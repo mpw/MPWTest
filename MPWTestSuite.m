@@ -122,10 +122,9 @@ int havePrinted=0;
 				  @"MPWPoint",
 				  nil]];
 #else		
-		NSArray *classMirrors = [aBundle classes];
-		NSLog(@"got classes initializing suite");
+		NSArray *classMirrors = [[aBundle classes] sortedArrayUsingSelector:@selector(compare:)];
 		suite = [MPWTestSuite testSuiteWithName:aName  classMirrors:classMirrors testTypes:testTypeNames];
-		NSLog(@"got suite");
+//		NSLog(@"got suite");
 //				[initial addObjectsFromArray:newClasses];
 #endif
     } else {
@@ -169,7 +168,7 @@ int havePrinted=0;
 +testSuiteForLocalFramework:(NSString*)frameworkName testTypes:testTypeNames
 {
 	NSString *path=[self frameworkPathForFrameworkName:frameworkName];
-	NSLog(@"path: %@",path);
+//	NSLog(@"path: %@",path);
 	id bundle = [NSBundle bundleWithPath:path];
 	id suite=nil;
 	if ( bundle ) {

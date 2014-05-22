@@ -11,12 +11,7 @@
 
 #pragma .h #import <Foundation/Foundation.h>
 
-@implementation MPWMethodMirror : NSObject
-{
-	SEL selector;
-	IMP imp;
-	const char *typestring;
-}
+@implementation MPWMethodMirror 
 
 scalarAccessor( SEL, selector,setSelector )
 scalarAccessor( IMP, imp, setImp )

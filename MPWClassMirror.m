@@ -15,10 +15,7 @@
 
 
 
-@implementation MPWClassMirror : NSObject
-{
-	Class theClass;
-}
+@implementation MPWClassMirror
 
 
 -initWithClass:(Class)aClass
@@ -43,6 +40,10 @@
 	return [NSString stringWithUTF8String:[self cStringClassName]];
 }
 
+-(NSComparisonResult)compare:other
+{
+    return [[self name] compare:[other name]];
+}
 
 -(NSArray*)invalidClassNames
 {
@@ -159,7 +160,7 @@
 
 -(MPWClassMirror*)createAnonymousSubclass
 {
-	NSString *madeUpName=[NSString stringWithFormat:@"%@-subclass-%p-%d",[self name],self,random()];
+	NSString *madeUpName=[NSString stringWithFormat:@"%@-subclass-%p-%ld",[self name],self,random()];
 	return [self createSubclassWithName:madeUpName];
 }
 
@@ -251,6 +252,7 @@ static MPWMethodMirror* methodMirrorFromMethod( Method m )
 
 
 #endif
+#if 0
 
 #import <MPWFoundation/DebugMacros.h>
 #import <objc/message.h>
@@ -327,5 +329,5 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 }
 
 @end
-
+#endif
 
