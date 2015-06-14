@@ -54,8 +54,9 @@
 						   @"NSATSGlyphGen",
 						   @"_",
 						   @"Object",
-						   @"NSMessageBuilder",
-#if WINDOWS						   
+                           @"NSMessageBuilder",
+                           @"NSViewServiceApplication",
+#if WINDOWS
 						   @"Object",
 						   @"NSProxy",
 						   @"MPWSoftPointerProxy",

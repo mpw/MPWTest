@@ -13,7 +13,6 @@
 			buildPhases = (
 			);
 			dependencies = (
-				1F902C610DAEA5A2008191F0 /* PBXTargetDependency */,
 				1F902C650DAEA5AB008191F0 /* PBXTargetDependency */,
 				1F902C670DAEA5AF008191F0 /* PBXTargetDependency */,
 			);
@@ -23,16 +22,14 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		1F0082D60DAD7A51003E7ED1 /* testlogger_main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B926A0D4D37B100EA8493 /* testlogger_main.m */; };
-		1F0082DE0DAD7A5A003E7ED1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8F937A0066CF95C35ADD82 /* Foundation.framework */; };
 		1F33C5A9117E61D100245E3E /* MPWTestSuite.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F33C5A8117E61D100245E3E /* MPWTestSuite.h */; };
 		1F33C5AA117E61D100245E3E /* MPWTestSuite.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F33C5A8117E61D100245E3E /* MPWTestSuite.h */; };
 		1F346FFE0F2067E9003D39D2 /* ExceptionHandling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F346FFD0F2067E9003D39D2 /* ExceptionHandling.framework */; };
 		1F4B926B0D4D37B100EA8493 /* testlogger_main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B926A0D4D37B100EA8493 /* testlogger_main.m */; };
-		1F4B928A0D4D382800EA8493 /* MPWTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F936D0066CF95C35ADD82 /* MPWTestCase.h */; settings = {ATTRIBUTES = (Public, Project, ); }; };
-		1F4B928B0D4D382800EA8493 /* MPWTestResults.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F936E0066CF95C35ADD82 /* MPWTestResults.h */; settings = {ATTRIBUTES = (Public, Project, ); }; };
-		1F4B928D0D4D382800EA8493 /* NSObjectTestingSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F93700066CF95C35ADD82 /* NSObjectTestingSupport.h */; settings = {ATTRIBUTES = (Public, Project, ); }; };
-		1F4B928E0D4D382800EA8493 /* MPWLoggingTester.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F93710066CF95C35ADD82 /* MPWLoggingTester.h */; settings = {ATTRIBUTES = (Public, Project, ); }; };
+		1F4B928A0D4D382800EA8493 /* MPWTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F936D0066CF95C35ADD82 /* MPWTestCase.h */; settings = {ATTRIBUTES = (Project, Public, ); }; };
+		1F4B928B0D4D382800EA8493 /* MPWTestResults.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F936E0066CF95C35ADD82 /* MPWTestResults.h */; settings = {ATTRIBUTES = (Project, Public, ); }; };
+		1F4B928D0D4D382800EA8493 /* NSObjectTestingSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F93700066CF95C35ADD82 /* NSObjectTestingSupport.h */; settings = {ATTRIBUTES = (Project, Public, ); }; };
+		1F4B928E0D4D382800EA8493 /* MPWLoggingTester.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F93710066CF95C35ADD82 /* MPWLoggingTester.h */; settings = {ATTRIBUTES = (Project, Public, ); }; };
 		1F4B928F0D4D382800EA8493 /* NSBundleClassEnumeration.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F93720066CF95C35ADD82 /* NSBundleClassEnumeration.h */; };
 		1F4B92900D4D382800EA8493 /* MPWTestAssertionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F6A50E7072E69A1006C07C4 /* MPWTestAssertionHandler.h */; };
 		1F4B92930D4D382800EA8493 /* MPWTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F93660066CF95C35ADD82 /* MPWTestCase.m */; settings = {ATTRIBUTES = (); }; };
@@ -45,7 +42,6 @@
 		1F4B92CC0D4D391B00EA8493 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8F937A0066CF95C35ADD82 /* Foundation.framework */; };
 		1F61A03E10F901070043BB22 /* MPWTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F61A03D10F901070043BB22 /* MPWTestSuite.m */; };
 		1F61A03F10F901070043BB22 /* MPWTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F61A03D10F901070043BB22 /* MPWTestSuite.m */; };
-		1F61A04210F901070043BB22 /* MPWTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F61A03D10F901070043BB22 /* MPWTestSuite.m */; };
 		1F7926E1139616AD00C21BF9 /* TClassMockInjectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FD6135209FE00377C45 /* TClassMockInjectionTest.m */; };
 		1F79276413963A3D00C21BF9 /* TObjectMockInjectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC4FDB135209FE00377C45 /* TObjectMockInjectionTest.m */; };
 		1F9C9640110D6BA500492929 /* MPWTestAssertionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A50E8072E69A1006C07C4 /* MPWTestAssertionHandler.m */; };
@@ -57,23 +53,15 @@
 		1F9C9646110D6BA500492929 /* testlogger_main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B926A0D4D37B100EA8493 /* testlogger_main.m */; };
 		1F9C9647110D6BA500492929 /* MPWTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F61A03D10F901070043BB22 /* MPWTestSuite.m */; };
 		1F9C9649110D6BA500492929 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8F937A0066CF95C35ADD82 /* Foundation.framework */; };
-		1F9C971B1116583200492929 /* MPWTestAssertionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A50E8072E69A1006C07C4 /* MPWTestAssertionHandler.m */; };
-		1F9C971C1116583200492929 /* MPWTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F93660066CF95C35ADD82 /* MPWTestCase.m */; };
-		1F9C971D1116583200492929 /* MPWTestResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F93670066CF95C35ADD82 /* MPWTestResults.m */; };
-		1F9C971E1116583200492929 /* NSObjectTestingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F93690066CF95C35ADD82 /* NSObjectTestingSupport.m */; };
-		1F9C971F1116583200492929 /* MPWLoggingTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F936A0066CF95C35ADD82 /* MPWLoggingTester.m */; };
-		1F9C97201116583200492929 /* NSBundleClassEnumeration.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F936B0066CF95C35ADD82 /* NSBundleClassEnumeration.m */; };
 		1FADC20C13939A8000E6A52A /* MPWObjectMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FADC20A13939A8000E6A52A /* MPWObjectMirror.h */; };
 		1FADC20D13939A8000E6A52A /* MPWObjectMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC20B13939A8000E6A52A /* MPWObjectMirror.m */; };
 		1FADC20E13939A8000E6A52A /* MPWObjectMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC20B13939A8000E6A52A /* MPWObjectMirror.m */; };
-		1FADC20F13939A8000E6A52A /* MPWObjectMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC20B13939A8000E6A52A /* MPWObjectMirror.m */; };
 		1FADC21013939A8000E6A52A /* MPWObjectMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FADC20A13939A8000E6A52A /* MPWObjectMirror.h */; };
 		1FADC21113939A8000E6A52A /* MPWObjectMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC20B13939A8000E6A52A /* MPWObjectMirror.m */; };
 		1FADC21213939A8000E6A52A /* MPWObjectMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC20B13939A8000E6A52A /* MPWObjectMirror.m */; };
 		1FADC2391393A62900E6A52A /* MPWMethodMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FADC2371393A62900E6A52A /* MPWMethodMirror.h */; };
 		1FADC23A1393A62900E6A52A /* MPWMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC2381393A62900E6A52A /* MPWMethodMirror.m */; };
 		1FADC23B1393A62900E6A52A /* MPWMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC2381393A62900E6A52A /* MPWMethodMirror.m */; };
-		1FADC23C1393A62900E6A52A /* MPWMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC2381393A62900E6A52A /* MPWMethodMirror.m */; };
 		1FADC23D1393A62900E6A52A /* MPWMethodMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FADC2371393A62900E6A52A /* MPWMethodMirror.h */; };
 		1FADC23E1393A62900E6A52A /* MPWMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC2381393A62900E6A52A /* MPWMethodMirror.m */; };
 		1FADC23F1393A62900E6A52A /* MPWMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC2381393A62900E6A52A /* MPWMethodMirror.m */; };
@@ -82,14 +70,13 @@
 		1FC7E3291392BDFD0002E44E /* MPWClassMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FC7E3271392BDFD0002E44E /* MPWClassMirror.h */; };
 		1FC7E32A1392BDFD0002E44E /* MPWClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7E3281392BDFD0002E44E /* MPWClassMirror.m */; };
 		1FC7E32B1392BDFD0002E44E /* MPWClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7E3281392BDFD0002E44E /* MPWClassMirror.m */; };
-		1FC7E32C1392BDFD0002E44E /* MPWClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7E3281392BDFD0002E44E /* MPWClassMirror.m */; };
 		1FC7E32D1392BDFD0002E44E /* MPWClassMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FC7E3271392BDFD0002E44E /* MPWClassMirror.h */; };
 		1FC7E32E1392BDFD0002E44E /* MPWClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7E3281392BDFD0002E44E /* MPWClassMirror.m */; };
 		1FC7E32F1392BDFD0002E44E /* MPWClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC7E3281392BDFD0002E44E /* MPWClassMirror.m */; };
-		1FD58B4D10BF613800919BE7 /* MPWTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F936D0066CF95C35ADD82 /* MPWTestCase.h */; settings = {ATTRIBUTES = (Public, Project, ); }; };
-		1FD58B4E10BF613800919BE7 /* MPWTestResults.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F936E0066CF95C35ADD82 /* MPWTestResults.h */; settings = {ATTRIBUTES = (Public, Project, ); }; };
-		1FD58B5010BF613800919BE7 /* NSObjectTestingSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F93700066CF95C35ADD82 /* NSObjectTestingSupport.h */; settings = {ATTRIBUTES = (Public, Project, ); }; };
-		1FD58B5110BF613800919BE7 /* MPWLoggingTester.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F93710066CF95C35ADD82 /* MPWLoggingTester.h */; settings = {ATTRIBUTES = (Public, Project, ); }; };
+		1FD58B4D10BF613800919BE7 /* MPWTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F936D0066CF95C35ADD82 /* MPWTestCase.h */; settings = {ATTRIBUTES = (Project, Public, ); }; };
+		1FD58B4E10BF613800919BE7 /* MPWTestResults.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F936E0066CF95C35ADD82 /* MPWTestResults.h */; settings = {ATTRIBUTES = (Project, Public, ); }; };
+		1FD58B5010BF613800919BE7 /* NSObjectTestingSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F93700066CF95C35ADD82 /* NSObjectTestingSupport.h */; settings = {ATTRIBUTES = (Project, Public, ); }; };
+		1FD58B5110BF613800919BE7 /* MPWLoggingTester.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F93710066CF95C35ADD82 /* MPWLoggingTester.h */; settings = {ATTRIBUTES = (Project, Public, ); }; };
 		1FD58B5210BF613800919BE7 /* NSBundleClassEnumeration.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8F93720066CF95C35ADD82 /* NSBundleClassEnumeration.h */; };
 		1FD58B5310BF613800919BE7 /* MPWTestAssertionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F6A50E7072E69A1006C07C4 /* MPWTestAssertionHandler.h */; };
 		1FD58B5610BF613800919BE7 /* MPWTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F93660066CF95C35ADD82 /* MPWTestCase.m */; settings = {ATTRIBUTES = (); }; };
@@ -149,13 +136,6 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
-		1F902C600DAEA5A2008191F0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0D8F93630066CF95C35ADD82 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1F0082D00DAD7A3D003E7ED1;
-			remoteInfo = testloggergc;
-		};
 		1F902C640DAEA5AB008191F0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0D8F93630066CF95C35ADD82 /* Project object */;
@@ -186,7 +166,6 @@
 		0D8F93770066CF95C35ADD82 /* m.template */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = m.template; sourceTree = "<group>"; };
 		0D8F93780066CF95C35ADD82 /* h.template */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = h.template; sourceTree = "<group>"; };
 		0D8F937A0066CF95C35ADD82 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		1F0082D10DAD7A3D003E7ED1 /* testloggergc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testloggergc; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F33C5A8117E61D100245E3E /* MPWTestSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWTestSuite.h; sourceTree = "<group>"; };
 		1F346FFD0F2067E9003D39D2 /* ExceptionHandling.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExceptionHandling.framework; path = /System/Library/Frameworks/ExceptionHandling.framework; sourceTree = "<absolute>"; };
 		1F4B92540D4D377100EA8493 /* testlogger */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testlogger; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,14 +214,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1F0082CF0DAD7A3D003E7ED1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1F0082DE0DAD7A5A003E7ED1 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1F4B92520D4D377100EA8493 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -354,7 +325,6 @@
 			children = (
 				1F4B92540D4D377100EA8493 /* testlogger */,
 				1F4B92A20D4D382800EA8493 /* MPWTest.framework */,
-				1F0082D10DAD7A3D003E7ED1 /* testloggergc */,
 				1FD58B6510BF613800919BE7 /* MPWTest.framework */,
 				1F9C964F110D6BA500492929 /* testlogger */,
 			);
@@ -461,22 +431,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1F0082D00DAD7A3D003E7ED1 /* testloggergc */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1F0083B20DAD7A8C003E7ED1 /* Build configuration list for PBXNativeTarget "testloggergc" */;
-			buildPhases = (
-				1F0082CE0DAD7A3D003E7ED1 /* Sources */,
-				1F0082CF0DAD7A3D003E7ED1 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = testloggergc;
-			productName = testloggergc;
-			productReference = 1F0082D10DAD7A3D003E7ED1 /* testloggergc */;
-			productType = "com.apple.product-type.tool";
-		};
 		1F4B92530D4D377100EA8493 /* testlogger */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F4B925E0D4D378D00EA8493 /* Build configuration list for PBXNativeTarget "testlogger" */;
@@ -557,6 +511,7 @@
 		0D8F93630066CF95C35ADD82 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = 1FE20DD1091E321900161270 /* Build configuration list for PBXProject "MPWTest" */;
 			compatibilityVersion = "Xcode 2.4";
@@ -575,7 +530,6 @@
 			targets = (
 				1F4B92880D4D382800EA8493 /* MPWTest (Framework) (Upgraded) */,
 				1F4B92530D4D377100EA8493 /* testlogger */,
-				1F0082D00DAD7A3D003E7ED1 /* testloggergc */,
 				1F902C570DAEA598008191F0 /* All */,
 				1FD58B4B10BF613800919BE7 /* MPWTest (Windows framework) */,
 				1F9C963E110D6BA500492929 /* testlogger (Windows) */,
@@ -619,24 +573,6 @@
 /* End PBXRezBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1F0082CE0DAD7A3D003E7ED1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1F9C971B1116583200492929 /* MPWTestAssertionHandler.m in Sources */,
-				1F9C971C1116583200492929 /* MPWTestCase.m in Sources */,
-				1F9C971D1116583200492929 /* MPWTestResults.m in Sources */,
-				1F9C971E1116583200492929 /* NSObjectTestingSupport.m in Sources */,
-				1F9C971F1116583200492929 /* MPWLoggingTester.m in Sources */,
-				1F9C97201116583200492929 /* NSBundleClassEnumeration.m in Sources */,
-				1F0082D60DAD7A51003E7ED1 /* testlogger_main.m in Sources */,
-				1F61A04210F901070043BB22 /* MPWTestSuite.m in Sources */,
-				1FC7E32C1392BDFD0002E44E /* MPWClassMirror.m in Sources */,
-				1FADC20F13939A8000E6A52A /* MPWObjectMirror.m in Sources */,
-				1FADC23C1393A62900E6A52A /* MPWMethodMirror.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1F4B92510D4D377100EA8493 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -722,11 +658,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1F902C610DAEA5A2008191F0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1F0082D00DAD7A3D003E7ED1 /* testloggergc */;
-			targetProxy = 1F902C600DAEA5A2008191F0 /* PBXContainerItemProxy */;
-		};
 		1F902C650DAEA5AB008191F0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1F4B92530D4D377100EA8493 /* testlogger */;
@@ -740,78 +671,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1F0082D30DAD7A3E003E7ED1 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_OBJC_GC = required;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = testloggergc;
-			};
-			name = Development;
-		};
-		1F0082D40DAD7A3E003E7ED1 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_GC = required;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = testloggergc;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-		1F0082D50DAD7A3E003E7ED1 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_OBJC_GC = required;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = testloggergc;
-			};
-			name = Default;
-		};
 		1F4B92560D4D377200EA8493 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1281,28 +1140,6 @@
 			};
 			name = Release;
 		};
-		1FD58B7D10BF633A00919BE7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_OBJC_GC = required;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = testloggergc;
-			};
-			name = Release;
-		};
 		1FD58B7E10BF633A00919BE7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1374,17 +1211,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1F0083B20DAD7A8C003E7ED1 /* Build configuration list for PBXNativeTarget "testloggergc" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1F0082D30DAD7A3E003E7ED1 /* Development */,
-				1F0082D40DAD7A3E003E7ED1 /* Deployment */,
-				1F0082D50DAD7A3E003E7ED1 /* Default */,
-				1FD58B7D10BF633A00919BE7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
-		};
 		1F4B925E0D4D378D00EA8493 /* Build configuration list for PBXNativeTarget "testlogger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
