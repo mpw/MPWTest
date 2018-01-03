@@ -21,6 +21,7 @@
 -(void)printResults;
 -(void)printAllResults;
 -(int)failureCount;
+-(void)addToTotalTests:(int)numberOfTests;
 
 -(NSString*)currentTestDescription;
 

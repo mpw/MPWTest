@@ -109,8 +109,8 @@ int main (int argc, const char *argv[])
 			}
         } else if ( !strcmp( argv[i], "-tn" )) {
 			if ( argv[i+1] ) {
-				
-			}
+                ;
+            }
         } else if ( !strcmp( argv[i], "-d" )) {
             if ( argv[i+1] && isdigit( argv[i+1][0] )) {
                 NSDebugEnabled=atoi(argv[i+1]);

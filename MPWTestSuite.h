@@ -9,7 +9,8 @@
 	id testTypes;
 }
 
-+testSuiteWithName:aName classMirrors:(NSArray*)classMirrors;
++testSuiteWithName:aName classMirrors:(NSArray*)classMirrors testTypes:testTypeNames;
++testSuiteWithName:aName testCases:cases;
 +testSuiteForLocalFramework:(NSString*)frameworkName testTypes:testTypeNames;
 
 -(void)runTest:testResults;

@@ -614,7 +614,7 @@ static int runs=0;
                 if ([exceptions containsData]) {
                     ++failures;
                     [TUserIO eprintln: @"ERROR: Test %@:%@ failed - %@",
-                            [self className], method, [exceptions pop]];
+                            [self class], method, [exceptions pop]];
                     while ([exceptions containsData]) {
                         [TUserIO eprintln: @"Root cause:\n%@", [exceptions pop]];
                     }

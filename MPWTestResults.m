@@ -36,6 +36,7 @@
 
 - (void)printStackTrace:(NSException *)e
 {
+#if !TARGET_OS_IOS
     NSString *stack = nil; // [[e userInfo] objectForKey:NSStackTraceKey];
 //    NSString *stack =[[e userInfo] objectForKey:NSStackTraceKey];
     if (stack) {
@@ -56,6 +57,7 @@
     } else {
         NSLog(@"No stack trace available.");
     }
+#endif
 }
 
 -(void)addSuccess:aSuccess

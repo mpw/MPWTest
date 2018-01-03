@@ -24,7 +24,7 @@
     SEL testMethod=NSSelectorFromString(testName);
 
     if ( testMethod &&  [self respondsToSelector:testMethod] ) {
-        objc_msgSend( self, testMethod );
+        [self performSelector:testMethod];
     } else {
         [NSException raise:@"test-inconsistency" format:@"error: fixture %@ doesn't respond to test message %@ for test %@",self,testName,[test description]];
     }
@@ -55,7 +55,7 @@
 {
     SEL testMethod=NSSelectorFromString(testName);
     if ( testMethod ) {
-        objc_msgSend( self, testMethod );
+        [self performSelector:testMethod];
     } else {
         [NSException raise:@"test-inconsistency" format:@"fixture %@ doesn't respond to test message %@ for test %@",self,NSStringFromSelector(testMethod),[test description]];
     }
@@ -65,7 +65,7 @@
 {
     SEL testMethod=NSSelectorFromString(testName);
     if ( testMethod ) {
-        objc_msgSend( self, testMethod );
+        [self performSelector:testMethod];
     } else {
         [NSException raise:@"test-inconsistency" format:@"fixture %@ doesn't respond to test message %@ for test %@",self,NSStringFromSelector(testMethod),[test description]];
     }

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>All.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
+		<key>InterscriptSite.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>133</integer>
+		</dict>
+		<key>MPWTest (Framework) (Upgraded).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>MPWTest (Windows framework).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>MPWTest.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>131</integer>
+		</dict>
+		<key>testlogger (Windows).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>testlogger.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>testloggergc.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>1F0082D00DAD7A3D003E7ED1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1F4B92530D4D377100EA8493</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1F4B92880D4D382800EA8493</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1F902C570DAEA598008191F0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1F9C963E110D6BA500492929</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1F9D63B41F601DC400DA9514</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1FD58B4B10BF613800919BE7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

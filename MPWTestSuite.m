@@ -114,7 +114,7 @@ int havePrinted=0;
         //    newClasses=getClasses(initial);
 //			NSLog(@"bundle = %@",aBundle);
 //		NSLog(@"did load bundle with class names: %@",[aBundle classNames]);
-#if 0 // WINDOWS		
+#if 0 // WINDOWS
 		suite = [MPWTestSuite testSuiteWithName:aName  classNames:
 				 [NSArray arrayWithObjects:
 				  @"MPWIntArray",
