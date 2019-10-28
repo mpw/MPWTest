@@ -84,12 +84,12 @@
     [currentTest removeLastObject];
 }
 
--(int)successCount 
+-(long)successCount
 {
 	return [successes count];
 }
 
--(int)failureCount
+-(long)failureCount
 {
     return [failures count];
 }
@@ -127,7 +127,7 @@
 	} else {
 		fprintf(stderr, "\033[91;31m" );
 	}
-    fprintf(stderr,"%s%d tests (of %d) executed, %d failures (%g %% success rate)\n",[self reportString],[self successCount], totalTestsToRun,[self failureCount],[self percentSucces]);
+    fprintf(stderr,"%s%ld tests (of %d) executed, %ld failures (%g %% success rate)\n",[self reportString],[self successCount], totalTestsToRun,[self failureCount],[self percentSucces]);
     if ( ![self allOk] ) {
         int i;
         fprintf(stderr,"failures:\n");

@@ -81,7 +81,7 @@ int hadSignal=0;
 int havePrinted=0;
 -(void)runTest:testResults
 {
-	int i,max;
+	long i,max;
     [testResults beginTest:self];
     NS_DURING
 	for (i=0,max=[testCases count];i<max;i++ ) {
@@ -108,7 +108,7 @@ int havePrinted=0;
 +testSuiteForBundle:(NSBundle*)aBundle name:aName testTypes:testTypeNames
 {
     id suite;
-//    NSLog(@"will load bundle %@",aName);
+    NSLog(@"will load bundle %@",aName);
 //    [self initializeLoadedClassesIfNecessary];
     if ( [aBundle load] ) {
         //    newClasses=getClasses(initial);
@@ -121,8 +121,12 @@ int havePrinted=0;
 				  @"MPWObject",
 				  @"MPWPoint",
 				  nil]];
-#else		
-		NSArray *classMirrors = [[aBundle classes] sortedArrayUsingSelector:@selector(compare:)];
+#else
+        NSLog(@"will get class mirrors");
+        NSArray *classMirrors = [aBundle classes];
+        NSLog(@"got class mirrors");
+        classMirrors = [classMirrors sortedArrayUsingSelector:@selector(compare:)];
+        NSLog(@"did sort class mirrors");
 		suite = [MPWTestSuite testSuiteWithName:aName  classMirrors:classMirrors testTypes:testTypeNames];
 //		NSLog(@"got suite");
 //				[initial addObjectsFromArray:newClasses];
@@ -186,6 +190,18 @@ int havePrinted=0;
         number+=[nextSubtest numberOfTests];
     }
     return number;
+}
+
+-(void)listInto:(NSMutableArray*)result
+{
+    for (MPWTestSuite *s in testCases) {
+        [result addObject:[s name]];
+    }
+}
+
+-(NSString*)name
+{
+    return name; 
 }
 
 @end

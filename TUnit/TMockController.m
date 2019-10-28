@@ -3,7 +3,7 @@
 //  MPWTest
 //
 //  Created by Marcel Weiher on 4/10/11.
-//  Copyright 2011 metaobject ltd. All rights reserved.
+//  Copyright 2011 Marcel Weiher. All rights reserved.
 //
 
 #import "TMockController.h"

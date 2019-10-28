@@ -3,7 +3,7 @@
 //  MPWTest
 //
 //  Created by Marcel Weiher on 5/29/11.
-//  Copyright 2011 metaobject ltd. All rights reserved.
+//  Copyright 2011 Marcel Weiher. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -19,11 +19,8 @@
 -(NSString*)name;
 +(NSArray*)allUsefulClasses;
 -(Class)theClass;
--(Class)superclass;
 -(BOOL)isInBundle:(NSBundle*)aBundle;
 -(MPWClassMirror*)createAnonymousSubclass;
--(MPWClassMirror*)metaClassMirror;
--(NSArray*)methodMirrors;
 
 @end
 
@@ -34,5 +31,6 @@
 +(Class)superclassOfClass:(Class)aClass;
 +(NSArray*)allClasses;
 -(Class)_createClass:(const char*)name;
+-(NSArray*)methodMirrors;
 
 @end

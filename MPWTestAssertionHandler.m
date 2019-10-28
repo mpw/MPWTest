@@ -59,7 +59,7 @@ id MPWTestFailedException = @"MPWTestFailedException";
     message =
         [NSString
       stringWithFormat: @"%@:%d: error: '%@' in %@",
-            fileName, line, format,functionName];
+            fileName, (int)line, format,functionName];
 //    NSLogv(message, ap);
     
     [NSException raise: [[self class] failureException]
@@ -83,7 +83,7 @@ id MPWTestFailedException = @"MPWTestFailedException";
     message =
         [NSString
       stringWithFormat: @"%@:%d: error: %@ %@ in  %@(%@), method %@.",
-            fileName, line,flag, format, NSStringFromClass([object class]), 
+            fileName, (int)line,flag, format, NSStringFromClass([object class]),
       [object isInstance] ? @"instance" : @"class",
             NSStringFromSelector(aSelector) ];
 //    NSLogv(message, ap);

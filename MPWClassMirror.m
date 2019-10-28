@@ -3,7 +3,7 @@
 //  MPWTest
 //
 //  Created by Marcel Weiher on 5/29/11.
-//  Copyright 2011 metaobject ltd. All rights reserved.
+//  Copyright 2011 Marcel Weiher. All rights reserved.
 //
 
 #import "MPWClassMirror.h"
@@ -15,19 +15,33 @@
 
 
 
-@implementation MPWClassMirror
+@implementation MPWClassMirror : NSObject
 
 
--initWithClass:(Class)aClass
+-(instancetype)initWithClass:(Class)aClass
 {
-	self=[super init];
-	theClass=aClass;
+	if ( aClass && (self=[super init]) ) {
+        theClass=aClass;
+    } else {
+        [self release];
+        self=nil;
+    }
 	return self;
 }
 
-+mirrorWithClass:(Class)aClass
++(instancetype)mirrorWithClass:(Class)aClass
 {
-	return [[[self alloc] initWithClass:aClass] autorelease];
+    return [[[self alloc] initWithClass:aClass] autorelease];
+}
+
++(instancetype)mirrorWithClassNamed:(NSString*)aClassName
+{
+    return [self mirrorWithClass:NSClassFromString(aClassName)];
+}
+
++(instancetype)mirrorWithMetaClassNamed:(NSString*)aClassName
+{
+    return [[self mirrorWithClassNamed:aClassName] metaClassMirror];
 }
 
 -(BOOL)isInBundle:(NSBundle*)aBundle
@@ -40,10 +54,16 @@
 	return [NSString stringWithUTF8String:[self cStringClassName]];
 }
 
--(NSComparisonResult)compare:other
+-(NSString*)className
 {
-    return [[self name] compare:[other name]];
+    return [self name];
 }
+
+-(NSComparisonResult)     compare:otherMirror
+{
+    return [[self name] compare:[otherMirror name]];
+}
+
 
 -(NSArray*)invalidClassNames
 {
@@ -54,9 +74,31 @@
 						   @"NSATSGlyphGen",
 						   @"_",
 						   @"Object",
-                           @"NSMessageBuilder",
-                           @"NSViewServiceApplication",
-#if WINDOWS
+						   @"NSMessageBuilder",
+                           @"OS_xpc_serializer",
+                           @"MPWFutureTesting",
+                           @"NSCoercionHandler",
+                           @"MTLRenderPassStencilAttachmentDescriptor",
+                           @"NSKeyValueNonmutatingSetMethodSet",
+                           @"NSArrayFilteringTesting",
+                           @"OS_",
+                           @"NSKeyValueMutatingOrderedSetMethodSet",
+                           @"MPWMessageCatcherTesting",
+                           @"NSScriptCommandConstructionContext",
+                           @"NSLayoutYAxisAnchor",
+                           @"NSKeyValueMutatingCollectionMethodSet",
+                           @"SuperchainTester2",
+                           @"NSObjectInstanceSizeTesting",
+                           @"MTLRenderPassDepthAttachmentDescriptor",
+                           @"NSStringAdditionsTesting",
+                           @"MPWAutocompletionTests",
+                           @"MPWClassMirrorSubclassForTesting",
+                           @"MPWNamedIdentifier",
+                           @"NSLayoutXAxisAnchor",
+                           @"UINSServiceViewController",
+                           
+                           
+#if WINDOWS						   
 						   @"Object",
 						   @"NSProxy",
 						   @"MPWSoftPointerProxy",
@@ -79,11 +121,12 @@
 }
 
 
+
 -(BOOL)isValidClass
 {
-	//	NSLog(@"checking validity of %@",cName);
-#if WINDOWS	
-	Class superclass= [self superclass];
+//	NSLog(@"checking validity of %s",[self cStringClassName]);
+#if 1
+	Class superclass= [self theSuperclass];
 	if ( superclass == nil ) {
 		return NO;
 	}
@@ -122,7 +165,12 @@
 
 -(MPWClassMirror*)superclassMirror
 {
-	return [[self class] mirrorWithClass:[self superclass]];
+    Class superclass = [self theSuperclass];
+    if ( superclass != theClass) {
+        return [[self class] mirrorWithClass:superclass];
+    } else {
+        return nil;
+    }
 }
 
 -(BOOL)isEqual:(id)otherMirror
@@ -149,7 +197,7 @@
 	return [self isSublcassOfClass: [potentialSuperclassMirror theClass]];
 }
 
--superclass
+-theSuperclass
 {
 	return [[self class] superclassOfClass:[self theClass]];
 }
@@ -163,6 +211,16 @@
 {
 	NSString *madeUpName=[NSString stringWithFormat:@"%@-subclass-%p-%ld",[self name],self,random()];
 	return [self createSubclassWithName:madeUpName];
+}
+
+-(id)forwardingTargetForSelector:(SEL)aSelector
+{
+    return theClass;
+}
+
+-(MPWClassMirror*)metaClassMirror
+{
+    return [[MPWObjectMirror mirrorWithObject:[self theClass]] classMirror];
 }
 
 @end
@@ -185,7 +243,7 @@
 
 -(Class)_createClass:(const char*)name
 {
-	Class *klass = objc_allocateClassPair([self theClass], name,0);
+	Class klass = objc_allocateClassPair([self theClass], name,0);
 	objc_registerClassPair(klass);
 	return klass;
 }
@@ -241,10 +299,6 @@ static MPWMethodMirror* methodMirrorFromMethod( Method m )
 	return  methods;
 }
 
--(MPWClassMirror*)metaClassMirror
-{
-	return [[MPWObjectMirror mirrorWithObject:[self theClass]] classMirror];
-}
 
 @end
 
@@ -253,14 +307,27 @@ static MPWMethodMirror* methodMirrorFromMethod( Method m )
 
 
 #endif
+
 #if 0
 
 #import <MPWFoundation/DebugMacros.h>
 #import <objc/message.h>
 #import "MPWObjectMirror.h"
 
+@interface NSObject(fakeTestingMessages)
+-__testMessage;
+-(id)__testMessageHi;
 
-extern id _objc_msgForward(id receiver, SEL sel, ...);
+@end
+
+@interface MPWClassMirrorSubclassForTesting : MPWClassMirror
+@end
+@implementation MPWClassMirrorSubclassForTesting
++testSelectors { return @[]; }
+@end
+
+
+//extern id _objc_msgForward(id receiver, SEL sel, ...);
 @implementation MPWClassMirror(testing)
 
 -(NSString*)__testMessageHi
@@ -319,16 +386,28 @@ extern id _objc_msgForward(id receiver, SEL sel, ...);
 	
 }
 
++(void)testSuperclassMirror
+{
+    Class theClass=[MPWClassMirrorSubclassForTesting class];
+    
+
+    MPWClassMirror *classMirror=[self mirrorWithClass:theClass];
+    MPWClassMirror *superclassMirror=[classMirror superclassMirror];
+    IDEXPECT([superclassMirror theClass], [MPWClassMirror class], @"superclass matches");
+    
+}
 
 
 +testSelectors
 {
 	return [NSArray arrayWithObjects:
 			@"testCreatePerObjectSubclassWithMethodAndForwarding",
-			@"testCreatePerClassSubclassWithMethodAndForwarding",
+            @"testCreatePerClassSubclassWithMethodAndForwarding",
+            @"testSuperclassMirror",
 			nil];
 }
 
 @end
-#endif
 
+
+#endif

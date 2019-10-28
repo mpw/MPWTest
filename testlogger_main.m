@@ -30,12 +30,13 @@ void usage( const char *name )
     printf("   -tt test type, message to ask for tests\n");
     printf("       default is testSelectors\n");
     printf("   -a  load AppKit\n");
+    printf("   -l  list tests as plist\n");
     printf("   -d  NSDebugEnabled=debugflag or YES if not given\n\n");
     printf("   <frameworks> one or more framework names, without the .framework extension\n");
     printf("       will look in /Library/Frameworks or in the current directory\n");
 }
 
-int runTests( NSArray *testSuiteNames , NSMutableArray *testTypeNames,  BOOL verbose ,BOOL veryVerbose ) {
+int runTests( NSArray *testSuiteNames , NSMutableArray *testTypeNames,  BOOL verbose ,BOOL veryVerbose, BOOL list ) {
     NSMutableArray *testsuites=[NSMutableArray array];
     MPWTestSuite* test;
     MPWLoggingTester* results;
@@ -45,9 +46,14 @@ int runTests( NSArray *testSuiteNames , NSMutableArray *testTypeNames,  BOOL ver
 		[testTypeNames addObject:@"testSelectors"];
 	}
 	for ( id suitename in testSuiteNames ) {
-		id suite = [MPWTestSuite testSuiteForLocalFramework:suitename testTypes:testTypeNames];
+		MPWTestSuite* suite = [MPWTestSuite testSuiteForLocalFramework:suitename testTypes:testTypeNames];
 		//			NSLog(@"suite name= %@",suitename);
 		//			NSLog(@"suite = %@",suite);
+        if ( list ) {
+            NSMutableArray *theList=[NSMutableArray array];
+            [suite listInto:theList];
+            NSLog(@"%@",theList);
+        }
 		if ( suite ) {
 			[testsuites addObject:suite];
 		} else {
@@ -81,8 +87,9 @@ int main (int argc, const char *argv[])
 {
     int exitCode=0;
    [NSAutoreleasePool new];
-    id testsuites = [NSMutableArray array];
+//    id testsuites = [NSMutableArray array];
     int i,verbose=0,veryVerbose=0;
+    BOOL list=NO;
     for (i=0;i<12;i++) {
         if ( i != 3 && i != 5 && i!=2   ) {
  //           signal( i, handler  );
@@ -94,9 +101,11 @@ int main (int argc, const char *argv[])
     for (i=1;i<argc;i++) {
 //		NSLog(@"arg[%d]=%s",i,argv[i]);
         if ( !strcmp( argv[i], "-v" )) {
-			verbose=1;
+            verbose=1;
         } else if ( !strcmp( argv[i], "-vv" )) {
             veryVerbose=1;
+        } else if ( !strcmp( argv[i], "-l" )) {
+            list=1;
         } else if ( !strcmp( argv[i], "-a" )) {
             BOOL didLoadAppKit;
             didLoadAppKit=[[NSBundle bundleWithPath:@"/System/Library/Frameworks/AppKit.framework"] load];
@@ -124,7 +133,7 @@ int main (int argc, const char *argv[])
        }
     }
     if ( [testSuiteNames count] >0  ) {
-        exitCode = runTests( testSuiteNames, testTypeNames, verbose, veryVerbose);
+        exitCode = runTests( testSuiteNames, testTypeNames, verbose, veryVerbose, list);
     } else {
         usage(argv[0]);
         exitCode=1;

@@ -8,7 +8,7 @@
 
 -initWithClass:(Class)classToTest testName:testName arguments:args
 {
-	NSString *msg = @"Couldn't get test case for %@/%@:%@";
+//	NSString *msg = @"Couldn't get test case for %@/%@:%@";
     self = [super init];
     NS_DURING
         testClass = classToTest;

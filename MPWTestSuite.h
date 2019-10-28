@@ -4,8 +4,8 @@
 
 @interface MPWTestSuite : NSObject
 {
-    id testCases;
-    id name;
+    NSArray* testCases;
+    NSString* name;
 	id testTypes;
 }
 
@@ -15,8 +15,9 @@
 
 -(void)runTest:testResults;
 -(int)numberOfTests;
--testTypes;
--setTestTypes:newTestTypes;
-
+//-testTypes;
+//-setTestTypes:newTestTypes;
+-(void)listInto:(NSMutableArray*)result;
+-(NSString*)name;
 
 @end

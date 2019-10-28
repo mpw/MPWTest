@@ -15,5 +15,6 @@
 -(void)doTest;
 -(void)cleanup;
 -(void)runTest:testResults;
+-initWithClass:(Class)classToTest testName:testName;
 
 @end

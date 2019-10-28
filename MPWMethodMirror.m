@@ -3,13 +3,11 @@
 //  MPWTest
 //
 //  Created by Marcel Weiher on 5/30/11.
-//  Copyright 2011 metaobject ltd. All rights reserved.
+//  Copyright 2011 Marcel Weiher. All rights reserved.
 //
 
 #import "MPWMethodMirror.h"
 #import "AccessorMacros.h"
-
-#pragma .h #import <Foundation/Foundation.h>
 
 @implementation MPWMethodMirror 
 
