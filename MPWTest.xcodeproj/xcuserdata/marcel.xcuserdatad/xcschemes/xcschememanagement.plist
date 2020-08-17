@@ -12,21 +12,14 @@
 		<key>MPWTest (Framework).xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>14</integer>
-		</dict>
-		<key>MPWTest.xcscheme</key>
-		<dict>
-			<key>isShown</key>
 			<true/>
 			<key>orderHint</key>
-			<integer>98</integer>
+			<integer>12</integer>
 		</dict>
 		<key>MPWTestTouch.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>108</integer>
+			<integer>98</integer>
 		</dict>
 		<key>testlogger.xcscheme</key>
 		<dict>

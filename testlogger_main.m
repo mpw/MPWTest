@@ -110,7 +110,7 @@ int main (int argc, const char *argv[])
             BOOL didLoadAppKit;
             didLoadAppKit=[[NSBundle bundleWithPath:@"/System/Library/Frameworks/AppKit.framework"] load];
 //            NSLog(@"loaded appkit: %d",didLoadAppKit);
-            [NSClassFromString(@"NSApplication") sharedApplication];
+            [NSClassFromString(@"NSApplication") performSelector:NSSelectorFromString(@"sharedApplication")];
         } else if ( !strcmp( argv[i], "-tt" )) {
 			if ( argv[i+1] ) {
 				[testTypeNames addObject:[NSString stringWithUTF8String:argv[i+1]]];

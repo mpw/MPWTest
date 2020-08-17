@@ -7,7 +7,7 @@
 //
 
 #import "MPWObjectMirror.h"
-#import "AccessorMacros.h"
+#import <MPWFoundation/AccessorMacros.h>
 #import "MPWClassMirror.h"
 #import <objc/runtime.h>
 

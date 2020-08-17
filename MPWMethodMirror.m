@@ -7,7 +7,7 @@
 //
 
 #import "MPWMethodMirror.h"
-#import "AccessorMacros.h"
+#import <MPWFoundation/AccessorMacros.h>
 
 @implementation MPWMethodMirror 
 
