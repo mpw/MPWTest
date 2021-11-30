@@ -7,7 +7,7 @@ LIBRARY_NAME = MPWTest
 
 
 MPWTest_OBJC_FILES = \
-	MPSTestSuite.m MPWLoggingTester.m MPWTestCase.m \
+	MPWTestSuite.m MPWLoggingTester.m MPWTestCase.m \
 	MPWTestResults.m NSBundleClassEnumeration.m NSObjectTestingSupport.m \
 
 
